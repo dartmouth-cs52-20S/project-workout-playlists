@@ -19,6 +19,10 @@ TODO: how to deploy the project
 
 ## Authors
 
-TODO: list of authors
+ Catherine Parnell
+ Grant Dumanian
+ Elizabeth Wilson
+ Jennifer Qian
+ Isaiah Martin
 
 ## Acknowledgments
