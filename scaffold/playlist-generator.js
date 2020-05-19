@@ -1,4 +1,4 @@
-p// I made this by coding along with 
+// I made this by coding along with 
 //  https://www.youtube.com/watch?v=eV3WkDAM3Hw tutorial
 
 const app = {};
