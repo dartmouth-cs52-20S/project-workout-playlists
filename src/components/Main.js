@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet, View, Text, Image,
+  TouchableOpacity,
 } from 'react-native';
 
 class Main extends Component {
@@ -14,10 +15,17 @@ class Main extends Component {
         <Text>
           Here is the main page of our app!!
         </Text>
-        <div>
-          <button type="button"> Add New Playlist</button>
-          <button type="button"> Use Previous Playlist</button>
-        </div>
+        {/* <TouchableOpacity
+          onPress={null}
+        > */}
+        <TouchableOpacity style={styles.button}>
+          <Text>Add New Playlist </Text>
+        </TouchableOpacity>
+        {/* needs onPress function */}
+        <TouchableOpacity style={styles.button}>
+          <Text>Use Previous Playlist</Text>
+        </TouchableOpacity>
+        {/* </TouchableOpacity> */}
       </View>
     );
   }
@@ -32,6 +40,12 @@ const styles = StyleSheet.create({
   image: {
     width: 400,
     height: 300,
+  },
+  button: {
+    backgroundColor: 'orange',
+    color: 'white',
+    padding: 5,
+    borderRadius: 5,
   },
 });
 
