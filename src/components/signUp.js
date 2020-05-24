@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import {
+  StyleSheet, View, Text, TextInput, TouchableOpacity,
+  // TouchableOpacity,
+} from 'react-native';
 
 
 class signUp extends Component {
@@ -6,39 +10,62 @@ class signUp extends Component {
     super(props);
 
     this.state = {
-      email: '',
-      username: '',
-      password: '',
+
     };
   }
 
-  onInputChangeEmail = (event) => {
-    this.setState({ email: event.target.value });
-    // console.log(event.target.value);
-  }
+  // onInputChangeEmail = (event) => {
+  //   this.setState({ email: event.target.value });
+  //   // console.log(event.target.value);
+  // }
 
-  onInputChangeUsername = (event) => {
-    this.setState({ username: event.target.value });
-    // console.log(event.target.value);
-  }
+  // onInputChangeUsername = (event) => {
+  //   this.setState({ username: event.target.value });
+  //   // console.log(event.target.value);
+  // }
 
-  onInputChangePassword = (event) => {
-    this.setState({ password: event.target.value });
-    // console.log(event.target.value);
-  }
+  // onInputChangePassword = (event) => {
+  //   this.setState({ password: event.target.value });
+  //   // console.log(event.target.value);
+  // }
 
 
   render() {
     return (
-      <div className="inputBar">
-        <input type="text" placeholder="Email" onChange={this.onInputChangeEmail} value={this.state.email} />
-        <input type="text" placeholder="Username" onChange={this.onInputChangeUsername} value={this.state.username} />
-        <input type="text" placeholder="Password" onChange={this.onInputChangePassword} value={this.state.password} />
+      <View style={styles.container}>
+        <Text> Sign Up Here!</Text>
+        <View>
+          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Email" onChange={this.onInputChangeEmail} value="hello" />
+          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Username" onChange={this.onInputChangeUsername} value="hello" />
+          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Password" onChange={this.onInputChangePassword} value="hello" />
 
-        <button className="inputbutton" type="submit">Sign up</button>
-      </div>
+          <TouchableOpacity style={styles.button}>
+            <Text>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   }
 }
 
-export default signUp
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'space-around',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  image: {
+    width: 400,
+    height: 300,
+  },
+  button: {
+    backgroundColor: 'orange',
+    color: 'white',
+    padding: 5,
+    borderRadius: 5,
+  },
+});
+
+export default signUp;
