@@ -35,7 +35,7 @@ class signUp extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> Sign Up Here!</Text>
+        <Text > Sign Up Here!</Text>
         <View>
           <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Email" onChange={this.onInputChangeEmail} value="hello" />
           <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Username" onChange={this.onInputChangeUsername} value="hello" />
@@ -47,9 +47,12 @@ class signUp extends React.Component {
           <Button
             // onPress={onPressLearnMore}
             title="Sign up"
-            onPress={() => this.props.navigation.navigate('Main')}
+            onPress={() => this.props.navigation.navigate('New User Flow')}
           />
         </View>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Sign in')}> 
+            <Text>Already have an account? Log in here!</Text>
+        </TouchableOpacity>   
       </View>
     );
   }

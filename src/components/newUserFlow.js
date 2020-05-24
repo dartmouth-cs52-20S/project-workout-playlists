@@ -16,13 +16,18 @@ class NewUserFlow extends Component {
   }
 
   handleClick = (event) => {
-    const questionNum = {
-      currentQ: this.state.currentQ,
-    };
-    questionNum.currentQ += 1;
-    this.setState({ currentQ: questionNum.currentQ });
-    console.log(questionNum);
-    // this.state.currentQ += 1;
+    if(this.state.currentQ <= 5) {
+      const questionNum = {
+        currentQ: this.state.currentQ,
+      };
+      questionNum.currentQ += 1;
+      this.setState({ currentQ: questionNum.currentQ });
+      console.log(questionNum);
+      // this.state.currentQ += 1;
+    }
+    else {
+      this.props.navigation.navigate('Main')
+    }
   }
 
   renderQuestion= () => {

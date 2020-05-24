@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Text, TextInput,
+  StyleSheet, View, Text, TextInput, Button,
   TouchableOpacity,
 } from 'react-native';
 
@@ -45,11 +45,15 @@ class signIn extends Component {
           <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Email" value="hello" />
           <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Password" value="hello" />
 
-          <TouchableOpacity style={styles.button}>
-            <Text>Sign In</Text>
-          </TouchableOpacity>
-          {/* </TouchableOpacity> */}
+          <Button
+            // onPress={onPressLearnMore}
+            title="Sign up"
+            onPress={() => this.props.navigation.navigate('Main')}
+          />
         </View>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Sign up')}> 
+            <Text>Don't have an account? Sign up here!</Text>
+        </TouchableOpacity>   
       </View>
     );
   }
