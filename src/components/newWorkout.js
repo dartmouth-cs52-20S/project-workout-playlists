@@ -14,7 +14,7 @@ class newWorkout extends Component {
   }
 
   onInputChangeType = (event) => {
-    this.setState({ type: event.target.value });
+    // this.setState({ type: event.target.value });
     // console.log(event.target.value);
   }
 
@@ -52,6 +52,10 @@ class newWorkout extends Component {
 
                 </Picker>
             </View>
+            <Button
+            title="Let's work!"
+            onPress={() => this.props.navigation.navigate('New Created Playlist')}
+          />
         </View>
       </View>
     );
