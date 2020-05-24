@@ -4,7 +4,6 @@ import {
   // TouchableOpacity,
 } from 'react-native';
 
-import MainNavigator from '../navigation/stackNavigator';
 
 
 class signUp extends React.Component {
@@ -12,7 +11,9 @@ class signUp extends React.Component {
     super(props);
 
     this.state = {
-
+      email: '',
+      SpotifyID: '',
+      password: '',
     };
   }
 
@@ -22,7 +23,7 @@ class signUp extends React.Component {
   }
 
   onInputChangeUsername = (event) => {
-    this.setState({ username: event.target.value });
+    this.setState({ SpotifyID: event.target.value });
     // console.log(event.target.value);
   }
 
@@ -39,7 +40,7 @@ class signUp extends React.Component {
         <Text > Sign Up Here!</Text>
         <View>
           <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Email" onChange={this.onInputChangeEmail} value={this.state.email} />
-          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Username" onChange={this.onInputChangeUsername} value={this.state.username} />
+          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Spotify ID" onChange={this.onInputChangeUsername} value={this.state.SpotifyID} />
           <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Password" onChange={this.onInputChangePassword} value={this.state.password} />
 
           <Button

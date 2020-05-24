@@ -14,8 +14,8 @@ class newWorkout extends Component {
   }
 
   onInputChangeType = (event) => {
-    this.setState({ type: event.target.value });
-    // console.log(event.target.value);
+    this.setState({ type: event });
+    console.log(this.state.type);
   }
 
 
@@ -28,7 +28,6 @@ class newWorkout extends Component {
                 <Text>Workout type:</Text>
 
                 <Picker
-                    selectedValue='run'
                     style={{ height: 50, width: 150 }}
                     onValueChange={(itemValue, itemIndex) => this.onInputChangeType(itemValue)}
                     >
@@ -52,6 +51,10 @@ class newWorkout extends Component {
 
                 </Picker>
             </View>
+            <Button
+            title="Let's go!"
+            onPress={() => this.props.navigation.navigate('New Created Playlist')}
+          />
         </View>
       </View>
     );
