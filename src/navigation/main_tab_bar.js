@@ -9,6 +9,7 @@ import signIn from '../components/signIn';
 import NewUserFlow from '../components/newUserFlow';
 import NewCreatedPlaylist from '../components/newCreatedPlaylist';
 import newWorkout from '../components/newWorkout';
+import UserProfile from '../components/userProfile';
 
 
 const Tab = createBottomTabNavigator();
@@ -24,11 +25,12 @@ const MainTabBar = () => {
         <Tab.Screen name="New workout" component={newWorkout} />
         <Tab.Screen name="New User Flow" component={NewUserFlow} />
         <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
+        <Tab.Screen name="User Profile" component={UserProfile} />
+
       </Tab.Navigator>
     </NavigationContainer>
   );
 };
-
 
 
 export default MainTabBar;
