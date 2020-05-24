@@ -14,8 +14,6 @@ class newWorkout extends Component {
   }
 
   onInputChangeType = (event) => {
-    this.setState({ type: event });
-    console.log(this.state.type);
   }
 
 
