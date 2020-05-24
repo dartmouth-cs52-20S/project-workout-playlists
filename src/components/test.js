@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   StyleSheet, View, Text, TextInput, TouchableOpacity, Button, navigation
   // TouchableOpacity,
 } from 'react-native';
 
-import MainNavigator from '../navigation/stackNavigator';
 
-
-class signUp extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-
-    };
-  }
+function testTab({navigation}) {
 
   // onInputChangeEmail = (event) => {
   //   this.setState({ email: event.target.value });
@@ -31,15 +24,13 @@ class signUp extends React.Component {
   //   // console.log(event.target.value);
   // }
 
-
-  render() {
     return (
       <View style={styles.container}>
         <Text> Sign Up Here!</Text>
         <View>
-          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Email" onChange={this.onInputChangeEmail} value="hello" />
-          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Username" onChange={this.onInputChangeUsername} value="hello" />
-          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Password" onChange={this.onInputChangePassword} value="hello" />
+          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Email" value="hello" />
+          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Username" value="hello" />
+          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Password" value="hello" />
 
           {/* <TouchableOpacity style={styles.button}>
             <Text>Sign Up</Text>
@@ -47,13 +38,13 @@ class signUp extends React.Component {
           <Button
             // onPress={onPressLearnMore}
             title="Sign up"
-            onPress={() => this.props.navigation.navigate('Main')}
+            onPress={() => navigation.navigate('Main')}
           />
         </View>
       </View>
     );
-  }
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -75,4 +66,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default signUp;
+export default testTab;
