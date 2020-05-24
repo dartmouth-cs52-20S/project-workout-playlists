@@ -25,28 +25,16 @@ class signIn extends Component {
   }
 
 
-  // makeUser = () => {
-  //   const newUser = {
-  //     email: this.state.email,
-  //     password: this.state.password,
-  //   };
-  //   this.props.signinUser(newUser, this.props.history);
-  // }
-  // onChange={this.onInputChangeEmail}
 
   render() {
     return (
       <View style={styles.container}>
         <View>
           <Text>Sign In Here:</Text>
-          {/* <TouchableOpacity
-            onPress={null}
-          > */}
-          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Email" value="hello" />
-          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Password" value="hello" />
+          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Email" value={this.state.email} />
+          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Password" value={this.state.password} />
 
           <Button
-            // onPress={onPressLearnMore}
             title="Sign up"
             onPress={() => this.props.navigation.navigate('Main')}
           />
