@@ -8,6 +8,7 @@ import signUp from '../components/signUp';
 import signIn from '../components/signIn';
 import NewUserFlow from '../components/newUserFlow';
 import testTab from '../components/test';
+import NewCreatedPlaylist from '../components/newCreatedPlaylist';
 
 // const MainStack = createStackNavigator({
 //   Main: {
@@ -41,6 +42,7 @@ const MainTabBar = () => {
         <Tab.Screen name="Sign in" component={signIn} />
         <Tab.Screen name="New User Flow" component={NewUserFlow} />
         <Tab.Screen name="Test" component={testTab} />
+        <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
       </Tab.Navigator>
     </NavigationContainer>
   );

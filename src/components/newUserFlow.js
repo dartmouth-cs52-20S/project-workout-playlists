@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Button,
+  StyleSheet, View,
+  //   Button,
   Text, TouchableOpacity,
 } from 'react-native';
 
@@ -137,6 +138,7 @@ class NewUserFlow extends Component {
   }
 
   render() {
+    // eslint-disable-next-line react/destructuring-assignment
     console.log(this.state.currentQ);
     console.log(this.renderQuestion());
     return (
