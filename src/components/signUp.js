@@ -16,20 +16,20 @@ class signUp extends React.Component {
     };
   }
 
-  // onInputChangeEmail = (event) => {
-  //   this.setState({ email: event.target.value });
-  //   // console.log(event.target.value);
-  // }
+  onInputChangeEmail = (event) => {
+    this.setState({ email: event.target.value });
+    // console.log(event.target.value);
+  }
 
-  // onInputChangeUsername = (event) => {
-  //   this.setState({ username: event.target.value });
-  //   // console.log(event.target.value);
-  // }
+  onInputChangeUsername = (event) => {
+    this.setState({ username: event.target.value });
+    // console.log(event.target.value);
+  }
 
-  // onInputChangePassword = (event) => {
-  //   this.setState({ password: event.target.value });
-  //   // console.log(event.target.value);
-  // }
+  onInputChangePassword = (event) => {
+    this.setState({ password: event.target.value });
+    // console.log(event.target.value);
+  }
 
 
   render() {

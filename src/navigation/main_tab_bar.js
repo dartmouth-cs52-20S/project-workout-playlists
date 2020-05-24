@@ -7,8 +7,8 @@ import Main from '../components/Main';
 import signUp from '../components/signUp';
 import signIn from '../components/signIn';
 import NewUserFlow from '../components/newUserFlow';
-import testTab from '../components/test';
 import NewCreatedPlaylist from '../components/newCreatedPlaylist';
+import newWorkout from '../components/newWorkout';
 
 
 const Tab = createBottomTabNavigator();
@@ -21,6 +21,7 @@ const MainTabBar = () => {
         <Tab.Screen name="Sign up" component={signUp} />
         <Tab.Screen name="Sign in" component={signIn} />
         <Tab.Screen name="Main" component={Main} />
+        <Tab.Screen name="New workout" component={newWorkout} />
         <Tab.Screen name="New User Flow" component={NewUserFlow} />
         <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
       </Tab.Navigator>
