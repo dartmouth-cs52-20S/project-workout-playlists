@@ -6,6 +6,7 @@ import Main from '../components/Main';
 import signUp from '../components/signUp';
 import signIn from '../components/signIn';
 import NewUserFlow from '../components/newUserFlow';
+import NewCreatedPlaylist from '../components/newCreatedPlaylist';
 
 
 // const AboutTab = (props) => {
@@ -30,6 +31,7 @@ const MainTabBar = () => {
         <Tab.Screen name="Sign up" component={signUp} />
         <Tab.Screen name="Sign in" component={signIn} />
         <Tab.Screen name="New User Flow" component={NewUserFlow} />
+        <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
       </Tab.Navigator>
     </NavigationContainer>
   );
