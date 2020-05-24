@@ -18,7 +18,7 @@ class signUp extends React.Component {
 
   onInputChangeEmail = (event) => {
     this.setState({ email: event.target.value });
-    // console.log(event.target.value);
+    console.log(this.state.email);
   }
 
   onInputChangeUsername = (event) => {
@@ -32,20 +32,17 @@ class signUp extends React.Component {
   }
 
 
+
   render() {
     return (
       <View style={styles.container}>
         <Text > Sign Up Here!</Text>
         <View>
-          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Email" onChange={this.onInputChangeEmail} value="hello" />
-          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Username" onChange={this.onInputChangeUsername} value="hello" />
-          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Password" onChange={this.onInputChangePassword} value="hello" />
+          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Email" onChange={this.onInputChangeEmail} value={this.state.email} />
+          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Username" onChange={this.onInputChangeUsername} value={this.state.username} />
+          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Password" onChange={this.onInputChangePassword} value={this.state.password} />
 
-          {/* <TouchableOpacity style={styles.button}>
-            <Text>Sign Up</Text>
-          </TouchableOpacity> */}
           <Button
-            // onPress={onPressLearnMore}
             title="Sign up"
             onPress={() => this.props.navigation.navigate('New User Flow')}
           />

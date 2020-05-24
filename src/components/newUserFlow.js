@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, View,
-  //   Button,
+  StyleSheet, View, Button,
   Text, TouchableOpacity,
 } from 'react-native';
 
 class NewUserFlow extends Component {
   constructor(props) {
     super(props);
-    this.state = { currentQ: 1 };
+    this.state = { 
+      currentQ: 1,
+      question1: '', 
+      question2: '', 
+      question3: '', 
+      question4: '', 
+      question5: '', 
+    };
   }
 
   componentDidMount() {
@@ -16,6 +22,7 @@ class NewUserFlow extends Component {
   }
 
   handleClick = (event) => {
+    console.log(event)
     if(this.state.currentQ <= 5) {
       const questionNum = {
         currentQ: this.state.currentQ,
@@ -38,22 +45,28 @@ class NewUserFlow extends Component {
           <Text>
             What do you like to do?
           </Text>
-          <TouchableOpacity style={styles.button}>
+          <Button
+            title="walk"
+            value="walk"
+            onPress={() => this.setState({question1: "walk"})}
+          />
+          {/* <TouchableOpacity key="walk" style={styles.button}>
             <Text>Walk</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity key="run" style={styles.button}>
             <Text>Run</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity key="bike" style={styles.button}>
             <Text>Bike</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity key="dance" style={styles.button}>
             <Text>Dance</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       );
     } else if (questionNum === 2) {
       return (
+        console.log(this.state.question1),
         <View>
           <Text>
             Do you have any fitness goals?
@@ -148,7 +161,7 @@ class NewUserFlow extends Component {
     console.log(this.renderQuestion());
     return (
       <View style={styles.container}>
-        <Text>Let&quot;s Get to Know You!</Text>
+        <Text>Let's Get to Know You!</Text>
         {this.renderQuestion()}
         <TouchableOpacity
           onPress={this.handleClick} // how to make this a different functionality when at the end of questions?
