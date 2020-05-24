@@ -4,6 +4,7 @@ import {
   // TouchableOpacity,
 } from 'react-native';
 
+import { signupUser } from '../actions/index';
 
 
 class signUp extends React.Component {
@@ -12,8 +13,15 @@ class signUp extends React.Component {
 
     this.state = {
       email: '',
-      SpotifyID: '',
+      spotifyID: '',
       password: '',
+      genres: [],
+      acousticness: false,
+      instrumentalness: false,
+      liveness: false,
+      loudness: false,
+      popularity: false,
+      valence: false,
     };
   }
 
@@ -23,7 +31,7 @@ class signUp extends React.Component {
   }
 
   onInputChangeUsername = (event) => {
-    this.setState({ SpotifyID: event.target.value });
+    this.setState({ spotifyID: event.target.value });
     // console.log(event.target.value);
   }
 
@@ -32,6 +40,19 @@ class signUp extends React.Component {
     // console.log(event.target.value);
   }
 
+  makeUser = () => {
+    const newUser = {
+      spotifyID: this.state.spotifyID,
+      genres: this.state.genres,
+      acousticness: this.state.acousticness,
+      instrumentalness: this.state.instrumentalness,
+      liveness: this.state.liveness,
+      loudness: this.state.loudness,
+      popularity: this.state.popularity,
+      valence: this.state.valence,
+    };
+    this.props.signupUser(newUser, this.props.history);
+  }
 
 
   render() {
@@ -40,7 +61,7 @@ class signUp extends React.Component {
         <Text > Sign Up Here!</Text>
         <View>
           <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Email" onChange={this.onInputChangeEmail} value={this.state.email} />
-          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Spotify ID" onChange={this.onInputChangeUsername} value={this.state.SpotifyID} />
+          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="spotify ID" onChange={this.onInputChangeUsername} value={this.state.spotifyID} />
           <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Password" onChange={this.onInputChangePassword} value={this.state.password} />
 
           <Button
