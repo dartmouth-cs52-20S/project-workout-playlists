@@ -18,9 +18,7 @@ const store = createStore(reducers, {}, compose(
 
 const App = (props) => {
   return (
-  <Provider store={store}>
-    <MainTabBar />;
-  </Provider>)
+  <Provider store={store}><MainTabBar /></Provider>)
 };
 
 
