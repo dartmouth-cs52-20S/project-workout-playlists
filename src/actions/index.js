@@ -22,7 +22,7 @@ export function authError(error) {
     return (dispatch) => {
        axios.post(`${ROOT_URL}/newuser`, newUser)
         .then((response) => {
-          dispatch({ type: ActionTypes.AUTH_USER, payload: newUser.spotifyID  });
+          dispatch({ type: ActionTypes.AUTH_USER, payload: newUser  });
         //   history.push('/');
         })
         .catch((error) => { 
@@ -34,7 +34,10 @@ export function authError(error) {
 
 
   export function fetchUser(spotifyID) {
-        return (dispatch) => {
+    console.log("in fetch user:");
+    console.log(spotifyID);
+
+    return (dispatch) => {
           axios.get(`${ROOT_URL}/getuser/${spotifyID}/`)
             .then((response) => {
               console.log(response);
