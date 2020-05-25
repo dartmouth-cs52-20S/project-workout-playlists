@@ -8,10 +8,12 @@ class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={{ uri: 'https://www.macworld.co.uk/cmsdata/slideshow/3598175/Dashboard_thumb800.PNG' }}
-        />
+        <View syle={styles.imagecontainer}>
+          {/* <Image
+            style={styles.image}
+            source={{ uri: 'https://www.macworld.co.uk/cmsdata/slideshow/3598175/Dashboard_thumb800.PNG' }}
+          /> */}
+        </View>
         <Text>
           Here is the main page of our app!!
         </Text>
@@ -37,9 +39,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
   },
+  imagecontainer:{
+    display: 'flex',
+    justifyContent: 'center',
+    width: 100,
+    height: 10,
+  },
   image: {
-    width: 400,
-    height: 300,
+    // flex: 1,
+    // width: null,
+    // height: null,
+    resizeMode: 'contain'
   },
   button: {
     backgroundColor: 'orange',

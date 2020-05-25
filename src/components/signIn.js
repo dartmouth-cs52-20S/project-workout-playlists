@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet, View, Text, TextInput, Button,
-  TouchableOpacity,
+  TouchableOpacity, Image,
 } from 'react-native';
 
 class signIn extends Component {
@@ -9,13 +9,13 @@ class signIn extends Component {
     super(props);
 
     this.state = {
-      email: '',
+      spotifyID: '',
       password: '',
     };
   }
 
-  onInputChangeEmail = (event) => {
-    this.setState({ email: event.target.value });
+  onInputChangeUsername = (event) => {
+    this.setState({ spotifyID: event.target.value });
     // console.log(event.target.value);
   }
 
@@ -29,10 +29,12 @@ class signIn extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.logocontainer}>
+          <Image style={styles.logo} source={require('../imgs/logo.png')} />
+        </View>
         <View>
-          <Text>Sign In Here:</Text>
-          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Email" value={this.state.email} />
-          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Password" value={this.state.password} />
+          <TextInput style={styles.input} placeholder="spotify ID" placeholderTextColor="black" onChange={this.onInputChangeUsername} value={this.state.spotifyID} />
+          <TextInput style={styles.input} placeholder="Password" placeholderTextColor="black" onChange={this.onInputChangePassword} value={this.state.password} />
 
           <Button
             title="Sign up"
@@ -54,15 +56,35 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     flexDirection: 'column',
     alignItems: 'center',
+    backgroundColor: 'white',
   },
-  image: {
-    width: 400,
-    height: 300,
+  logocontainer:{
+    display: 'flex',
+    justifyContent: 'center',
+    width: 350,
+    height: 200,
+  },
+  logo: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'contain'
   },
   button: {
     backgroundColor: 'orange',
     padding: 5,
     borderRadius: 5,
+  },
+  input: {
+    width: 350,
+    height: 55,
+    backgroundColor: 'orange',
+    margin: 10,
+    padding: 8,
+    color: 'white',
+    borderRadius: 14,
+    fontSize: 18,
+    fontWeight: '500',
   },
 });
 
