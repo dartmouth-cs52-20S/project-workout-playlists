@@ -12,22 +12,13 @@ class UserProfile extends Component {
     super(props);
 
     this.state = {
-      email: '',
-      spotifyID: '',
-      password: '',
-      genres: [],
-      acousticness: false,
-      instrumentalness: false,
-      liveness: false,
-      loudness: false,
-      popularity: false,
-      valence: false,
+
     };
   }
 
   componentDidMount = () => {
-    console.log(this.props)
-    this.props.fetchUser(this.props.spotifyID);
+    console.log(this.props.user.spotifyID)
+    this.props.fetchUser(this.props.user.spotifyID);
     console.log('mounted');
   }
 
@@ -36,7 +27,7 @@ class UserProfile extends Component {
     return (
       <View style={styles.container}>
         <Text>
-          My Profile
+          {this.props.user.spotifyID}
         </Text>
         <Image
           style={styles.image}
@@ -69,7 +60,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(reduxState) {
   return {
-    spotifyID: reduxState.auth.spotifyID,
+    user: reduxState.auth.user,
   };
 }
 
