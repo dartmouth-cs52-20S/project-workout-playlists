@@ -66,7 +66,10 @@ class signUp extends React.Component {
 
           <Button
             title="Sign up"
-            onPress={() => this.props.navigation.navigate('New User Flow')}
+            onPress={() => {
+              this.makeUser;
+              this.props.navigation.navigate('New User Flow')}
+            }
           />
         </View>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Sign in')}> 
