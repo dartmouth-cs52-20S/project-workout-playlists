@@ -3,7 +3,33 @@ import {
   StyleSheet, View, Text, Image,
 } from 'react-native';
 
+import { fetchUser } from '../actions/index';
+
+
 class UserProfile extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: '',
+      spotifyID: '',
+      password: '',
+      genres: [],
+      acousticness: false,
+      instrumentalness: false,
+      liveness: false,
+      loudness: false,
+      popularity: false,
+      valence: false,
+    };
+  }
+
+  componentDidMount = () => {
+    // this.props.fetchUser(this.props.match.params.spotifyID);
+    console.log('mounted');
+  }
+
+
   render() {
     return (
       <View style={styles.container}>
