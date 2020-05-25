@@ -204,7 +204,6 @@ class NewUserFlow extends Component {
             display: 'flex',
             justifyContent: 'center', // this wont center the text?? :(
             backgroundColor: 'orange',
-            color: 'white',
             padding: 5,
             borderRadius: 5,
           }}

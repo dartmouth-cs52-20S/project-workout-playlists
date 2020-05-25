@@ -20,7 +20,7 @@ export function authError(error) {
   export function signupUser( newUser ) {
     console.log(newUser);
     return (dispatch) => {
-      axios.post(`${ROOT_URL}/newuser`, newUser)
+       axios.post(`${ROOT_URL}/newuser`, newUser)
         .then((response) => {
           dispatch({ type: ActionTypes.AUTH_USER, payload: newUser.spotifyID  });
         //   history.push('/');
