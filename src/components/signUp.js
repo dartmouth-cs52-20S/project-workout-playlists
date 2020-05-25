@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import {
   StyleSheet, View, Text, TextInput, TouchableOpacity, Button, navigation
   // TouchableOpacity,
@@ -41,6 +43,7 @@ class signUp extends React.Component {
   }
 
   makeUser = () => {
+    console.log('hi');
     const newUser = {
       spotifyID: this.state.spotifyID,
       genres: this.state.genres,
@@ -51,7 +54,9 @@ class signUp extends React.Component {
       popularity: this.state.popularity,
       valence: this.state.valence,
     };
+    console.log('pre signup user');
     this.props.signupUser(newUser, this.props.history);
+    console.log('post signup user');
   }
 
 
@@ -67,8 +72,9 @@ class signUp extends React.Component {
           <Button
             title="Sign up"
             onPress={() => {
-              this.makeUser;
-              this.props.navigation.navigate('New User Flow')}
+              this.makeUser();
+              this.props.navigation.navigate('New User Flow')
+            }
             }
           />
         </View>
@@ -94,10 +100,9 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'orange',
-    color: 'white',
     padding: 5,
     borderRadius: 5,
   },
 });
 
-export default signUp;
+export default connect(null, { signupUser })(signUp);
