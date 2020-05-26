@@ -8,26 +8,22 @@ class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View syle={styles.imagecontainer}>
-          {/* <Image
-            style={styles.image}
-            source={{ uri: 'https://www.macworld.co.uk/cmsdata/slideshow/3598175/Dashboard_thumb800.PNG' }}
-          /> */}
+        <View style={styles.title}>
+          <Text>
+            Here is the main page of our app!!
+          </Text>
         </View>
-        <Text>
-          Here is the main page of our app!!
-        </Text>
-        {/* <TouchableOpacity
-          onPress={null}
-        > */}
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('New workout')} style={styles.button}>
-          <Text>Start new workout</Text>
-        </TouchableOpacity>
-        {/* needs onPress function */}
-        <TouchableOpacity style={styles.button}>
-          <Text>Use Previous Playlist</Text>
-        </TouchableOpacity>
-        {/* </TouchableOpacity> */}
+        <View style={styles.body}>
+
+        </View>
+        <View style={styles.buttons}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('New workout')} style={styles.button}>
+            <Text>Start new workout</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}>
+            <Text>Use Previous Playlist</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -51,11 +47,18 @@ const styles = StyleSheet.create({
     // height: null,
     resizeMode: 'contain',
   },
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
   button: {
+    flexDirection: "column",
+    justifyContent: "center",
     backgroundColor: 'orange',
-    // color: 'white',
     padding: 5,
+    height: 100,
     borderRadius: 5,
+    marginHorizontal: 10,
   },
 });
 
