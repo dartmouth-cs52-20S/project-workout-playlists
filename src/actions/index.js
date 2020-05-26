@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const ROOT_URL = 'http://localhost:9090/api';
-const ROOT_URL = 'https://workout-playlists-final-proj.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'https://workout-playlists-final-proj.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_USER: 'FETCH_USER',
@@ -44,6 +44,18 @@ export function fetchUser(spotifyID) {
         console.log(response);
         // once we are done fetching we can dispatch a redux action with the response data
         dispatch({ type: ActionTypes.FETCH_USER });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function updateUser(ID, newUser) {
+  return (dispatch) => {
+    axios.put(`${ROOT_URL}/newuser/${ID}`, newUser, { headers: { authorization: localStorage.getItem('token') } })
+      .then((response) => {
+        dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })
       .catch((error) => {
         console.log(error);

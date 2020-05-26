@@ -8,7 +8,6 @@ import {
 
 import { signupUser } from '../actions/index';
 
-import { withOrientation } from 'react-navigation';
 
 class signUp extends React.Component {
   constructor(props) {

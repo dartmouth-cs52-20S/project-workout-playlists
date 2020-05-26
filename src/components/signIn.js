@@ -37,7 +37,7 @@ class signIn extends Component {
           <TextInput style={styles.input} placeholder="Password" placeholderTextColor="black" onChange={this.onInputChangePassword} value={this.state.password} />
 
           <Button
-            title="Sign up"
+            title="Sign in"
             onPress={() => this.props.navigation.navigate('Main')}
           />
         </View>
