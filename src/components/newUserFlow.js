@@ -5,26 +5,38 @@ import {
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
+import { fetchUser } from '../actions/index';
+import { connect } from 'react-redux';
+
+const NUM_QUESTIONS = 7;
+
 class NewUserFlow extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentQ: 1,
-      question1: '',
-      question2: '',
-      question3: '',
-      question4: '',
-      question5: '',
+      question1: 5,
+      question2: 5,
+      question3: 5,
+      question4: 5,
+      question5: 5,
+      question6: 5,
+      question7: 5,
     };
   }
 
   componentDidMount() {
-    console.log('in newUserFlow');
+    // console.log('in newUserFlow');
+    this.props.fetchUser(this.props.user.spotifyID);
+  }
+
+  onInputChangeText = (event) => {
+    this.setState({ question7: event.target.value });
   }
 
   handleClick = (event) => {
-    console.log(event);
-    if (this.state.currentQ <= 5) {
+    console.log('handled');
+    if (this.state.currentQ <= NUM_QUESTIONS) {
       const questionNum = {
         currentQ: this.state.currentQ,
       };
@@ -45,23 +57,26 @@ class NewUserFlow extends Component {
           <Text>
             Acousticness
           </Text>
-          {/* <Button
-            title="walk"
-            value="walk"
-            onPress={() => this.setState({ question1: 'walk' })}
-          /> */}
-          <TouchableOpacity style={styles.button}>
-            <Text>1- dababy</Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.handleClick();
+              this.setState ({ question1: 1 });
+            }
+            }
+          >
+            <Text>1-Dababy</Text>
           </TouchableOpacity>
-          <TouchableOpacity key="idk" style={styles.button}>
-            <Text>10-john mayer</Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.handleClick();
+              this.setState ({ question1: 10 });
+            }
+            }
+          >
+            <Text>10- John Mayer</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity key="bike" style={styles.button}>
-            <Text>Bike</Text>
-          </TouchableOpacity>
-          <TouchableOpacity key="dance" style={styles.button}>
-            <Text>Dance</Text>
-          </TouchableOpacity> */}
         </View>
       );
     } else if (questionNum === 2) {
@@ -71,12 +86,26 @@ class NewUserFlow extends Component {
             <Text>
               Instrumentalness
             </Text>
-            <TouchableOpacity style={styles.button}>
-              <Text>1-only instruments</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Text>10 -voices please!</Text>
-            </TouchableOpacity>
+            <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.handleClick();
+              this.setState ({ question2: 1 });
+            }
+            }
+          >
+            <Text>1- only instruments</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.handleClick();
+              this.setState ({ question2: 10 });
+            }
+            }
+          >
+            <Text>10- voices please!</Text>
+          </TouchableOpacity>
             {/* <TouchableOpacity style={styles.button}>
               <Text>Having Fun</Text>
             </TouchableOpacity>
@@ -91,10 +120,10 @@ class NewUserFlow extends Component {
           <Text>
             Liveness
           </Text>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity onPress={() => this.setState({ question3: 1 })} style={styles.button}>
             <Text>1-chillin in the studio</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity onPress={() => this.setState({ question3: 10 })} style={styles.button}>
             <Text>10-concert in my head please</Text>
           </TouchableOpacity>
           {/* <TouchableOpacity style={styles.button}>
@@ -111,10 +140,10 @@ class NewUserFlow extends Component {
           <Text>
             Loudness
           </Text>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity onPress={() => this.setState({ question4: 1 })} style={styles.button}>
             <Text>1-quiet background music</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity onPress={() => this.setState({ question4: 10 })} style={styles.button}>
             <Text>10- loud music gives me power</Text>
           </TouchableOpacity>
           {/* <TouchableOpacity style={styles.button}>
@@ -131,10 +160,10 @@ class NewUserFlow extends Component {
           <Text>
             Popular music
           </Text>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity onPress={() => this.setState({ question5: 1 })} style={styles.button}>
             <Text>1-chart toppers</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity onPress={() => this.setState({ question5: 10 })} style={styles.button}>
             <Text>10-new music </Text>
           </TouchableOpacity>
           {/* <TouchableOpacity style={styles.button}>
@@ -151,10 +180,10 @@ class NewUserFlow extends Component {
           <Text>
             Positivity
           </Text>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity onPress={() => this.setState({ question6: 1 })} style={styles.button}>
             <Text>1-meh</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity onPress={() => this.setState({ question6: 10 })} style={styles.button}>
             <Text>10-upbeat</Text>
           </TouchableOpacity>
           {/* <TouchableOpacity style={styles.button}>
@@ -165,13 +194,13 @@ class NewUserFlow extends Component {
           {/* </TouchableOpacity> */}
         </View>
       );
-    } else if (questionNum === 6) {
+    } else if (questionNum === 7) {
       return (
         <View>
           <Text>
             Favorite genres while working out?
           </Text>
-          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Genres" value={this.state.email} />
+          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Genres" onChange={this.onInputChangeText} value={this.state.question7} />
           {/* <TouchableOpacity style={styles.button}>
             <Text>Only sometimes</Text>
           </TouchableOpacity>
@@ -196,9 +225,9 @@ class NewUserFlow extends Component {
     console.log(this.renderQuestion());
     return (
       <View style={styles.container}>
-        <Text>On a scale of 1-10, rate your preferences to the following questions:</Text>
+        <Text>Let's get to know you!</Text>
         {this.renderQuestion()}
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={this.handleClick} // how to make this a different functionality when at the end of questions?
           style={{
             display: 'flex',
@@ -209,8 +238,7 @@ class NewUserFlow extends Component {
           }}
         >
           <Text>Next</Text>
-        </TouchableOpacity>
-        {/* onclick, update call state incrementer */}
+        </TouchableOpacity> */}
       </View>
     );
   }
@@ -229,41 +257,29 @@ const styles = StyleSheet.create({
   },
   button:
   {
-    display: 'flex',
-    justifyContent: 'center', // this wont center the text?? :(
-    backgroundColor: 'white',
-    padding: 5,
-    borderRadius: 5,
-    borderWidth: 2,
-    borderColor: 'orange',
+    display: "flex",
+    alignItems: "center",
+    width: 200,
+    height: 32,
+    backgroundColor: 'orange',
+    margin: 10,
+    padding: 8,
+    color: 'white',
+    borderRadius: 14,
+    fontSize: 18,
+    fontWeight: '500',
   },
 });
-export default NewUserFlow;
 
 
-//   const displayedQuestion = (
-//   <View style={styles.container}>
-//     <Text>
-//       Initial Preferences
-//     </Text>
-//     <button type="button"> Option 1</button>
-//     <button type="button"> Option 2</button>
-//     <button type="button"> Option 3</button>
-//     <button type="button"> Option 4</button>
-//     <button type="button">Submit</button>
-//     {/* onclick, update call state incrementer */}
-//   </View>;
-//   );
-//   return displayedQuestion;
+function mapStateToProps(reduxState) {
+  return {
+    user: reduxState.auth.user,
+  };
+}
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'space-around',
-//     alignItems: 'center',
-//   },
-//   image: {
-//     width: 400,
-//     height: 300,
-//   },
-// });
+export default connect(mapStateToProps, { fetchUser })(NewUserFlow);
+
+
+
+

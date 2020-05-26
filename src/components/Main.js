@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'orange',
-    color: 'white',
+    // color: 'white',
     padding: 5,
     borderRadius: 5,
   },
