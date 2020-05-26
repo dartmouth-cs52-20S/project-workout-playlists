@@ -15,9 +15,8 @@ class NewUserFlow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 0.2,
       currentQ: 1,
-      question1: 5,
+      question1: 0,
       question2: 5,
       question3: 5,
       question4: 5,
@@ -59,7 +58,7 @@ class NewUserFlow extends Component {
           <Text>
             Acousticness
           </Text>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.button}
             onPress={() => {
               this.handleClick();
@@ -67,23 +66,24 @@ class NewUserFlow extends Component {
             }}
           >
             <Text>1-Dababy</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <Slider
-            value={this.state.value}
-            onValueChange={(value) => this.setState({ value })}
+            // style={styles.slider}
+            // value={this.state.question1}
+            onValueChange={question1 => this.setState({ question1 })}
           />
           <Text>
             Value:
-            {this.state.value}
+            {this.state.question1}
           </Text>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
               this.handleClick();
-              this.setState({ question1: 10 });
+              // this.setState({ question1: 10 });
             }}
           >
-            <Text>10- John Mayer</Text>
+            <Text>Next</Text>
           </TouchableOpacity>
         </View>
       );
@@ -261,6 +261,9 @@ const styles = StyleSheet.create({
     width: 400,
     height: 300,
   },
+  // slider: {
+  //   step: 
+  // }
   button:
   {
     display: 'flex',
