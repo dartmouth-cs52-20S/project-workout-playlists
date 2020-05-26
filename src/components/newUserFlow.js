@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Button,
+  StyleSheet, View,
   Text, TouchableOpacity,
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-import { fetchUser } from '../actions/index';
 import { connect } from 'react-redux';
+import Slider from 'react-native-slider';
+import { fetchUser } from '../actions/index';
 
 const NUM_QUESTIONS = 7;
 
@@ -14,6 +15,7 @@ class NewUserFlow extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      value: 0.2,
       currentQ: 1,
       question1: 5,
       question2: 5,
@@ -61,19 +63,25 @@ class NewUserFlow extends Component {
             style={styles.button}
             onPress={() => {
               this.handleClick();
-              this.setState ({ question1: 1 });
-            }
-            }
+              this.setState({ question1: 1 });
+            }}
           >
             <Text>1-Dababy</Text>
           </TouchableOpacity>
+          <Slider
+            value={this.state.value}
+            onValueChange={(value) => this.setState({ value })}
+          />
+          <Text>
+            Value:
+            {this.state.value}
+          </Text>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
               this.handleClick();
-              this.setState ({ question1: 10 });
-            }
-            }
+              this.setState({ question1: 10 });
+            }}
           >
             <Text>10- John Mayer</Text>
           </TouchableOpacity>
@@ -87,25 +95,23 @@ class NewUserFlow extends Component {
               Instrumentalness
             </Text>
             <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              this.handleClick();
-              this.setState ({ question2: 1 });
-            }
-            }
-          >
-            <Text>1- only instruments</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              this.handleClick();
-              this.setState ({ question2: 10 });
-            }
-            }
-          >
-            <Text>10- voices please!</Text>
-          </TouchableOpacity>
+              style={styles.button}
+              onPress={() => {
+                this.handleClick();
+                this.setState({ question2: 1 });
+              }}
+            >
+              <Text>1- only instruments</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                this.handleClick();
+                this.setState({ question2: 10 });
+              }}
+            >
+              <Text>10- voices please!</Text>
+            </TouchableOpacity>
             {/* <TouchableOpacity style={styles.button}>
               <Text>Having Fun</Text>
             </TouchableOpacity>
@@ -257,8 +263,8 @@ const styles = StyleSheet.create({
   },
   button:
   {
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    alignItems: 'center',
     width: 200,
     height: 32,
     backgroundColor: 'orange',
@@ -279,7 +285,3 @@ function mapStateToProps(reduxState) {
 }
 
 export default connect(mapStateToProps, { fetchUser })(NewUserFlow);
-
-
-
-
