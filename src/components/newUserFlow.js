@@ -7,7 +7,7 @@ import { TextInput } from 'react-native-gesture-handler';
 
 import { connect } from 'react-redux';
 import Slider from 'react-native-slider';
-import { fetchUser } from '../actions/index';
+import { fetchUser, updateUser } from '../actions/index';
 
 const NUM_QUESTIONS = 7;
 
@@ -46,6 +46,15 @@ class NewUserFlow extends Component {
       console.log(questionNum);
       // this.state.currentQ += 1;
     } else {
+      this.props.updateUser(this.props.user.spotifyID, { //lol backend in progress
+        acousticness: this.state.question1, 
+        instrumentalness: this.state.question2, 
+        liveness: this.state.question3, 
+        loudness: this.state.question4, 
+        popularity: this.state.question5, 
+        valence: this.state.question6, 
+        genres: this.state.question7
+      })
       this.props.navigation.navigate('Main');
     }
   }
@@ -287,14 +296,6 @@ class NewUserFlow extends Component {
           >
             <Text>Next</Text>
           </TouchableOpacity>
-          { /* We will add more here */
-
-          /* <TouchableOpacity style={styles.button}>
-            <Text>Only sometimes</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text>No thanks</Text> */}
-          {/* </TouchableOpacity> */}
         </View>
       );
     } else {
@@ -316,18 +317,6 @@ class NewUserFlow extends Component {
         <Text><h1>Let's get to know you!</h1></Text>
         <br />
         {this.renderQuestion()}
-        {/* <TouchableOpacity
-          onPress={this.handleClick} // how to make this a different functionality when at the end of questions?
-          style={{
-            display: 'flex',
-            justifyContent: 'center', // this wont center the text?? :(
-            backgroundColor: 'orange',
-            padding: 5,
-            borderRadius: 5,
-          }}
-        >
-          <Text>Next</Text>
-        </TouchableOpacity> */}
       </View>
     );
   }
@@ -369,4 +358,4 @@ function mapStateToProps(reduxState) {
   };
 }
 
-export default connect(mapStateToProps, { fetchUser })(NewUserFlow);
+export default connect(mapStateToProps, { fetchUser, updateUser })(NewUserFlow);

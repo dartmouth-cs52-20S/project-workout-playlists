@@ -51,9 +51,9 @@ export function fetchUser(spotifyID) {
   };
 }
 
-export function updateUser(ID, newUser) {
+export function updateUser(spotifyID, newUser) {
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/newuser/${ID}`, newUser, { headers: { authorization: localStorage.getItem('token') } })
+    axios.put(`${ROOT_URL}/update/${spotifyID}`, newUser, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => {
         dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })
@@ -62,3 +62,15 @@ export function updateUser(ID, newUser) {
       });
   };
 }
+
+// export function getAuthorization(){
+//   return (dispatch) => {
+//     axios.get(`${ROOT_URL}/login/`)
+//       .then((response) => {
+
+//       })
+//       .catch((error) =>{
+//         console.log(error);
+//       });
+//   };
+// }
