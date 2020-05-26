@@ -73,8 +73,7 @@ class NewUserFlow extends Component {
             onValueChange={question1 => this.setState({ question1 })}
           />
           <Text>
-            Value:
-            {this.state.question1}
+            Value: {this.state.question1}
           </Text>
           <TouchableOpacity
             style={styles.button}
