@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
   },
-  imagecontainer:{
+  imagecontainer: {
     display: 'flex',
     justifyContent: 'center',
     width: 100,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     // flex: 1,
     // width: null,
     // height: null,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   button: {
     backgroundColor: 'orange',
