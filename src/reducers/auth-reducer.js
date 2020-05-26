@@ -2,15 +2,17 @@ import { ActionTypes } from '../actions';
 
 
 const initialState = {
-    authenticated: false,
-    user: '',
+  authenticated: false,
+  accessToken: '',
+  spotifyID: '',
 };
 
 const authReducer = (state = initialState, action) => {
-  // console.log(action.payload);
   switch (action.type) {
     case ActionTypes.AUTH_USER:
-      return { ...state, authenticated: true, user: action.payload };
+      return {
+        ...state, authenticated: true, accessToken: action.payload.accessToken, spotifyID: action.payload.spotifyID,
+      };
     case ActionTypes.DEAUTH_USER:
       return { ...state, authenticated: false };
     case ActionTypes.AUTH_ERROR:

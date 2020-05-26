@@ -10,6 +10,11 @@ import {
 } from 'react-native';
 
 import { WebView } from 'react-native-webview';
+import { authenticate } from '../actions';
+import spotifyCredentials from '../secrets';
+
+const { clientId } = spotifyCredentials; // Your client id
+const { redirectUri } = spotifyCredentials; // Your redirect uri
 
 
 class signUp extends Component {
@@ -24,37 +29,41 @@ class signUp extends Component {
   }
 
   onLogin = () => {
+    console.log('logging in');
     this.setState({ login: true });
   }
 
   handleSpotifyAuth = (newNavState) => {
+    console.log('handling!');
     const { url } = newNavState;
+    console.log('url', url);
     if (!url) return;
 
     if (url.includes('?message=authSuccess')) {
-      // const tokenStartIndex = url.indexOf('token') + 6;
-      // const data = url.substring(tokenStartIndex, url.length);
-      // const dataArr = data.split('?');
-      // const token = dataArr[0];
+      console.log('success!');
+      const tokenStartIndex = url.indexOf('token') + 6;
+      const data = url.substring(tokenStartIndex, url.length);
+      const dataArr = data.split('?');
+      const accessToken = dataArr[0];
 
-      // const userid = dataArr[1].substring(7, dataArr[1].length);
+      const spotifyID = dataArr[1].substring(10, dataArr[1].length);
 
-      // this.props.authenticate(token, userid);
+      this.props.authenticate(accessToken, spotifyID);
+      console.log('authenticated!');
       this.webview.stopLoading();
+      // this.props.navigation.navigate('New User Flow'); // fix so everytime log in this doesn't happen, maybe have message in url?
     }
   }
 
-  // https://accounts.spotify.com/authorize?client_id=ae55627afa544de2b83131f8bd07d685&response_type=code&redirect_uri=https://localhost:9090/api/callback
+  // https://accounts.spotify.com/authorize?client_id=ae55627afa544de2b83131f8bd07d685&response_type=code&redirect_uri=http://localhost:9090/api/callback
   // &scope=user-read-private%20user-read-email&state=34fFs29kd09
 
   render() {
-    const clientId = 'ae55627afa544de2b83131f8bd07d685'; // Your client id
-    const redirectUri = 'https://localhost:9090/api/callback'; // Your redirect uri
     const scopes = 'user-read-private user-read-email user-modify-playback-state user-read-playback-state';
     if (this.state.login) {
       return (
         <WebView
-          // ref={(ref) => (this.webview = ref)}
+          ref={(ref) => (this.webview = ref)}
           source={{
             uri: `${'https://accounts.spotify.com/authorize'
             + '?client_id='}${`${clientId
@@ -77,7 +86,6 @@ class signUp extends Component {
               title="Log in with Spotify"
               onPress={() => {
                 this.onLogin();
-                // this.props.navigation.navigate('New User Flow');
               }}
             />
           </View>
@@ -129,4 +137,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(null, null)(signUp);
+export default connect(null, { authenticate })(signUp);
