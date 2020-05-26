@@ -125,10 +125,16 @@ class NewUserFlow extends Component {
           <Text>
             Liveness
           </Text>
-          <TouchableOpacity onPress={() => this.setState({ question3: 1 })} style={styles.button}>
+          <TouchableOpacity onPress={() => {
+              this.handleClick();
+               this.setState({ question3: 1 })
+              }} style={styles.button}>
             <Text>1-chillin in the studio</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.setState({ question3: 10 })} style={styles.button}>
+          <TouchableOpacity onPress={() => {
+             this.handleClick(); 
+             this.setState({ question3: 10 })
+            }} style={styles.button}>
             <Text>10-concert in my head please</Text>
           </TouchableOpacity>
           {/* <TouchableOpacity style={styles.button}>
@@ -145,11 +151,17 @@ class NewUserFlow extends Component {
           <Text>
             Loudness
           </Text>
-          <TouchableOpacity onPress={() => this.setState({ question4: 1 })} style={styles.button}>
+          <TouchableOpacity onPress={() =>  {
+            this.handleClick(); 
+            this.setState({ question4: 1 })
+          }} style={styles.button}>
             <Text>1-quiet background music</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.setState({ question4: 10 })} style={styles.button}>
-            <Text>10- loud music gives me power</Text>
+          <TouchableOpacity onPress={() => {
+              this.handleClick(); 
+              this.setState({ question4: 10 })
+            }} style={styles.button}>
+            <Text>10- loud music is power</Text>
           </TouchableOpacity>
           {/* <TouchableOpacity style={styles.button}>
             <Text>Chill</Text>
@@ -165,10 +177,16 @@ class NewUserFlow extends Component {
           <Text>
             Popular music
           </Text>
-          <TouchableOpacity onPress={() => this.setState({ question5: 1 })} style={styles.button}>
+          <TouchableOpacity onPress={() => {
+            this.handleClick(); 
+            this.setState({ question5: 1 })
+          }} style={styles.button}>
             <Text>1-chart toppers</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.setState({ question5: 10 })} style={styles.button}>
+          <TouchableOpacity onPress={() =>  {
+            this.handleClick(); 
+            this.setState({ question5: 10 })
+          }} style={styles.button}>
             <Text>10-new music </Text>
           </TouchableOpacity>
           {/* <TouchableOpacity style={styles.button}>
@@ -185,10 +203,16 @@ class NewUserFlow extends Component {
           <Text>
             Positivity
           </Text>
-          <TouchableOpacity onPress={() => this.setState({ question6: 1 })} style={styles.button}>
+          <TouchableOpacity onPress={() => {
+            this.handleClick(); 
+            this.setState({ question6: 1 })
+          }} style={styles.button}>
             <Text>1-meh</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.setState({ question6: 10 })} style={styles.button}>
+          <TouchableOpacity onPress={() => {
+              this.handleClick(); 
+              this.setState({ question6: 10 }) 
+            }} style={styles.button}>
             <Text>10-upbeat</Text>
           </TouchableOpacity>
           {/* <TouchableOpacity style={styles.button}>
@@ -206,7 +230,9 @@ class NewUserFlow extends Component {
             Favorite genres while working out?
           </Text>
           <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Genres" onChange={this.onInputChangeText} value={this.state.question7} />
-          {/* <TouchableOpacity style={styles.button}>
+          { /*We will add more here*/
+          
+          /* <TouchableOpacity style={styles.button}>
             <Text>Only sometimes</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
@@ -230,7 +256,7 @@ class NewUserFlow extends Component {
     console.log(this.renderQuestion());
     return (
       <View style={styles.container}>
-        <Text>Let's get to know you!</Text>
+        <Text><h1>Let's get to know you!</h1></Text><br></br>
         {this.renderQuestion()}
         {/* <TouchableOpacity
           onPress={this.handleClick} // how to make this a different functionality when at the end of questions?
