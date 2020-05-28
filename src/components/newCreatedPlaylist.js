@@ -24,8 +24,8 @@ class NewCreatedPlaylist extends Component {
       <View style={styles.container}>
         <View style={{ alignItems: "center"}}>
           <View style={{alignItems: "center", marginTop: 24}}>
-            <Text>
-            <h1>Your Custom Playlist</h1> 
+            <Text h1>
+              Your Custom Playlist
             </Text>
           </View>
 
