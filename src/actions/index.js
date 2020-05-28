@@ -17,28 +17,11 @@ export function authError(error) {
   };
 }
 
-export function authenticate(token, userId) {
+export function authenticate() {
   return (dispatch) => {
-    dispatch({ type: ActionTypes.AUTH_USER, payload: { token, userId } });
+    dispatch({ type: ActionTypes.AUTH_USER });
   };
 }
-
-
-// export function signupUser(newUser) {
-//   console.log(newUser);
-//   return (dispatch) => {
-//     axios.post(`${ROOT_URL}/newuser`, newUser)
-//       .then((response) => {
-//         dispatch({ type: ActionTypes.AUTH_USER, payload: newUser });
-//         //   history.push('/');
-//       })
-//       .catch((error) => {
-//         console.log('error');
-//         // dispatch(authError(`Sign up Failed: ${error.response.data}`));
-//       });
-//   };
-// }
-
 
 export function fetchUser(spotifyID) {
   console.log('in fetch user:');
@@ -46,20 +29,6 @@ export function fetchUser(spotifyID) {
 
   return (dispatch) => {
     axios.get(`${ROOT_URL}/getuser/${spotifyID}/`)
-      .then((response) => {
-        console.log(response);
-        // once we are done fetching we can dispatch a redux action with the response data
-        dispatch({ type: ActionTypes.FETCH_USER });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-}
-
-export function updateUser(spotifyID, newUser) {
-  return (dispatch) => {
-    axios.put(`${ROOT_URL}/update/${spotifyID}`, newUser, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => {
         dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })
@@ -69,14 +38,27 @@ export function updateUser(spotifyID, newUser) {
   };
 }
 
-// export function getAuthorization(){
-//   return (dispatch) => {
-//     axios.get(`${ROOT_URL}/login/`)
-//       .then((response) => {
+export function updateUser(user) {
+  console.log(user.spotifyID);
+  return (dispatch) => {
+    axios.put(`${ROOT_URL}/update/${user.spotifyID}`, user)
+      .then((response) => {
+        dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
 
-//       })
-//       .catch((error) =>{
-//         console.log(error);
-//       });
-//   };
-// }
+export function createPlaylist(playlist) {
+  return () => {
+    axios.put(`${ROOT_URL}/makeplaylist/`, playlist)
+      .then(() => {
+        console.log('created playlist!');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
