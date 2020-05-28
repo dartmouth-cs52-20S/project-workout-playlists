@@ -21,7 +21,8 @@ class newWorkout extends Component {
     return (
       <View style={styles.container}>
         <View>
-            <Text><h2>Start a new workout!</h2></Text><br></br>
+            <Text h2>Start a new workout!</Text>
+             {/* <br></br> */}
             <View>
                 <Text>Workout type:</Text>
 
@@ -34,7 +35,8 @@ class newWorkout extends Component {
                     <Picker.Item label="walk" value="walk" />
 
                 </Picker>
-            </View><br></br>
+            </View>
+            {/* <br></br> */}
             <View>
                 <Text>Workout duration:</Text>
 
@@ -48,7 +50,8 @@ class newWorkout extends Component {
                     <Picker.Item label="1 hour" value="60" />
 
                 </Picker>
-            </View><br></br>
+            </View>
+            {/* <br></br> */}
             <Button
             title="Let's go!"
             onPress={() => this.props.navigation.navigate('New Created Playlist')}
