@@ -314,8 +314,8 @@ class NewUserFlow extends Component {
     console.log(this.renderQuestion());
     return (
       <View style={styles.container}>
-        <Text><h1>Let's get to know you!</h1></Text>
-        <br />
+        <Text h1>Let's get to know you!</Text>
+        {/* <br /> */}
         {this.renderQuestion()}
       </View>
     );
