@@ -1,90 +1,104 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable global-require */
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import {
-  StyleSheet, View, Text, TextInput, TouchableOpacity, Button, navigation, Image
+  StyleSheet, View, Text, Button, TouchableOpacity, Image,
   // TouchableOpacity,
 } from 'react-native';
 
-import { signupUser } from '../actions/index';
+import { WebView } from 'react-native-webview';
+import { authenticate } from '../actions';
+// import spotifyCredentials from '../secrets';
+
+// const { clientId } = spotifyCredentials; // Your client id
+// const { redirectUri } = spotifyCredentials; // Your redirect uri
 
 
-class signUp extends React.Component {
+class signUp extends Component {
+  webview = null;
+
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
-      spotifyID: '',
-      password: '',
-      genres: [],
-      acousticness: false,
-      instrumentalness: false,
-      liveness: false,
-      loudness: false,
-      popularity: false,
-      valence: false,
+      login: false,
     };
   }
 
-  onInputChangeEmail = (event) => {
-    this.setState({ email: event.target.value });
-    console.log(this.state.email);
+  onLogin = () => {
+    console.log('logging in');
+    this.setState({ login: true });
   }
 
-  onInputChangeUsername = (event) => {
-    this.setState({ spotifyID: event.target.value });
-    // console.log(event.target.value);
+  handleSpotifyAuth = (newNavState) => {
+    console.log('handling!');
+    const { url } = newNavState;
+    console.log('url', url);
+    if (!url) return;
+
+    if (url.includes('?message=authSuccess')) {
+      console.log('success!');
+      const tokenStartIndex = url.indexOf('token') + 6;
+      const data = url.substring(tokenStartIndex, url.length);
+      const dataArr = data.split('?');
+      const accessToken = dataArr[0];
+
+      const spotifyID = dataArr[1].substring(10, dataArr[1].length);
+
+      this.props.authenticate(accessToken, spotifyID);
+      console.log('authenticated!');
+      this.webview.stopLoading();
+      this.props.navigation.navigate('New User Flow'); // fix so everytime log in this doesn't happen, maybe have message in url?
+    }
   }
 
-  onInputChangePassword = (event) => {
-    this.setState({ password: event.target.value });
-    // console.log(event.target.value);
-  }
-
-  makeUser = () => {
-    console.log('hi');
-    const newUser = {
-      spotifyID: this.state.spotifyID,
-      genres: this.state.genres,
-      acousticness: this.state.acousticness,
-      instrumentalness: this.state.instrumentalness,
-      liveness: this.state.liveness,
-      loudness: this.state.loudness,
-      popularity: this.state.popularity,
-      valence: this.state.valence,
-    };
-    console.log('pre signup user');
-    this.props.signupUser(newUser, this.props.history);
-    console.log('post signup user');
-  }
+  // https://accounts.spotify.com/authorize?client_id=ae55627afa544de2b83131f8bd07d685&response_type=code&redirect_uri=http://localhost:9090/api/callback
+  // &scope=user-read-private%20user-read-email&state=34fFs29kd09
 
 
   render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.logocontainer}>
-          <Image style={styles.logo} source={require('../imgs/logo3.png')} />
-        </View>
-        <View>
-          <TextInput style={styles.input} placeholder="Email" placeholderTextColor="black" onChange={this.onInputChangeEmail} value={this.state.email} />
-          <TextInput style={styles.input} placeholder="spotify ID" placeholderTextColor="black" onChange={this.onInputChangeUsername} value={this.state.spotifyID} />
-          <TextInput style={styles.input} placeholder="Password" placeholderTextColor="black" onChange={this.onInputChangePassword} value={this.state.password} />
-
-          <Button
-            title="Sign up"
-            onPress={() => {
-              this.makeUser();
-              this.props.navigation.navigate('New User Flow')
-            }
-            }
-          />
-        </View>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Sign in')}> 
+    const clientId = 'ae55627afa544de2b83131f8bd07d685';
+    // const redirectUri = 'https://workout-playlists-final-proj.herokuapp.com/api/callback';
+    const redirectUri = 'http://localhost:9090/api/callback';
+    const scopes = 'user-read-private user-read-email user-modify-playback-state user-read-playback-state';
+    if (this.state.login) {
+      return (
+        <WebView
+          ref={(ref) => (this.webview = ref)}
+          source={{
+            uri: `${'https://accounts.spotify.com/authorize'
+            + '?client_id='}${`${clientId
+            }&response_type=code`
+            }&redirect_uri=${encodeURIComponent(redirectUri)}`
+            + `&scope=${encodeURIComponent(scopes)}`,
+          }}
+          style={{ marginTop: 20, flex: 1 }}
+          onNavigationStateChange={this.handleSpotifyAuth}
+        />
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          <View style={styles.logocontainer}>
+            <Image style={styles.logo} source={require('../imgs/logo.png')} />
+          </View>
+          <View>
+            <Button
+              title="Log in with Spotify"
+              onPress={() => {
+                this.onLogin();
+              }}
+            />
+          </View>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('Sign in')}>
             <Text>Already have an account? Log in here!</Text>
-        </TouchableOpacity>   
-      </View>
-    );
+          </TouchableOpacity>
+        </View>
+      );
+    }
   }
 }
 
@@ -97,7 +111,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-  logocontainer:{
+  logocontainer: {
     display: 'flex',
     justifyContent: 'center',
     width: 350,
@@ -107,7 +121,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   button: {
     padding: 5,
@@ -128,4 +142,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(null, { signupUser })(signUp);
+export default connect(null, { authenticate })(signUp);

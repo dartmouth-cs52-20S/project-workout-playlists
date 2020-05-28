@@ -17,21 +17,27 @@ export function authError(error) {
   };
 }
 
-
-export function signupUser(newUser) {
-  console.log(newUser);
+export function authenticate(token, userId) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/newuser`, newUser)
-      .then((response) => {
-        dispatch({ type: ActionTypes.AUTH_USER, payload: newUser });
-        //   history.push('/');
-      })
-      .catch((error) => {
-        console.log('error');
-        // dispatch(authError(`Sign up Failed: ${error.response.data}`));
-      });
+    dispatch({ type: ActionTypes.AUTH_USER, payload: { token, userId } });
   };
 }
+
+
+// export function signupUser(newUser) {
+//   console.log(newUser);
+//   return (dispatch) => {
+//     axios.post(`${ROOT_URL}/newuser`, newUser)
+//       .then((response) => {
+//         dispatch({ type: ActionTypes.AUTH_USER, payload: newUser });
+//         //   history.push('/');
+//       })
+//       .catch((error) => {
+//         console.log('error');
+//         // dispatch(authError(`Sign up Failed: ${error.response.data}`));
+//       });
+//   };
+// }
 
 
 export function fetchUser(spotifyID) {
