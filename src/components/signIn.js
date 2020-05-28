@@ -24,8 +24,6 @@ class signIn extends Component {
     // console.log(event.target.value);
   }
 
-
-
   render() {
     return (
       <View style={styles.container}>
