@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
   StyleSheet, View, Text, Image,
@@ -8,16 +9,8 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../actions/index';
 
 class UserProfile extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-
-    };
-  }
-
   componentDidMount = () => {
-    console.log(this.props.user.spotifyID)
+    console.log(this.props.user.spotifyID);
     this.props.fetchUser(this.props.user.spotifyID);
     console.log('mounted');
   }
@@ -56,11 +49,9 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
 function mapStateToProps(reduxState) {
   return {
-    user: reduxState.auth.user,
+    user: reduxState.user.user,
   };
 }
 
