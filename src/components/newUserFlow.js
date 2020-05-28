@@ -7,7 +7,7 @@ import { TextInput } from 'react-native-gesture-handler';
 
 import { connect } from 'react-redux';
 import Slider from 'react-native-slider';
-import { fetchUser } from '../actions/index';
+import { fetchUser, updateUser } from '../actions/index';
 
 const NUM_QUESTIONS = 7;
 
@@ -17,12 +17,12 @@ class NewUserFlow extends Component {
     this.state = {
       currentQ: 1,
       question1: 0,
-      question2: 5,
-      question3: 5,
-      question4: 5,
-      question5: 5,
-      question6: 5,
-      question7: 5,
+      question2: 0,
+      question3: 0,
+      question4: 0,
+      question5: 0,
+      question6: 0,
+      question7: 'rap, electric',
     };
   }
 
@@ -46,6 +46,15 @@ class NewUserFlow extends Component {
       console.log(questionNum);
       // this.state.currentQ += 1;
     } else {
+      this.props.updateUser(this.props.user.spotifyID, { //lol backend in progress
+        acousticness: this.state.question1, 
+        instrumentalness: this.state.question2, 
+        liveness: this.state.question3, 
+        loudness: this.state.question4, 
+        popularity: this.state.question5, 
+        valence: this.state.question6, 
+        genres: this.state.question7
+      })
       this.props.navigation.navigate('Main');
     }
   }
@@ -70,12 +79,14 @@ class NewUserFlow extends Component {
           <Slider
             // style={styles.slider}
             // value={this.state.question1}
-            onValueChange={question1 => this.setState({ question1 })}
+            onValueChange={(question1) => this.setState({ question1 })}
           />
-          <Text>
+          {/* <Text>
             Value:
+            {' '}
             {this.state.question1}
-          </Text>
+          </Text> */}
+          <Text>1- Not Acoustic                   10- Very Acoustic</Text>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -89,20 +100,22 @@ class NewUserFlow extends Component {
       );
     } else if (questionNum === 2) {
       return (
-        console.log(this.state.question1),
+        console.log(this.state.question2),
           <View>
             <Text>
               Instrumentalness
             </Text>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                this.handleClick();
-                this.setState({ question2: 1 });
-              }}
-            >
-              <Text>1- only instruments</Text>
-            </TouchableOpacity>
+            <Slider
+            // style={styles.slider}
+            // value={this.state.question1}
+              onValueChange={(question2) => this.setState({ question2 })}
+            />
+            <Text>1- Not Instrumental                   10- Very Instrumental</Text>
+            {/* <Text>
+              Value:
+              {' '}
+              {this.state.question2}
+            </Text> */}
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
@@ -110,7 +123,7 @@ class NewUserFlow extends Component {
                 this.setState({ question2: 10 });
               }}
             >
-              <Text>10- voices please!</Text>
+              <Text>Next</Text>
             </TouchableOpacity>
             {/* <TouchableOpacity style={styles.button}>
               <Text>Having Fun</Text>
@@ -126,11 +139,27 @@ class NewUserFlow extends Component {
           <Text>
             Liveness
           </Text>
-          <TouchableOpacity onPress={() => this.setState({ question3: 1 })} style={styles.button}>
-            <Text>1-chillin in the studio</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.setState({ question3: 10 })} style={styles.button}>
-            <Text>10-concert in my head please</Text>
+          <Slider
+            // style={styles.slider}
+            // value={this.state.question1}
+            onValueChange={(question3) => this.setState({ question3 })}
+          />
+          <Text>1- All Studio                   10- At the Concert</Text>
+
+          <Text>
+            Value:
+            {' '}
+            {this.state.question3}
+          </Text>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.handleClick();
+              this.setState({ question3: 10 });
+            }}
+          >
+            <Text>Next</Text>
           </TouchableOpacity>
           {/* <TouchableOpacity style={styles.button}>
             <Text>Pop</Text>
@@ -146,11 +175,26 @@ class NewUserFlow extends Component {
           <Text>
             Loudness
           </Text>
-          <TouchableOpacity onPress={() => this.setState({ question4: 1 })} style={styles.button}>
-            <Text>1-quiet background music</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.setState({ question4: 10 })} style={styles.button}>
-            <Text>10- loud music gives me power</Text>
+          <Slider
+            // style={styles.slider}
+            // value={this.state.question1}
+            onValueChange={(question4) => this.setState({ question4 })}
+          />
+          <Text>1- quiet                            10-LOUD</Text>
+          <Text>
+            Value:
+            {' '}
+            {this.state.question4}
+          </Text>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.handleClick();
+              this.setState({ question4: 10 });
+            }}
+          >
+            <Text>Next</Text>
           </TouchableOpacity>
           {/* <TouchableOpacity style={styles.button}>
             <Text>Chill</Text>
@@ -166,11 +210,26 @@ class NewUserFlow extends Component {
           <Text>
             Popular music
           </Text>
-          <TouchableOpacity onPress={() => this.setState({ question5: 1 })} style={styles.button}>
-            <Text>1-chart toppers</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.setState({ question5: 10 })} style={styles.button}>
-            <Text>10-new music </Text>
+          <Slider
+            // style={styles.slider}
+            // value={this.state.question1}
+            onValueChange={(question5) => this.setState({ question5 })}
+          />
+          <Text>1- niche music only                            10-top hits please</Text>
+          <Text>
+            Value:
+            {' '}
+            {this.state.question5}
+          </Text>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.handleClick();
+              this.setState({ question5: 10 });
+            }}
+          >
+            <Text>Next</Text>
           </TouchableOpacity>
           {/* <TouchableOpacity style={styles.button}>
             <Text>Only sometimes</Text>
@@ -186,11 +245,27 @@ class NewUserFlow extends Component {
           <Text>
             Positivity
           </Text>
-          <TouchableOpacity onPress={() => this.setState({ question6: 1 })} style={styles.button}>
-            <Text>1-meh</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.setState({ question6: 10 })} style={styles.button}>
-            <Text>10-upbeat</Text>
+          <Slider
+            // style={styles.slider}
+            // value={this.state.question1}
+            onValueChange={(question6) => this.setState({ question6 })}
+          />
+          <Text>1- meh                         10- Happy vibes!</Text>
+
+          <Text>
+            Value:
+            {' '}
+            {this.state.question6}
+          </Text>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.handleClick();
+              this.setState({ question6: 10 });
+            }}
+          >
+            <Text>Next</Text>
           </TouchableOpacity>
           {/* <TouchableOpacity style={styles.button}>
             <Text>Only sometimes</Text>
@@ -204,15 +279,23 @@ class NewUserFlow extends Component {
       return (
         <View>
           <Text>
-            Favorite genres while working out?
+            Favorite genres while working out? (separate by commas!)
           </Text>
-          <TextInput style={{ height: 25, borderColor: 'gray', borderWidth: 1 }} placeholder="Genres" onChange={this.onInputChangeText} value={this.state.question7} />
-          {/* <TouchableOpacity style={styles.button}>
-            <Text>Only sometimes</Text>
+          <TextInput
+            style={{ height: 25, borderColor: 'gray', borderWidth: 1 }}
+            placeholder="Genres"
+            onChange={this.onInputChangeText}
+            value={this.state.question7}
+          />
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.handleClick();
+              this.setState({ question6: 10 });
+            }}
+          >
+            <Text>Next</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text>No thanks</Text> */}
-          {/* </TouchableOpacity> */}
         </View>
       );
     } else {
@@ -231,20 +314,9 @@ class NewUserFlow extends Component {
     console.log(this.renderQuestion());
     return (
       <View style={styles.container}>
-        <Text>Let's get to know you!</Text>
+        <Text h1>Let's get to know you!</Text>
+        {/* <br /> */}
         {this.renderQuestion()}
-        {/* <TouchableOpacity
-          onPress={this.handleClick} // how to make this a different functionality when at the end of questions?
-          style={{
-            display: 'flex',
-            justifyContent: 'center', // this wont center the text?? :(
-            backgroundColor: 'orange',
-            padding: 5,
-            borderRadius: 5,
-          }}
-        >
-          <Text>Next</Text>
-        </TouchableOpacity> */}
       </View>
     );
   }
@@ -262,7 +334,7 @@ const styles = StyleSheet.create({
     height: 300,
   },
   // slider: {
-  //   step: 
+  //   step:
   // }
   button:
   {
@@ -273,7 +345,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'orange',
     margin: 10,
     padding: 8,
-    color: 'white',
     borderRadius: 14,
     fontSize: 18,
     fontWeight: '500',
@@ -287,4 +358,4 @@ function mapStateToProps(reduxState) {
   };
 }
 
-export default connect(mapStateToProps, { fetchUser })(NewUserFlow);
+export default connect(mapStateToProps, { fetchUser, updateUser })(NewUserFlow);
