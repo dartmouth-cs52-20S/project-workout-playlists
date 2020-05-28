@@ -11,10 +11,10 @@ import {
 
 import { WebView } from 'react-native-webview';
 import { authenticate } from '../actions';
-import spotifyCredentials from '../secrets';
+// import spotifyCredentials from '../secrets';
 
-const { clientId } = spotifyCredentials; // Your client id
-const { redirectUri } = spotifyCredentials; // Your redirect uri
+// const { clientId } = spotifyCredentials; // Your client id
+// const { redirectUri } = spotifyCredentials; // Your redirect uri
 
 
 class signUp extends Component {
@@ -51,14 +51,18 @@ class signUp extends Component {
       this.props.authenticate(accessToken, spotifyID);
       console.log('authenticated!');
       this.webview.stopLoading();
-      // this.props.navigation.navigate('New User Flow'); // fix so everytime log in this doesn't happen, maybe have message in url?
+      this.props.navigation.navigate('New User Flow'); // fix so everytime log in this doesn't happen, maybe have message in url?
     }
   }
 
   // https://accounts.spotify.com/authorize?client_id=ae55627afa544de2b83131f8bd07d685&response_type=code&redirect_uri=http://localhost:9090/api/callback
   // &scope=user-read-private%20user-read-email&state=34fFs29kd09
 
+
   render() {
+    const clientId = 'ae55627afa544de2b83131f8bd07d685';
+    // const redirectUri = 'https://workout-playlists-final-proj.herokuapp.com/api/callback';
+    const redirectUri = 'http://localhost:9090/api/callback';
     const scopes = 'user-read-private user-read-email user-modify-playback-state user-read-playback-state';
     if (this.state.login) {
       return (
