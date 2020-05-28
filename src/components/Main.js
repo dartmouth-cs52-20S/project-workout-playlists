@@ -1,6 +1,7 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Text, Image,
+  StyleSheet, View, Text,
   TouchableOpacity,
 } from 'react-native';
 
@@ -13,9 +14,7 @@ class Main extends Component {
             Here is the main page of our app!!
           </Text>
         </View>
-        <View style={styles.body}>
-
-        </View>
+        <View style={styles.body} />
         <View style={styles.buttons}>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('New workout')} style={styles.button}>
             <Text>Start new workout</Text>
@@ -48,12 +47,12 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   buttons: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
   button: {
-    flexDirection: "column",
-    justifyContent: "center",
+    flexDirection: 'column',
+    justifyContent: 'center',
     backgroundColor: 'orange',
     padding: 5,
     height: 100,

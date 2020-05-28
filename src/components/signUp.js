@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import { WebView } from 'react-native-webview';
-import { authenticate } from '../actions';
+import { authenticate, fetchUser } from '../actions';
 // import spotifyCredentials from '../secrets';
 
 // const { clientId } = spotifyCredentials; // Your client id
@@ -41,14 +41,13 @@ class signUp extends Component {
 
     if (url.includes('?message=authSuccess')) {
       console.log('success!');
-      const tokenStartIndex = url.indexOf('token') + 6;
-      const data = url.substring(tokenStartIndex, url.length);
-      const dataArr = data.split('?');
-      const accessToken = dataArr[0];
+      const tokenStartIndex = url.indexOf('spotifyID') + 10;
+      const spotifyID = url.substring(tokenStartIndex, url.length);
+      console.log(spotifyID);
 
-      const spotifyID = dataArr[1].substring(10, dataArr[1].length);
+      this.props.fetchUser(spotifyID);
 
-      this.props.authenticate(accessToken, spotifyID);
+      this.props.authenticate();
       console.log('authenticated!');
       this.webview.stopLoading();
       this.props.navigation.navigate('New User Flow'); // fix so everytime log in this doesn't happen, maybe have message in url?
@@ -142,4 +141,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(null, { authenticate })(signUp);
+function mapStateToProps(reduxState) {
+  return {
+    user: reduxState.user.user,
+  };
+}
+
+export default connect(mapStateToProps, { fetchUser, authenticate })(signUp);

@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
   StyleSheet, View,
@@ -7,7 +8,7 @@ import { TextInput } from 'react-native-gesture-handler';
 
 import { connect } from 'react-redux';
 import Slider from 'react-native-slider';
-import { fetchUser, updateUser } from '../actions/index';
+import { updateUser } from '../actions/index';
 
 const NUM_QUESTIONS = 7;
 
@@ -22,13 +23,8 @@ class NewUserFlow extends Component {
       question4: 0,
       question5: 0,
       question6: 0,
-      question7: 'rap, electric',
+      question7: 'rap, electric...',
     };
-  }
-
-  componentDidMount() {
-    // console.log('in newUserFlow');
-    this.props.fetchUser(this.props.user.spotifyID);
   }
 
   onInputChangeText = (event) => {
@@ -36,25 +32,29 @@ class NewUserFlow extends Component {
   }
 
   handleClick = (event) => {
-    console.log('handled');
-    if (this.state.currentQ <= NUM_QUESTIONS) {
+    if (this.state.currentQ < NUM_QUESTIONS) {
       const questionNum = {
+        // eslint-disable-next-line react/no-access-state-in-setstate
         currentQ: this.state.currentQ,
       };
       questionNum.currentQ += 1;
       this.setState({ currentQ: questionNum.currentQ });
-      console.log(questionNum);
       // this.state.currentQ += 1;
     } else {
-      this.props.updateUser(this.props.user.spotifyID, { //lol backend in progress
-        acousticness: this.state.question1, 
-        instrumentalness: this.state.question2, 
-        liveness: this.state.question3, 
-        loudness: this.state.question4, 
-        popularity: this.state.question5, 
-        valence: this.state.question6, 
-        genres: this.state.question7
-      })
+      console.log('calling update');
+      console.log(this.props.user);
+      this.props.updateUser(
+        {
+          spotifyID: this.props.user.spotifyID,
+          acousticness: this.state.question1,
+          instrumentalness: this.state.question2,
+          liveness: this.state.question3,
+          loudness: this.state.question4,
+          popularity: this.state.question5,
+          valence: this.state.question6,
+          genres: this.state.question7,
+        },
+      );
       this.props.navigation.navigate('Main');
     }
   }
@@ -100,38 +100,37 @@ class NewUserFlow extends Component {
       );
     } else if (questionNum === 2) {
       return (
-        console.log(this.state.question2),
-          <View>
-            <Text>
-              Instrumentalness
-            </Text>
-            <Slider
+        <View>
+          <Text>
+            Instrumentalness
+          </Text>
+          <Slider
             // style={styles.slider}
             // value={this.state.question1}
-              onValueChange={(question2) => this.setState({ question2 })}
-            />
-            <Text>1- Not Instrumental                   10- Very Instrumental</Text>
-            {/* <Text>
+            onValueChange={(question2) => this.setState({ question2 })}
+          />
+          <Text>1- Not Instrumental                   10- Very Instrumental</Text>
+          {/* <Text>
               Value:
               {' '}
               {this.state.question2}
             </Text> */}
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                this.handleClick();
-                this.setState({ question2: 10 });
-              }}
-            >
-              <Text>Next</Text>
-            </TouchableOpacity>
-            {/* <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.handleClick();
+              this.setState({ question2: 10 });
+            }}
+          >
+            <Text>Next</Text>
+          </TouchableOpacity>
+          {/* <TouchableOpacity style={styles.button}>
               <Text>Having Fun</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
               <Text>Developing a Habit</Text>
             </TouchableOpacity> */}
-          </View>
+        </View>
       );
     } else if (questionNum === 3) {
       return (
@@ -310,8 +309,6 @@ class NewUserFlow extends Component {
 
   render() {
     // eslint-disable-next-line react/destructuring-assignment
-    console.log(this.state.currentQ);
-    console.log(this.renderQuestion());
     return (
       <View style={styles.container}>
         <Text h1>Let's get to know you!</Text>
@@ -354,8 +351,8 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(reduxState) {
   return {
-    user: reduxState.auth.user,
+    user: reduxState.user.user,
   };
 }
 
-export default connect(mapStateToProps, { fetchUser, updateUser })(NewUserFlow);
+export default connect(mapStateToProps, { updateUser })(NewUserFlow);
