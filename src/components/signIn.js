@@ -30,7 +30,7 @@ class signIn extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.logocontainer}>
-          <Image style={styles.logo} source={require('../imgs/logo.png')} />
+          <Image style={styles.logo} source={require('../imgs/logo3.png')} />
         </View>
         <View>
           <TextInput style={styles.input} placeholder="spotify ID" placeholderTextColor="black" onChange={this.onInputChangeUsername} value={this.state.spotifyID} />

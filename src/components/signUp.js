@@ -64,7 +64,7 @@ class signUp extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.logocontainer}>
-          <Image style={styles.logo} source={require('../imgs/logo.png')} />
+          <Image style={styles.logo} source={require('../imgs/logo3.png')} />
         </View>
         <View>
           <TextInput style={styles.input} placeholder="Email" placeholderTextColor="black" onChange={this.onInputChangeEmail} value={this.state.email} />
@@ -110,20 +110,21 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   button: {
-    backgroundColor: 'orange',
     padding: 5,
     borderRadius: 5,
   },
   input: {
     width: 350,
     height: 55,
-    backgroundColor: 'orange',
+    // backgroundColor: '#FF8F33',
     margin: 10,
     padding: 8,
     color: 'white',
     borderRadius: 14,
     fontSize: 18,
     fontWeight: '500',
+    borderColor: '#FF8F33', 
+    borderWidth: 2,
   },
 });
 
