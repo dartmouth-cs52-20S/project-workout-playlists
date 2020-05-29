@@ -10,7 +10,6 @@ import { fetchUser } from '../actions/index';
 
 class UserProfile extends Component {
   componentDidMount = () => {
-    console.log(this.props.user.spotifyID);
     this.props.fetchUser(this.props.user.spotifyID);
     console.log('mounted');
   }
@@ -20,12 +19,26 @@ class UserProfile extends Component {
     return (
       <View style={styles.container}>
         <Text>
-          {this.props.user.spotifyID}
+          Acousticness: {this.props.user.acousticness}
         </Text>
-        <Image
-          style={styles.image}
-          source={{ uri: 'https://i.imgur.com/jDLSTki.png' }}
-        />
+        <Text>
+          Instrumentalness: {this.props.user.instrumentalness}
+        </Text>
+        <Text>
+          Liveness: {this.props.user.liveness}
+        </Text>
+        <Text>
+          Loudness: {this.props.user.loudness}
+        </Text>
+        <Text>
+          Popularity: {this.props.user.popularity}
+        </Text>
+        <Text>
+          Positivity: {this.props.user.valence}
+        </Text>
+        <Text>
+          Fav genres: {this.props.user.genres}
+        </Text>
       </View>
     );
   }

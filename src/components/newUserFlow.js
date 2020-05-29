@@ -23,7 +23,7 @@ class NewUserFlow extends Component {
       question4: 0,
       question5: 0,
       question6: 0,
-      question7: 'rap, electric...',
+      question7: '',
     };
   }
 
@@ -41,8 +41,8 @@ class NewUserFlow extends Component {
       this.setState({ currentQ: questionNum.currentQ });
       // this.state.currentQ += 1;
     } else {
-      console.log('calling update');
-      console.log(this.props.user);
+      console.log('calling update in new user flow');
+      console.log(this.props.user.spotifyID);
       this.props.updateUser(
         {
           spotifyID: this.props.user.spotifyID,
@@ -67,31 +67,17 @@ class NewUserFlow extends Component {
           <Text>
             Acousticness
           </Text>
-          {/* <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              this.handleClick();
-              this.setState({ question1: 1 });
-            }}
-          >
-            <Text>1-Dababy</Text>
-          </TouchableOpacity> */}
           <Slider
-            // style={styles.slider}
-            // value={this.state.question1}
+            minimumTrackTintColor="orange"
+            maximumTrackTintColor="#000000"
+            value={.5}
             onValueChange={(question1) => this.setState({ question1 })}
           />
-          {/* <Text>
-            Value:
-            {' '}
-            {this.state.question1}
-          </Text> */}
           <Text>1- Not Acoustic                   10- Very Acoustic</Text>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
               this.handleClick();
-              // this.setState({ question1: 10 });
             }}
           >
             <Text>Next</Text>
@@ -105,31 +91,19 @@ class NewUserFlow extends Component {
             Instrumentalness
           </Text>
           <Slider
+            value={.5}
             // style={styles.slider}
-            // value={this.state.question1}
             onValueChange={(question2) => this.setState({ question2 })}
           />
           <Text>1- Not Instrumental                   10- Very Instrumental</Text>
-          {/* <Text>
-              Value:
-              {' '}
-              {this.state.question2}
-            </Text> */}
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
               this.handleClick();
-              this.setState({ question2: 10 });
             }}
           >
             <Text>Next</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity style={styles.button}>
-              <Text>Having Fun</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Text>Developing a Habit</Text>
-            </TouchableOpacity> */}
         </View>
       );
     } else if (questionNum === 3) {
@@ -139,33 +113,20 @@ class NewUserFlow extends Component {
             Liveness
           </Text>
           <Slider
+            value={.5}
             // style={styles.slider}
-            // value={this.state.question1}
             onValueChange={(question3) => this.setState({ question3 })}
           />
           <Text>1- All Studio                   10- At the Concert</Text>
-
-          <Text>
-            Value:
-            {' '}
-            {this.state.question3}
-          </Text>
 
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
               this.handleClick();
-              this.setState({ question3: 10 });
             }}
           >
             <Text>Next</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity style={styles.button}>
-            <Text>Pop</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text>Rap</Text>
-          </TouchableOpacity> */}
         </View>
       );
     } else if (questionNum === 4) {
@@ -175,32 +136,20 @@ class NewUserFlow extends Component {
             Loudness
           </Text>
           <Slider
+            value={.5}
             // style={styles.slider}
-            // value={this.state.question1}
             onValueChange={(question4) => this.setState({ question4 })}
           />
           <Text>1- quiet                            10-LOUD</Text>
-          <Text>
-            Value:
-            {' '}
-            {this.state.question4}
-          </Text>
 
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
               this.handleClick();
-              this.setState({ question4: 10 });
             }}
           >
             <Text>Next</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity style={styles.button}>
-            <Text>Chill</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text>Funky</Text>
-          </TouchableOpacity> */}
         </View>
       );
     } else if (questionNum === 5) {
@@ -210,32 +159,20 @@ class NewUserFlow extends Component {
             Popular music
           </Text>
           <Slider
+            value={.5}
             // style={styles.slider}
-            // value={this.state.question1}
             onValueChange={(question5) => this.setState({ question5 })}
           />
           <Text>1- niche music only                            10-top hits please</Text>
-          <Text>
-            Value:
-            {' '}
-            {this.state.question5}
-          </Text>
 
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
               this.handleClick();
-              this.setState({ question5: 10 });
             }}
           >
             <Text>Next</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity style={styles.button}>
-            <Text>Only sometimes</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text>No thanks</Text> */}
-          {/* </TouchableOpacity> */}
         </View>
       );
     } else if (questionNum === 6) {
@@ -245,33 +182,21 @@ class NewUserFlow extends Component {
             Positivity
           </Text>
           <Slider
+            value={.5}
             // style={styles.slider}
             // value={this.state.question1}
             onValueChange={(question6) => this.setState({ question6 })}
           />
           <Text>1- meh                         10- Happy vibes!</Text>
 
-          <Text>
-            Value:
-            {' '}
-            {this.state.question6}
-          </Text>
-
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
               this.handleClick();
-              this.setState({ question6: 10 });
             }}
           >
             <Text>Next</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity style={styles.button}>
-            <Text>Only sometimes</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text>No thanks</Text> */}
-          {/* </TouchableOpacity> */}
         </View>
       );
     } else if (questionNum === 7) {
@@ -282,15 +207,15 @@ class NewUserFlow extends Component {
           </Text>
           <TextInput
             style={{ height: 25, borderColor: 'gray', borderWidth: 1 }}
-            placeholder="Genres"
-            onChange={this.onInputChangeText}
+            placeholder="Rap, electric"
+            // onChange={this.onInputChangeText}
+            onChangeText={(question7) => this.setState({question7})}
             value={this.state.question7}
           />
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
               this.handleClick();
-              this.setState({ question6: 10 });
             }}
           >
             <Text>Next</Text>
@@ -301,7 +226,6 @@ class NewUserFlow extends Component {
       return (
         <Text>
           Thank You
-          {/* Send all the responses!! and redirect to main page */}
         </Text>
       );
     }
@@ -330,9 +254,11 @@ const styles = StyleSheet.create({
     width: 400,
     height: 300,
   },
-  // slider: {
-  //   step:
-  // }
+  slider: {
+    width: 300, 
+    height: 30, 
+    borderRadius: 50,
+  },
   button:
   {
     display: 'flex',
