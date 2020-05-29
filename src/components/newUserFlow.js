@@ -6,8 +6,6 @@ import {
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import SearchableDropdown from 'react-native-searchable-dropdown';
-
-
 import { connect } from 'react-redux';
 import Slider from 'react-native-slider';
 import { updateUser } from '../actions/index';
@@ -522,7 +520,6 @@ var items = [
     name: 'World music',
   },
 
-
 ]; 
 
 class NewUserFlow extends Component {
@@ -537,6 +534,7 @@ class NewUserFlow extends Component {
       question5: 0,
       question6: 0,
       question7: '',
+      selectedItems: [],
     };
   }
 
