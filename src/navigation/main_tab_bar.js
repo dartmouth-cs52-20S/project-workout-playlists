@@ -11,6 +11,7 @@ import NewUserFlow from '../components/newUserFlow';
 import NewCreatedPlaylist from '../components/newCreatedPlaylist';
 import NewWorkout from '../components/newWorkout';
 import UserProfile from '../components/userProfile';
+import NewPlaylistFlow from '../components/newPlaylistFlow'
 
 
 const Tab = createBottomTabNavigator();
@@ -22,10 +23,12 @@ class MainTabBar extends Component {
         <NavigationContainer>
           <Tab.Navigator>
             <Tab.Screen name="Main" component={Main} />
-            <Tab.Screen name="New workout" component={NewWorkout} />
+            <Tab.Screen name="New Playlist" component={NewPlaylistFlow} />
             <Tab.Screen name="New User Flow" component={NewUserFlow} />
             <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
             <Tab.Screen name="User Profile" component={UserProfile} />
+            <Tab.Screen name="Workout Selector" component={UserProfile} />
+            <Tab.Screen name="" component={UserProfile} />
           </Tab.Navigator>
         </NavigationContainer>
       );
@@ -36,7 +39,7 @@ class MainTabBar extends Component {
             <Tab.Screen name="Sign up" component={SignUp} />
             <Tab.Screen name="Sign in" component={SignIn} />
             <Tab.Screen name="Main" component={Main} />
-            <Tab.Screen name="New workout" component={NewWorkout} />
+            <Tab.Screen name="New Playlist" component={NewPlaylistFlow} />
             <Tab.Screen name="New User Flow" component={NewUserFlow} />
             <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
             <Tab.Screen name="User Profile" component={UserProfile} />

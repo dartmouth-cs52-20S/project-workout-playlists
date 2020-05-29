@@ -16,7 +16,7 @@ class Main extends Component {
         </View>
         <View style={styles.body} />
         <View style={styles.buttons}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('New workout')} style={styles.button}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('New Playlist')} style={styles.button}>
             <Text>Start new workout</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
