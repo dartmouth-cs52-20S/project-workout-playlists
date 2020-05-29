@@ -27,8 +27,7 @@ class MainTabBar extends Component {
             <Tab.Screen name="New User Flow" component={NewUserFlow} />
             <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
             <Tab.Screen name="User Profile" component={UserProfile} />
-            <Tab.Screen name="Workout Selector" component={UserProfile} />
-            <Tab.Screen name="" component={UserProfile} />
+            <Tab.Screen name="Workout Selector" component={NewPlaylistFlow} />
           </Tab.Navigator>
         </NavigationContainer>
       );
@@ -42,6 +41,8 @@ class MainTabBar extends Component {
             <Tab.Screen name="New Playlist" component={NewPlaylistFlow} />
             <Tab.Screen name="New User Flow" component={NewUserFlow} />
             <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
+            <Tab.Screen name="Workout Selector" component={NewPlaylistFlow} />
+
             <Tab.Screen name="User Profile" component={UserProfile} />
           </Tab.Navigator>
         </NavigationContainer>
