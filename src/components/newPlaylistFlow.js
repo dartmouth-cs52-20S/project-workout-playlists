@@ -574,6 +574,7 @@ class NewPlaylistFlow extends Component {
       this.props.navigation.navigate('Main');
     }
   }
+  
 
   renderQuestion= () => {
     const questionNum = this.state.currentQ;

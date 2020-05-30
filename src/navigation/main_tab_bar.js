@@ -12,7 +12,8 @@ import NewCreatedPlaylist from '../components/newCreatedPlaylist';
 import NewWorkout from '../components/newWorkout';
 import UserProfile from '../components/userProfile';
 import NewPlaylistFlow from '../components/newPlaylistFlow'
-
+import testCreatePlaylist from '../components/testCreatePlaylist';
+import testDisplayPlaylist from '../components/testDisplayPlaylist';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,6 +29,9 @@ class MainTabBar extends Component {
             <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
             <Tab.Screen name="User Profile" component={UserProfile} />
             <Tab.Screen name="Workout Selector" component={NewPlaylistFlow} />
+            <Tab.Screen name="Create" component={testCreatePlaylist} />
+            <Tab.Screen name="Display" component={testDisplayPlaylist} />
+
           </Tab.Navigator>
         </NavigationContainer>
       );
@@ -42,7 +46,6 @@ class MainTabBar extends Component {
             <Tab.Screen name="New User Flow" component={NewUserFlow} />
             <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
             <Tab.Screen name="Workout Selector" component={NewPlaylistFlow} />
-
             <Tab.Screen name="User Profile" component={UserProfile} />
           </Tab.Navigator>
         </NavigationContainer>
