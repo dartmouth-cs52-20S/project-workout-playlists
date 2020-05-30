@@ -663,6 +663,10 @@ class NewPlaylistFlow extends Component {
       );
     }
     else if (questionNum === 6) {
+      console.log(this.state.question1);
+      console.log(this.state.question2);
+      console.log(this.state.question3);
+      console.log(this.state.mood);
       return (
         <View>
           <Text>
