@@ -561,7 +561,7 @@ class NewPlaylistFlow extends Component {
       energyFlag: this.state.energy,
       // loudnessFlag: this.state.,
       // tempoFlag: ,
-      workoutLength: this.state.length,
+      workoutLength: parseInt(this.state.length, 10),
       workoutGenre: this.state.selectedItemsString,
     };
     this.props.createPlaylist(playlist);
@@ -602,6 +602,12 @@ class NewPlaylistFlow extends Component {
       questionNum.currentQ += 1;
       this.setState({ currentQ: questionNum.currentQ });
     } else {
+      console.log(this.state.type);
+      console.log(this.state.length);
+      console.log(this.state.mood);
+      console.log(this.state.energy);
+      console.log(this.state.BPM);
+      console.log(this.state.selectedItemsString);
       // navigate to the generated playlist instead of main
       this.makePlaylist();
       this.state.currentQ = 0;
@@ -639,7 +645,11 @@ class NewPlaylistFlow extends Component {
     } else if (questionNum === 2) {
       return (
         <View>
-          <DropDownPicker
+          <Text>
+            Planned Workout Duration:
+          </Text>
+          <TextInput style={styles.input} placeholder="Minutes" placeholderTextColor="white" onChangeText={(text) => this.setState({ length: text })} value={this.state.length} />
+          {/* <DropDownPicker
             items={[
               { label: '< 15 minutes', value: 15 },
               { label: 'Around 30 minutes', value: 30 },
@@ -651,7 +661,7 @@ class NewPlaylistFlow extends Component {
             placeholder="For how long?"
             containerStyle={{ height: 40 }}
             onChangeItem={(item) => this.setState({ question2: item.value })}
-          />
+          /> */}
         </View>
       );
     } else if (questionNum === 3) {
