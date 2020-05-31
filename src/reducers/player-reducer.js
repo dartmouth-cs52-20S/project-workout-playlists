@@ -1,12 +1,12 @@
 import { ActionTypes } from '../actions';
 
 const initialState = {
-  playlist: '',
+  playback: '',
 };
 
-const playlistReducer = (state = initialState, action) => {
+const playbackReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.FETCH_PLAYLIST:
+    case ActionTypes.FETCH_PLAYBACK:
       return {
         ...state, playlist: action.payload,
       };
@@ -15,4 +15,4 @@ const playlistReducer = (state = initialState, action) => {
   }
 };
 
-export default playlistReducer;
+export default playbackReducer;
