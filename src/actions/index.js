@@ -25,9 +25,6 @@ export function authenticate() {
 }
 
 export function fetchUser(spotifyID) {
-  console.log('in fetch user:');
-  console.log(spotifyID);
-
   return (dispatch) => {
     axios.get(`${ROOT_URL}/getuser/${spotifyID}/`)
       .then((response) => {
@@ -40,7 +37,6 @@ export function fetchUser(spotifyID) {
 }
 
 export function updateUser(user) {
-  console.log(user.spotifyID);
   return (dispatch) => {
     axios.put(`${ROOT_URL}/update/${user.spotifyID}`, user)
       .then((response) => {
@@ -64,13 +60,11 @@ export function createPlaylist(playlist) {
   };
 }
 
-
 export function fetchPlaylist(ID) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/makeplaylist/${ID}/`)
       .then((response) => {
         console.log(response);
-        // once we are done fetching we can dispatch a redux action with the response data
         dispatch({ type: ActionTypes.FETCH_PLAYLIST, payload: response.data });
       })
       .catch((error) => {
