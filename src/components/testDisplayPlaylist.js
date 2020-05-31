@@ -12,22 +12,25 @@ class testDisplayPlaylist extends Component{
   
     
     componentDidMount = () => {
-        console.log("display mounted with playlist ID: ", this.props.playlist.id);
+        // console.log("display mounted with playlist ID: ", this.props.playlist.id);
         // this.props.fetchPlaylist(this.props.playlist.id)
       }
 
 
     render (){
+        if(typeof this.props.playlist.songs === 'undefined'){
+          return(
+          <View style={styles.container}><Text>Sorry, playlist hasn't been created</Text></View>
+          )
+        } else {
+        console.log("in here yeah");
         return(
             <View style={styles.container}>
-                {/* <Button
-                title="Retrieve a playlist"
-                onPress={() => this.()}
-                /> */}
                 {this.props.playlist.songs.map((song) => (<Text>{song.name}</Text>))}
             </View>
             );
         }
+      }
 }
 
 const styles = StyleSheet.create({
