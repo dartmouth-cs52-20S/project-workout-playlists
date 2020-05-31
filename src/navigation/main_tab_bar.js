@@ -25,12 +25,10 @@ class MainTabBar extends Component {
         <NavigationContainer>
           <Tab.Navigator>
             <Tab.Screen name="Main" component={Main} />
-            <Tab.Screen name="New Playlist" component={NewPlaylistFlow} />
             <Tab.Screen name="New User Flow" component={NewUserFlow} />
             <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
             <Tab.Screen name="User Profile" component={UserProfile} />
             <Tab.Screen name="Workout Selector" component={NewPlaylistFlow} />
-            <Tab.Screen name="Create" component={testCreatePlaylist} />
             <Tab.Screen name="Display" component={testDisplayPlaylist} />
             <Tab.Screen name="My Playlists" component={MyPlaylists} />
 
@@ -42,15 +40,16 @@ class MainTabBar extends Component {
         <NavigationContainer>
           <Tab.Navigator>
             <Tab.Screen name="Sign up" component={SignUp} />
-            <Tab.Screen name="Sign in" component={SignIn} />
-            <Tab.Screen name="Main" component={Main} />
-            <Tab.Screen name="New Playlist" component={NewPlaylistFlow} />
             <Tab.Screen name="New User Flow" component={NewUserFlow} />
+            {/* <Tab.Screen name="Sign in" component={SignIn} /> */}
+            {/* <Tab.Screen name="Main" component={Main} />
+            <Tab.Screen name="New Playlist" component={NewPlaylistFlow} />
+            
             <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
             {/* <Tab.Screen name="Workout Selector" component={NewPlaylistFlow} />
             is there a reason that this line renders the same component as the  "New Playlist" tab in line 48 above? -Jennifer */}
-            <Tab.Screen name="User Profile" component={UserProfile} />
-            <Tab.Screen name="My Playlists" component={MyPlaylists} />
+            {/* <Tab.Screen name="User Profile" component={UserProfile} />
+            <Tab.Screen name="My Playlists" component={MyPlaylists} /> */}
 
           </Tab.Navigator>
         </NavigationContainer>
