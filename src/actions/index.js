@@ -9,6 +9,7 @@ export const ActionTypes = {
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
   FETCH_PLAYLIST: 'FETCH_PLAYLIST',
+  FETCH_PLAYBACK: 'FETCH_PLAYBACK',
 };
 
 export function authError(error) {
@@ -50,7 +51,7 @@ export function updateUser(user) {
 
 export function createPlaylist(playlist) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/makeplaylist/`, playlist)
+    axios.post(`${ROOT_URL}/playlist/`, playlist)
       .then((response) => {
         dispatch({ type: ActionTypes.FETCH_PLAYLIST, payload: response.data });
       })
@@ -62,10 +63,47 @@ export function createPlaylist(playlist) {
 
 export function fetchPlaylist(ID) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/makeplaylist/${ID}/`)
+    axios.get(`${ROOT_URL}/playlist/${ID}/`)
       .then((response) => {
         console.log(response);
         dispatch({ type: ActionTypes.FETCH_PLAYLIST, payload: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function fetchPlayback(accessToken) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/playback/${accessToken}/`)
+      .then((response) => {
+        console.log(response);
+        dispatch({ type: ActionTypes.FETCH_PLAYBACK, payload: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function playMedia(accessToken, uris) {
+  return () => {
+    axios.put(`${ROOT_URL}/play/${accessToken}/`, uris)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function pauseMedia(accessToken) {
+  return () => {
+    axios.put(`${ROOT_URL}/play/${accessToken}/`)
+      .then((response) => {
+        console.log(response);
       })
       .catch((error) => {
         console.log(error);
