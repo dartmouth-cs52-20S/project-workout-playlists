@@ -1,3 +1,5 @@
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/destructuring-assignment */
 import React, { Component, Fragment } from 'react';
 import {
   StyleSheet, View, TextInput,
@@ -532,7 +534,7 @@ class NewPlaylistFlow extends Component {
       length: 0,
       mood: '',
       energy: 0,
-      BPM: 0,
+      BPM: '',
       selectedItems: [],
       selectedItemsString: '',
     };
@@ -544,27 +546,26 @@ class NewPlaylistFlow extends Component {
   }
 
   objArrToString = (arr) => {
-    stringified = '';
-    stringArr = arr.map((genre) => JSON.stringify(genre.name).replace(/[^\w\s!?]/g,'').replace(/\s+/g, '-').toLowerCase());
+    const stringArr = arr.map((genre) => JSON.stringify(genre.name).replace(/[^\w\s!?]/g, '').replace(/\s+/g, '-').toLowerCase());
 
-    stringified = stringArr.toString();
-    this.setState({selectedItemsString: stringified});
+    const stringified = stringArr.toString();
+    this.setState({ selectedItemsString: stringified });
   }
-  
 
-  makePlaylist = () =>{
+
+  makePlaylist = () => {
     const playlist = {
-        user: this.props.user,
-        workoutType: this.state.type,
-        averageTempo: this.state.BPM,
-        energyFlag: this.state.energy,
-        // loudnessFlag: this.state.,
-        // tempoFlag: ,
-        workoutLength: this.state.length,
-        workoutGenre: this.state.selectedItemsString,
-      };
-      this.props.createPlaylist(playlist);
-}
+      user: this.props.user,
+      workoutType: this.state.type,
+      averageTempo: parseInt(this.state.BPM, 10),
+      energyFlag: this.state.energy,
+      // loudnessFlag: this.state.,
+      // tempoFlag: ,
+      workoutLength: this.state.length,
+      workoutGenre: this.state.selectedItemsString,
+    };
+    this.props.createPlaylist(playlist);
+  }
 
   onInputBPMChange = (event) => {
     this.setState({ BPM: event.target.value });
@@ -593,15 +594,14 @@ class NewPlaylistFlow extends Component {
       };
       questionNum.currentQ += 1;
       this.setState({ currentQ: questionNum.currentQ });
-    } else if (this.state.currentQ == 6){
+    } else if (this.state.currentQ === 6) {
       this.objArrToString(this.state.selectedItems);
       const questionNum = {
         currentQ: this.state.currentQ,
       };
       questionNum.currentQ += 1;
       this.setState({ currentQ: questionNum.currentQ });
-    }
-    else {
+    } else {
       // navigate to the generated playlist instead of main
       this.makePlaylist();
       this.state.currentQ = 0;
@@ -609,6 +609,7 @@ class NewPlaylistFlow extends Component {
   }
 
 
+  // eslint-disable-next-line consistent-return
   renderQuestion= () => {
     const questionNum = this.state.currentQ;
     if (questionNum === 1) {
@@ -631,7 +632,7 @@ class NewPlaylistFlow extends Component {
             placeholder="What kind of workout?"
             containerStyle={{ height: 40 }}
             value={this.state.type}
-            onChangeItem={(item) => this.setState({type: item.value})}
+            onChangeItem={(item) => this.setState({ type: item.value })}
           />
         </View>
       );
@@ -649,7 +650,7 @@ class NewPlaylistFlow extends Component {
             defaultNull
             placeholder="For how long?"
             containerStyle={{ height: 40 }}
-            onChangeItem={(item) => this.setState({question2: item.value})}
+            onChangeItem={(item) => this.setState({ question2: item.value })}
           />
         </View>
       );
@@ -675,7 +676,7 @@ class NewPlaylistFlow extends Component {
           <Text>
             My ideal BPM today is...
           </Text>
-          <TextInput style={styles.input} placeholder="BPM" placeholderTextColor="black" onChangeText={(text) => this.setState({BPM: parseInt(text, 10)})} value={this.state.BPM} />
+          <TextInput style={styles.input} placeholder="BPM" placeholderTextColor="black" onChangeText={(text) => this.setState({ BPM: text })} value={this.state.BPM} />
         </View>
       );
     } else if (questionNum === 5) {
@@ -805,7 +806,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(reduxState) {
   return {
     user: reduxState.user.user,
-    playlist: reduxState.playlist
+    playlist: reduxState.playlist,
   };
 }
 
