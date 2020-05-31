@@ -7,6 +7,9 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import RadioGroup, { Radio } from 'react-native-radio-input';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 
+import { connect } from 'react-redux';
+
+import { fetchUser, createPlaylist } from '../actions/index';
 
 // serachable dropdown from https://www.npmjs.com/package/react-native-searchable-dropdown
 const items = [
@@ -525,28 +528,50 @@ class NewPlaylistFlow extends Component {
     super(props);
     this.state = {
       currentQ: 1,
-      question1: '',
-      question2: '',
-      question3: '',
-      BPM: 0,
+      type: '',
+      length: 0,
       mood: '',
       energy: 0,
+      BPM: 0,
       selectedItems: [],
+      selectedItemsString: '',
     };
   }
 
-  componentDidMount() {
-    console.log('in newPlaylistFlow');
+  componentDidMount = () => {
+    this.props.fetchUser(this.props.user.spotifyID);
+    console.log('mounted in new playlist flow');
   }
+
+  objArrToString = (arr) => {
+    stringified = '';
+    stringArr = arr.map((genre) => JSON.stringify(genre.name).replace(/[^\w\s!?]/g,'').replace(/\s+/g, '-').toLowerCase());
+
+    stringified = stringArr.toString();
+    this.setState({selectedItemsString: stringified});
+  }
+  
+
+  makePlaylist = () =>{
+    const playlist = {
+        user: this.props.user,
+        workoutType: this.state.type,
+        averageTempo: this.state.BPM,
+        energyFlag: this.state.energy,
+        // loudnessFlag: this.state.,
+        // tempoFlag: ,
+        workoutLength: this.state.length,
+        workoutGenre: this.state.selectedItemsString,
+      };
+      this.props.createPlaylist(playlist);
+}
 
   onInputBPMChange = (event) => {
     this.setState({ BPM: event.target.value });
-    // console.log(BPM)
   }
 
   onInputGenreChange = (event) => {
     this.setState({ genre: event.target.value });
-    // console.log(genre)
   }
 
   getChecked = (value) => {
@@ -562,16 +587,24 @@ class NewPlaylistFlow extends Component {
 
 
   handleClick = (event) => {
-    if (this.state.currentQ <= 6) {
+    if (this.state.currentQ < 6) {
       const questionNum = {
         currentQ: this.state.currentQ,
       };
       questionNum.currentQ += 1;
       this.setState({ currentQ: questionNum.currentQ });
-    } else {
+    } else if (this.state.currentQ == 6){
+      this.objArrToString(this.state.selectedItems);
+      const questionNum = {
+        currentQ: this.state.currentQ,
+      };
+      questionNum.currentQ += 1;
+      this.setState({ currentQ: questionNum.currentQ });
+    }
+    else {
       // navigate to the generated playlist instead of main
+      this.makePlaylist();
       this.state.currentQ = 0;
-      this.props.navigation.navigate('Main');
     }
   }
 
@@ -597,7 +630,8 @@ class NewPlaylistFlow extends Component {
             defaultNull
             placeholder="What kind of workout?"
             containerStyle={{ height: 40 }}
-            onChangeItem={(item) => console.log(item.label, item.value)}
+            value={this.state.type}
+            onChangeItem={(item) => this.setState({type: item.value})}
           />
         </View>
       );
@@ -615,7 +649,7 @@ class NewPlaylistFlow extends Component {
             defaultNull
             placeholder="For how long?"
             containerStyle={{ height: 40 }}
-            onChangeItem={(item) => console.log(item.label, item.value)}
+            onChangeItem={(item) => this.setState({question2: item.value})}
           />
         </View>
       );
@@ -641,7 +675,7 @@ class NewPlaylistFlow extends Component {
           <Text>
             My ideal BPM today is...
           </Text>
-          <TextInput style={styles.input} placeholder="BPM" placeholderTextColor="black" onChange={this.onInputBPMChange} value={this.state.BPM} />
+          <TextInput style={styles.input} placeholder="BPM" placeholderTextColor="black" onChangeText={(text) => this.setState({BPM: parseInt(text, 10)})} value={this.state.BPM} />
         </View>
       );
     } else if (questionNum === 5) {
@@ -658,10 +692,6 @@ class NewPlaylistFlow extends Component {
         </View>
       );
     } else if (questionNum === 6) {
-      console.log(this.state.question1);
-      console.log(this.state.question2);
-      console.log(this.state.question3);
-      console.log(this.state.mood);
       return (
         <View>
           <Text>
@@ -722,23 +752,11 @@ class NewPlaylistFlow extends Component {
       <View style={styles.container}>
         {this.renderQuestion()}
         <TouchableOpacity
-          onPress={this.handleClick} // how to make this a different functionality when at the end of questions?
+          onPress={this.handleClick}
           style={styles.button}
-            // {
-            // display: 'flex',
-            // alignContent: 'flex-end',
-            // justifyContent: 'center', // this wont center the text?? :(
-            // backgroundColor: 'orange',
-            // color: 'white',
-            // padding: 5,
-            // borderRadius: 5,
-            // zIndex: -1,
-          // }
-        // }
         >
-          <Text>Next</Text>
+          <Text>Create Playlist!</Text>
         </TouchableOpacity>
-        {/* onclick, update call state incrementer */}
       </View>
     );
   }
@@ -782,4 +800,13 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 });
-export default NewPlaylistFlow;
+
+
+function mapStateToProps(reduxState) {
+  return {
+    user: reduxState.user.user,
+    playlist: reduxState.playlist
+  };
+}
+
+export default connect(mapStateToProps, { fetchUser, createPlaylist })(NewPlaylistFlow);
