@@ -15,13 +15,13 @@ class NewUserFlow extends Component {
     super(props);
     this.state = {
       currentQ: 1,
-      question1: 0,
-      question2: 0,
-      question3: 0,
-      question4: 0,
-      question5: 0,
-      question6: 0,
-      question7: 0,
+      question1: 0.5,
+      question2: 0.5,
+      question3: 0.5,
+      question4: 0.5,
+      question5: 0.5,
+      question6: 0.5,
+      question7: 0.5,
     };
   }
 
@@ -67,9 +67,10 @@ class NewUserFlow extends Component {
             Acousticness
           </Text>
           <Slider
-            minimumTrackTintColor="orange"
-            maximumTrackTintColor="#000000"
-            value={0.5}
+            minimumTrackTintColor="#FF7300"
+            maximumTrackTintColor="#FFFFFF"
+            thumbTintColor="orange"
+            value={this.state.question1}
             onValueChange={(question1) => this.setState({ question1 })}
           />
           <Text>1- Not Acoustic                   10- Very Acoustic</Text>
@@ -90,7 +91,10 @@ class NewUserFlow extends Component {
             Instrumentalness
           </Text>
           <Slider
-            value={0.5}
+            value={this.state.question2}
+            minimumTrackTintColor="#FF7300"
+            maximumTrackTintColor="#FFFFFF"
+            thumbTintColor="orange"
             // style={styles.slider}
             onValueChange={(question2) => this.setState({ question2 })}
           />
@@ -112,7 +116,10 @@ class NewUserFlow extends Component {
             Liveness
           </Text>
           <Slider
-            value={0.5}
+            value={this.state.question3}
+            minimumTrackTintColor="#FF7300"
+            maximumTrackTintColor="#FFFFFF"
+            thumbTintColor="orange"
             // style={styles.slider}
             onValueChange={(question3) => this.setState({ question3 })}
           />
@@ -135,7 +142,10 @@ class NewUserFlow extends Component {
             Loudness
           </Text>
           <Slider
-            value={0.5}
+            value={this.state.question4}
+            minimumTrackTintColor="#FF7300"
+            maximumTrackTintColor="#FFFFFF"
+            thumbTintColor="orange"
             // style={styles.slider}
             onValueChange={(question4) => this.setState({ question4 })}
           />
@@ -158,7 +168,10 @@ class NewUserFlow extends Component {
             Popular music
           </Text>
           <Slider
-            value={0.5}
+            value={this.state.question5}
+            minimumTrackTintColor="#FF7300"
+            maximumTrackTintColor="#FFFFFF"
+            thumbTintColor="orange"
             // style={styles.slider}
             onValueChange={(question5) => this.setState({ question5 })}
           />
@@ -181,7 +194,10 @@ class NewUserFlow extends Component {
             Positivity
           </Text>
           <Slider
-            value={0.5}
+            value={this.state.question6}
+            minimumTrackTintColor="#FF7300"
+            maximumTrackTintColor="#FFFFFF"
+            thumbTintColor="orange"
             // style={styles.slider}
             // value={this.state.question1}
             onValueChange={(question6) => this.setState({ question6 })}
