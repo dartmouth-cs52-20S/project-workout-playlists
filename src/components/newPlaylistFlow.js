@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
@@ -705,7 +706,7 @@ class NewPlaylistFlow extends Component {
       return (
         <View>
           <Text>
-            Today, I'm feeling like... (pick up to 5)
+            Today, Im feeling like... (pick up to 5)
           </Text>
           <SearchableDropdown
             multi
