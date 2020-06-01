@@ -1,6 +1,8 @@
+/* eslint-disable react/no-unused-state */
+/* eslint-disable no-shadow */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/destructuring-assignment */
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet, View, TextInput,
   Text, TouchableOpacity,
@@ -542,7 +544,6 @@ class NewPlaylistFlow extends Component {
 
   componentDidMount = () => {
     this.props.fetchUser(this.props.user.spotifyID);
-    console.log('mounted in new playlist flow');
   }
 
   objArrToString = (arr) => {
@@ -571,18 +572,12 @@ class NewPlaylistFlow extends Component {
     this.setState({ BPM: event.target.value });
   }
 
-  onInputGenreChange = (event) => {
-    this.setState({ genre: event.target.value });
-  }
-
   getChecked = (value) => {
     // value = our checked value
     if (this.state.currentQ === 3) {
       this.setState({ mood: value });
-      // console.log(mood)
     } else {
       this.setState({ energy: value });
-      // console.log(energy)
     }
   }
 
@@ -602,13 +597,6 @@ class NewPlaylistFlow extends Component {
       questionNum.currentQ += 1;
       this.setState({ currentQ: questionNum.currentQ });
     } else {
-      console.log(this.state.type);
-      console.log(this.state.length);
-      console.log(this.state.mood);
-      console.log(this.state.energy);
-      console.log(this.state.BPM);
-      console.log(this.state.selectedItemsString);
-      // navigate to the generated playlist instead of main
       this.makePlaylist();
       this.state.currentQ = 0;
     }
@@ -665,6 +653,7 @@ class NewPlaylistFlow extends Component {
         </View>
       );
     } else if (questionNum === 3) {
+      console.log('pre 3');
       return (
         <View>
           <Text>
@@ -681,6 +670,7 @@ class NewPlaylistFlow extends Component {
         </View>
       );
     } else if (questionNum === 4) {
+      console.log('post 3');
       return (
         <View>
           <Text>
@@ -706,7 +696,7 @@ class NewPlaylistFlow extends Component {
       return (
         <View>
           <Text>
-            Today, I'm feeling like... (pick up to 5)
+            Today, Im feeling like... (pick up to 5)
           </Text>
           <SearchableDropdown
             multi

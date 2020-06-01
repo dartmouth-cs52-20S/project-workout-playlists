@@ -65,7 +65,6 @@ export function fetchPlaylist(ID) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/playlist/${ID}/`)
       .then((response) => {
-        console.log(response);
         dispatch({ type: ActionTypes.FETCH_PLAYLIST, payload: response.data });
       })
       .catch((error) => {

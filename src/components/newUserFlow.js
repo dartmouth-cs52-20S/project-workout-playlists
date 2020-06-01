@@ -4,27 +4,23 @@ import {
   StyleSheet, View,
   Text, TouchableOpacity,
 } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
-import SearchableDropdown from 'react-native-searchable-dropdown';
 import { connect } from 'react-redux';
 import Slider from 'react-native-slider';
 import { updateUser } from '../actions/index';
 
-const NUM_QUESTIONS = 7;
+const NUM_QUESTIONS = 6;
 
 class NewUserFlow extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentQ: 1,
-      question1: 0,
-      question2: 0,
-      question3: 0,
-      question4: 0,
-      question5: 0,
-      question6: 0,
-      question7: 0,
-      selectedItems: [],
+      question1: 0.5,
+      question2: 0.5,
+      question3: 0.5,
+      question4: 0.5,
+      question5: 0.5,
+      question6: 0.5,
     };
   }
 
@@ -42,8 +38,6 @@ class NewUserFlow extends Component {
       this.setState({ currentQ: questionNum.currentQ });
       // this.state.currentQ += 1;
     } else {
-      console.log('calling update in new user flow');
-      console.log(this.props.user.spotifyID);
       this.props.updateUser(
         {
           spotifyID: this.props.user.spotifyID,
@@ -213,7 +207,7 @@ class NewUserFlow extends Component {
     // eslint-disable-next-line react/destructuring-assignment
     return (
       <View style={styles.container}>
-        <Text h1>Let's get to know you!</Text>
+        <Text h1>Lets get to know you!</Text>
         {/* <br /> */}
         {this.renderQuestion()}
       </View>

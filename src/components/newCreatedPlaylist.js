@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
@@ -24,7 +25,7 @@ class NewCreatedPlaylist extends Component {
     const { trackLength } = this.state;
     this.setState({ timeRemaining: moment.utc((trackLength - seconds) * 1000).format('m:ss') });
     const { timeRemaining } = this.state;
-    console.log(timeRemaining);
+    // console.log(timeRemaining);
   }
 
   render() {
