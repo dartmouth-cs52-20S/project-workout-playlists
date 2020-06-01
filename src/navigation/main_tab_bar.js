@@ -11,6 +11,7 @@ import UserProfile from '../components/userProfile';
 import NewPlaylistFlow from '../components/newPlaylistFlow';
 import testDisplayPlaylist from '../components/testDisplayPlaylist';
 import MyPlaylists from '../components/myPlaylists';
+import Feedback from '../components/feedback';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,6 +29,8 @@ class MainTabBar extends Component {
               <Tab.Screen name="Workout Selector" component={NewPlaylistFlow} />
               <Tab.Screen name="Display" component={testDisplayPlaylist} />
               <Tab.Screen name="My Playlists" component={MyPlaylists} />
+              <Tab.Screen name="Feedback Page" component={Feedback} />
+
             </Tab.Navigator>
           </NavigationContainer>
         );
