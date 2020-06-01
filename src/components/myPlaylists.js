@@ -1,7 +1,13 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Text,
+  StyleSheet, Text, View,
 } from 'react-native';
+
+import { connect } from 'react-redux';
+
+import { fetchPlaylists } from '../actions/index';
+
 
 class MyPlaylists extends Component {
   constructor(props) {
@@ -12,16 +18,25 @@ class MyPlaylists extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.fetchPlaylists();
+    console.log('mounted in playlist');
+  }
+
   // displayPlaylist = () => {
   //   if (this.state.favorited === 1)
   // }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>My Playlists</Text>
-      </View>
-    );
+    console.log(this.props.all);
+    const display = this.props.all.map((playlist) => {
+      return (
+        <View style={styles.container}>
+          <Text>{playlist.id}</Text>
+        </View>
+      );
+    });
+    return display;
   }
 }
 
@@ -36,4 +51,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyPlaylists;
+function mapStateToProps(reduxState) {
+  return {
+    user: reduxState.user.user,
+    all: reduxState.playlist.all,
+  };
+}
+
+export default connect(mapStateToProps, { fetchPlaylists })(MyPlaylists);
