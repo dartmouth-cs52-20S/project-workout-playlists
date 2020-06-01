@@ -12,6 +12,15 @@ import {
 } from '../actions/index';
 
 class testDisplayPlaylist extends Component {
+  constructor(props) {
+    super(props);
+    const uris = this.getTrackUris();
+    this.state = {
+      uris,
+      firstPlay: true,
+    };
+  }
+
     componentDidMount = () => {
       console.log('display mounted with token: ', this.props.user.accessToken);
       if (this.props.user.accessToken) {
@@ -21,15 +30,29 @@ class testDisplayPlaylist extends Component {
     }
 
     play = () => {
-      console.log('supposed to b playing');
-      console.log(this.props.user.accessToken);
-      this.props.playMedia(this.props.user.accessToken);
+      if (this.state.firstPlay) {
+        console.log(this.state.uris);
+        this.props.playMedia(this.props.user.accessToken, this.state.uris);
+        this.setState({ firstPlay: false });
+      } else {
+        this.props.playMedia(this.props.user.accessToken);
+      }
     }
 
     pause = () => {
-      console.log('supposed to b playing');
       console.log(this.props.user.accessToken);
       this.props.pauseMedia(this.props.user.accessToken);
+    }
+
+    getTrackUris = () => {
+      const uris = [];
+
+      // eslint-disable-next-line array-callback-return
+      this.props.playlist.songs.map((song) => {
+        console.log(song);
+        uris.push(song.uri);
+      });
+      return uris;
     }
 
 
