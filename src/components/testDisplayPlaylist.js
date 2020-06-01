@@ -14,20 +14,21 @@ import {
 class testDisplayPlaylist extends Component {
   constructor(props) {
     super(props);
-    const uris = this.getTrackUris();
     this.state = {
-      uris,
+      uris: '',
       firstPlay: true,
     };
   }
 
     componentDidMount = () => {
-      console.log('display mounted with token: ', this.props.user.accessToken);
       if (this.props.user.accessToken) {
         this.props.fetchPlayback(this.props.user.accessToken);
       }
-      console.log('playback: ', this.props.playback);
+      if (typeof this.props.playlist.songs !== 'undefined') {
+        this.setUris();
+      }
     }
+
 
     play = () => {
       if (this.state.firstPlay) {
@@ -42,6 +43,10 @@ class testDisplayPlaylist extends Component {
     pause = () => {
       console.log(this.props.user.accessToken);
       this.props.pauseMedia(this.props.user.accessToken);
+    }
+
+    setUris = () => {
+      this.setState({ uris: this.getTrackUris });
     }
 
     getTrackUris = () => {
@@ -59,7 +64,7 @@ class testDisplayPlaylist extends Component {
     render() {
       if (typeof this.props.playlist.songs === 'undefined') {
         return (
-          <View style={styles.container}><Text>Sorry, playlist hasn't been created</Text></View>
+          <View style={styles.container}><Text>Sorry, playlist hasnt been created</Text></View>
         );
       } else {
         return (
