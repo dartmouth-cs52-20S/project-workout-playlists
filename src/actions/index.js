@@ -89,7 +89,7 @@ export function fetchPlayback(accessToken) {
 
 export function playMedia(accessToken, uris) {
   return () => {
-    console.log('calling play', accessToken);
+    console.log('play media uris', uris);
     axios.put(`${ROOT_URL}/play/${accessToken}/`, uris)
       .then((response) => {
         console.log(response);
