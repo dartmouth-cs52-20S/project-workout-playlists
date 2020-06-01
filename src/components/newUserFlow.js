@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Slider from 'react-native-slider';
-import { updateUser } from '../actions/index';
+import { updateUser, userExists } from '../actions/index';
 
 const NUM_QUESTIONS = 6;
 
@@ -53,6 +53,7 @@ class NewUserFlow extends Component {
           genres: this.state.question7,
         },
       );
+      this.props.userExists();
       this.props.navigation.navigate('Main');
     }
   }
@@ -211,7 +212,7 @@ class NewUserFlow extends Component {
     console.log(this.state);
     return (
       <View style={styles.container}>
-        <Text h1>Let's get to know you!</Text>
+        <Text h1>Lets get to know you!</Text>
         {/* <br /> */}
         {this.renderQuestion()}
       </View>
@@ -259,4 +260,4 @@ function mapStateToProps(reduxState) {
   };
 }
 
-export default connect(mapStateToProps, { updateUser })(NewUserFlow);
+export default connect(mapStateToProps, { updateUser, userExists })(NewUserFlow);

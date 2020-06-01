@@ -8,6 +8,7 @@ export const ActionTypes = {
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
+  EXIST_USER: 'EXIST_USER',
   FETCH_PLAYLIST: 'FETCH_PLAYLIST',
   FETCH_PLAYBACK: 'FETCH_PLAYBACK',
 };
@@ -22,6 +23,12 @@ export function authError(error) {
 export function authenticate() {
   return (dispatch) => {
     dispatch({ type: ActionTypes.AUTH_USER });
+  };
+}
+
+export function userExists() {
+  return (dispatch) => {
+    dispatch({ type: ActionTypes.EXIST_USER });
   };
 }
 
@@ -65,7 +72,6 @@ export function fetchPlaylist(ID) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/playlist/${ID}/`)
       .then((response) => {
-        console.log(response);
         dispatch({ type: ActionTypes.FETCH_PLAYLIST, payload: response.data });
       })
       .catch((error) => {
