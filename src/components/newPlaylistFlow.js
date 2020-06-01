@@ -1,6 +1,6 @@
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/destructuring-assignment */
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet, View, TextInput,
   Text, TouchableOpacity,
@@ -547,7 +547,6 @@ class NewPlaylistFlow extends Component {
 
   objArrToString = (arr) => {
     const stringArr = arr.map((genre) => JSON.stringify(genre.name).replace(/[^\w\s!?]/g, '').replace(/\s+/g, '-').toLowerCase());
-
     const stringified = stringArr.toString();
     this.setState({ selectedItemsString: stringified });
   }
@@ -702,14 +701,14 @@ class NewPlaylistFlow extends Component {
             multi
             selectedItems={this.state.selectedItems}
             onItemSelect={(item) => {
-              const items = this.state.selectedItems;
-              items.push(item);
-              this.setState({ selectedItems: items });
+              const its = this.state.selectedItems;
+              its.push(item);
+              this.setState({ selectedItems: its });
             }}
             containerStyle={{ padding: 5 }}
             onRemoveItem={(item, index) => {
-              const items = this.state.selectedItems.filter((sitem) => sitem.id !== item.id);
-              this.setState({ selectedItems: items });
+              const its = this.state.selectedItems.filter((sitem) => sitem.id !== item.id);
+              this.setState({ selectedItems: its });
             }}
             itemStyle={{
               padding: 10,

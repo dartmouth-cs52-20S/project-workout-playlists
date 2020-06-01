@@ -1,34 +1,53 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Text,
+  View, StyleSheet, Text, Button,
 } from 'react-native';
 
 import { connect } from 'react-redux';
 
 
-import { fetchPlaylist } from '../actions/index';
+import {
+  fetchPlaylist, fetchPlayback, fetchUser, playMedia, pauseMedia,
+} from '../actions/index';
 
 class testDisplayPlaylist extends Component {
     componentDidMount = () => {
-        // console.log("display mounted with playlist ID: ", this.props.playlist.id);
-        // this.props.fetchPlaylist(this.props.playlist.id)
+      console.log('display mounted with token: ', this.props.user.accessToken);
+      if (this.props.user.accessToken) {
+        this.props.fetchPlayback(this.props.user.accessToken);
       }
+      console.log('playback: ', this.props.playback);
+    }
+
+    play = () => {
+      console.log('supposed to b playing');
+      console.log(this.props.user.accessToken);
+      this.props.playMedia(this.props.user.accessToken);
+    }
+
+    pause = () => {
+      console.log('supposed to b playing');
+      console.log(this.props.user.accessToken);
+      this.props.pauseMedia(this.props.user.accessToken);
+    }
 
 
-    render (){
-        if(typeof this.props.playlist.songs === 'undefined'){
-          return(
+    render() {
+      if (typeof this.props.playlist.songs === 'undefined') {
+        return (
           <View style={styles.container}><Text>Sorry, playlist hasn't been created</Text></View>
-          )
-        } else {
-        return(
-            <View style={styles.container}>
-                {this.props.playlist.songs.map((song) => (<Text>{song.name}</Text>))}
-            </View>
-            );
-        }
+        );
+      } else {
+        return (
+          <View style={styles.container}>
+            {this.props.playlist.songs.map((song) => (<Text>{song.name}</Text>))}
+            <Button onPress={this.play} title="play" />
+            <Button onPress={this.pause} title="pause" />
+          </View>
+        );
       }
+    }
 }
 
 const styles = StyleSheet.create({
@@ -51,9 +70,12 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(reduxState) {
   return {
-    //   user: reduxState.user.user,
+    user: reduxState.user.user,
     playlist: reduxState.playlist.playlist,
+    playback: reduxState.player.playback,
   };
 }
 
-export default connect(mapStateToProps, { fetchPlaylist })(testDisplayPlaylist);
+export default connect(mapStateToProps, {
+  fetchPlaylist, fetchPlayback, playMedia, pauseMedia, fetchUser,
+})(testDisplayPlaylist);

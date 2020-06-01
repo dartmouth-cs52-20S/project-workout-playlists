@@ -4,13 +4,11 @@ import {
   StyleSheet, View,
   Text, TouchableOpacity,
 } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
-import SearchableDropdown from 'react-native-searchable-dropdown';
 import { connect } from 'react-redux';
 import Slider from 'react-native-slider';
 import { updateUser } from '../actions/index';
 
-const NUM_QUESTIONS = 7;
+const NUM_QUESTIONS = 6;
 
 class NewUserFlow extends Component {
   constructor(props) {
@@ -24,7 +22,6 @@ class NewUserFlow extends Component {
       question5: 0,
       question6: 0,
       question7: 0,
-      selectedItems: [],
     };
   }
 
@@ -211,6 +208,7 @@ class NewUserFlow extends Component {
 
   render() {
     // eslint-disable-next-line react/destructuring-assignment
+    console.log(this.state);
     return (
       <View style={styles.container}>
         <Text h1>Let's get to know you!</Text>

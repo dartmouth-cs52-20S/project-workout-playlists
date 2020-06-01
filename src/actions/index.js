@@ -78,7 +78,7 @@ export function fetchPlayback(accessToken) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/playback/${accessToken}/`)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
         dispatch({ type: ActionTypes.FETCH_PLAYBACK, payload: response.data });
       })
       .catch((error) => {
@@ -89,6 +89,7 @@ export function fetchPlayback(accessToken) {
 
 export function playMedia(accessToken, uris) {
   return () => {
+    console.log('calling play', accessToken);
     axios.put(`${ROOT_URL}/play/${accessToken}/`, uris)
       .then((response) => {
         console.log(response);
@@ -101,7 +102,7 @@ export function playMedia(accessToken, uris) {
 
 export function pauseMedia(accessToken) {
   return () => {
-    axios.put(`${ROOT_URL}/play/${accessToken}/`)
+    axios.put(`${ROOT_URL}/pause/${accessToken}/`)
       .then((response) => {
         console.log(response);
       })

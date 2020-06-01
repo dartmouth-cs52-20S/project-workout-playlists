@@ -62,7 +62,7 @@ class signUp extends Component {
     const clientId = 'ae55627afa544de2b83131f8bd07d685';
     // const redirectUri = 'https://workout-playlists-final-proj.herokuapp.com/api/callback';
     const redirectUri = 'http://localhost:9090/api/callback';
-    const scopes = 'user-read-private user-read-email user-modify-playback-state user-read-playback-state';
+    const scopes = 'user-read-private user-read-email user-modify-playback-state user-read-playback-state user-read-currently-playing';
     if (this.state.login) {
       return (
         <WebView
@@ -72,7 +72,7 @@ class signUp extends Component {
             + '?client_id='}${`${clientId
             }&response_type=code`
             }&redirect_uri=${encodeURIComponent(redirectUri)}`
-            + `&scope=${encodeURIComponent(scopes)}`,
+            + `&scope=${encodeURIComponent(scopes)}&show_dialog=true`,
           }}
           style={{ marginTop: 20, flex: 1 }}
           onNavigationStateChange={this.handleSpotifyAuth}
