@@ -1,3 +1,5 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable global-require */
 import React, { Component } from 'react';
 import {
   StyleSheet, View, Text, TextInput, Button,
@@ -39,9 +41,9 @@ class signIn extends Component {
             onPress={() => this.props.navigation.navigate('Main')}
           />
         </View>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Sign up')}> 
-            <Text>Don't have an account? Sign up here!</Text>
-        </TouchableOpacity>   
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Sign up')}>
+          <Text>Dont have an account? Sign up here!</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-  logocontainer:{
+  logocontainer: {
     display: 'flex',
     justifyContent: 'center',
     width: 350,
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   button: {
     backgroundColor: 'orange',

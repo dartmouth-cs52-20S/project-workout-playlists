@@ -10,6 +10,7 @@ export const ActionTypes = {
   AUTH_ERROR: 'AUTH_ERROR',
   EXIST_USER: 'EXIST_USER',
   FETCH_PLAYLIST: 'FETCH_PLAYLIST',
+  FETCH_PLAYLISTS: 'FETCH_PLAYLISTS',
   FETCH_PLAYBACK: 'FETCH_PLAYBACK',
 };
 
@@ -73,6 +74,20 @@ export function fetchPlaylist(ID) {
     axios.get(`${ROOT_URL}/playlist/${ID}/`)
       .then((response) => {
         dispatch({ type: ActionTypes.FETCH_PLAYLIST, payload: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function fetchPlaylists() {
+  console.log('into fetch playlists FE');
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/playlist`)
+      .then((response) => {
+        console.log('response data ', response.data);
+        dispatch({ type: ActionTypes.FETCH_PLAYLISTS, payload: response.data });
       })
       .catch((error) => {
         console.log(error);

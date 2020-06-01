@@ -44,6 +44,8 @@ class MainTabBar extends Component {
               <Tab.Screen name="Workout Selector" component={NewPlaylistFlow} />
               <Tab.Screen name="Display" component={testDisplayPlaylist} />
               <Tab.Screen name="My Playlists" component={MyPlaylists} />
+              <Tab.Screen name="Feedback Page" component={Feedback} />
+
             </Tab.Navigator>
           </NavigationContainer>
         );
