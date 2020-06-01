@@ -1,10 +1,10 @@
 import thunk from 'redux-thunk';
 
 import React from 'react';
-import MainTabBar from './src/navigation/main_tab_bar';
 
 import { createStore, applyMiddleware, compose } from 'redux';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
+import MainTabBar from './src/navigation/main_tab_bar';
 
 import reducers from './src/reducers';
 
@@ -18,7 +18,7 @@ const store = createStore(reducers, {}, compose(
 
 const App = (props) => {
   return (
-  <Provider store={store}><MainTabBar /></Provider>)
+    <Provider store={store}><MainTabBar /></Provider>);
 };
 
 

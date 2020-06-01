@@ -6,13 +6,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Main from '../components/Main';
 import SignUp from '../components/signUp';
-import SignIn from '../components/signIn';
 import NewUserFlow from '../components/newUserFlow';
 import NewCreatedPlaylist from '../components/newCreatedPlaylist';
-import NewWorkout from '../components/newWorkout';
 import UserProfile from '../components/userProfile';
 import NewPlaylistFlow from '../components/newPlaylistFlow';
-import testCreatePlaylist from '../components/testCreatePlaylist';
 import testDisplayPlaylist from '../components/testDisplayPlaylist';
 import MyPlaylists from '../components/myPlaylists';
 
@@ -44,7 +41,7 @@ class MainTabBar extends Component {
             {/* <Tab.Screen name="Sign in" component={SignIn} /> */}
             {/* <Tab.Screen name="Main" component={Main} />
             <Tab.Screen name="New Playlist" component={NewPlaylistFlow} />
-            
+
             <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
             {/* <Tab.Screen name="Workout Selector" component={NewPlaylistFlow} />
             is there a reason that this line renders the same component as the  "New Playlist" tab in line 48 above? -Jennifer */}
