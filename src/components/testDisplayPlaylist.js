@@ -32,7 +32,6 @@ class testDisplayPlaylist extends Component {
 
     play = () => {
       if (this.state.firstPlay) {
-        console.log(this.state.uris);
         this.props.playMedia(this.props.user.accessToken, this.state.uris);
         this.setState({ firstPlay: false });
       } else {
