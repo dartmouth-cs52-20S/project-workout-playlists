@@ -14,8 +14,8 @@ class NewCreatedPlaylist extends Component {
 
     this.state = {
       trackLength: 300,
-      timeElapsed: '0:00', /* Fetch Data */
-      timeRemaining: '5:00', /* Fetch Data */
+      timeElapsed: '0:00', /* Initial Values */
+      timeRemaining: '5:00', /* Initial Values */
     };
   }
 
@@ -29,7 +29,8 @@ class NewCreatedPlaylist extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.container}>{this.props.playlist.songs.map((song) => //for each song
+        {return this.state.timeRemaining != 0 ? //while song is not over, let state stay at current song in playlist
         <View style={{ alignItems: 'center' }}>
           <View style={{ alignItems: 'center', marginTop: 24 }}>
             <Text>
@@ -37,21 +38,26 @@ class NewCreatedPlaylist extends Component {
             </Text>
           </View>
 
+        {/* Handling of Playlist items */}
+        
+        
+
           <View style={styles.coverContainer}>
             <Image
               style={styles.cover}
-            /* Fetch Data */
-              source={{ uri: 'https://mir-s3-cdn-cf.behance.net/projects/404/b7372069226647.Y3JvcCw4NzUsNjg1LDUyMiwyMQ.jpg' }}
+            /* URI Attribute of Song Object -- this will have to change, because...we need an actual image. I didn't see one for track object*/
+              source={{ uri: (song.uri) }}
             />
           </View>
 
           <View style={{ alignItems: 'center', marginTop: 32 }}>
-            {/* Fetch Data */}
-            <Text style={[styles.textDark, { fontSize: 20, fontWeight: '500' }]}>Cartel</Text>
-            {/* Fetch Data */}
-            <Text style={[styles.Text, { fontSize: 16, marginTop: 8 }]}>Cesar St. Martin</Text>
-          </View>
+            {/* Name attribute of song object */}
+            <Text style={[styles.textDark, { fontSize: 20, fontWeight: '500' }]}>{song.name}</Text>
+            {/* Artists artibute of song object */}
+            <Text style={[styles.Text, { fontSize: 16, marginTop: 8 }]}>{song.artists}</Text>
         </View>
+         <View style={{display: 'hidden'}}>{ this.setState({timeRemaining: (song.duration_ms) }) }</View> 
+         {/*hidden view to set state of timeRemaining to duration of current song  */}
 
         <View style={{ margin: 32 }}>
           <Slider
@@ -82,6 +88,11 @@ class NewCreatedPlaylist extends Component {
             <FontAwesome5 name="forward" size={32} color="#93A883" />
           </TouchableOpacity>
         </View>
+        </View>
+         :
+        pass; //otherwise continue to next song in playlist
+      
+      })};
       </View>
     );
   }
