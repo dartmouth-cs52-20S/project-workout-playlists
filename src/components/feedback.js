@@ -4,8 +4,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { AirbnbRating } from 'react-native-ratings';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { connect } from 'react-redux';
 import { savePlaylist, fetchUser } from '../actions';
 
 class Feedback extends Component {
