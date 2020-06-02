@@ -564,7 +564,7 @@ class NewPlaylistFlow extends Component {
       workoutLength: parseInt(this.state.length, 10),
       workoutGenre: this.state.selectedItemsString,
     };
-    console.log('playlist in FE: ', playlist);
+    console.log('playlist in FE: ', playlist.workoutType);
     this.props.createPlaylist(playlist);
     // .then(this.props.navigation.navigate('Display'));
   }
@@ -634,7 +634,6 @@ class NewPlaylistFlow extends Component {
               { label: 'Swimming', value: 'Swim' },
               { label: 'Hiking', value: 'Hike' },
             ]}
-            defaultNull
             placeholder="What kind of workout?"
             containerStyle={{ height: 40 }}
             value={this.state.type}

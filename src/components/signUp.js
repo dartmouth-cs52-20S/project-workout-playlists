@@ -62,7 +62,7 @@ class signUp extends Component {
     const clientId = 'ae55627afa544de2b83131f8bd07d685';
     // const redirectUri = 'https://workout-playlists-final-proj.herokuapp.com/api/callback';
     const redirectUri = 'http://localhost:9090/api/callback';
-    const scopes = 'user-read-private user-read-email user-modify-playback-state user-read-playback-state user-read-currently-playing';
+    const scopes = 'user-read-private user-read-email user-modify-playback-state user-read-playback-state user-read-currently-playing  playlist-modify-public';
     if (this.state.login) {
       return (
         <WebView

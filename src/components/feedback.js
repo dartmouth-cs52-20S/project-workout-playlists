@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Text,
+  StyleSheet, View, Text, TouchableOpacity,
 } from 'react-native';
+import { connect } from 'react-redux';
 import { AirbnbRating } from 'react-native-ratings';
+import { savePlaylist, fetchUser } from '../actions';
 
 class Feedback extends Component {
   constructor(props) {
@@ -13,8 +15,14 @@ class Feedback extends Component {
     };
   }
 
+  handleSave = () => {
+    // eslint-disable-next-line react/destructuring-assignment
+    this.props.savePlaylist(this.props.user.accessToken, this.props.user.spotifyID, this.props.playlist);
+  }
+
 
   render() {
+    // eslint-disable-next-line react/destructuring-assignment
     console.log(this.state.rating);
     return (
       <View style={styles.container}>
@@ -28,7 +36,9 @@ class Feedback extends Component {
           reviewColor="orange"
           onFinishRating={(stars) => this.setState({ rating: stars })}
         />
-
+        <TouchableOpacity onPress={this.handleSave}>
+          <Text>Save playlist to spotify account</Text>
+        </TouchableOpacity>
       </View>
     //   <View style={styles.container}>
     //     <Text>My Playlists</Text>
@@ -53,4 +63,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Feedback;
+function mapStateToProps(reduxState) {
+  return {
+    user: reduxState.user.user,
+    playlist: reduxState.playlist.playlist,
+    playback: reduxState.player.playback,
+  };
+}
+
+export default connect(mapStateToProps, {
+  savePlaylist, fetchUser,
+})(Feedback);
