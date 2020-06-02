@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
-  StyleSheet, Text, View,
+  StyleSheet, Text, View, ScrollView, SafeAreaView, TouchableOpacity,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -28,14 +28,46 @@ class MyPlaylists extends Component {
 
   render() {
     console.log(this.props.all);
-    const display = this.props.all.map((playlist) => {
-      return (
-        <View style={styles.container}>
-          <Text>{playlist.id}</Text>
-        </View>
-      );
-    });
-    return display;
+    // const display = this.props.all.map((playlist) => {
+    //   return (
+    // <SafeAreaView style={styles.container}>
+    //   <Text style={styles.titleText}>YOUR TEMPO PLAYLISTS</Text>
+    //   <ScrollView style={styles.scrollView}>
+    //     <View style={styles.container}>
+    //       <Text>
+    //         {playlist.workoutType}
+    //         {playlist.createdAt}
+    //       </Text>
+    //     </View>
+    //   </ScrollView>
+    // </SafeAreaView>
+    //   );
+    // });
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.titleText}>MY PLAYLISTS</Text>
+        <ScrollView style={styles.scrollView}>
+          <View style={styles.container}>
+            {this.props.all.map((playlist) => (
+              <View>
+                <TouchableOpacity>
+                  <Text style={{
+                    color: 'white', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'black',
+                  }}
+                  >
+                    Tempo
+                    {playlist.workoutType}
+                    {playlist.createdAt}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ))}
+
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+
+    );
   }
 }
 
@@ -46,7 +78,21 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'rgb(42,42,42)',
+    marginTop: 10,
+  },
+  titleText: {
+    flexDirection: 'row',
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: 'white',
+    paddingVertical: 10,
+    paddingHorizontal: 100,
+    backgroundColor: 'rgb(255,115,0)',
+  },
+  scrollView: {
+    paddingHorizontal: 10,
+    backgroundColor: 'rgb(42,42,42)',
   },
 });
 
