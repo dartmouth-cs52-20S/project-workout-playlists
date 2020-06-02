@@ -46,7 +46,7 @@ class testDisplayPlaylist extends Component {
     }
 
     setUris = () => {
-      this.setState({ uris: this.getTrackUris });
+      this.setState({ uris: this.getTrackUris() });
     }
 
     getTrackUris = () => {

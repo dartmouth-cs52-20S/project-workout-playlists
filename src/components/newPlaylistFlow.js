@@ -9,7 +9,6 @@ import {
 import DropDownPicker from 'react-native-dropdown-picker';
 import RadioGroup, { Radio } from 'react-native-radio-input';
 import SearchableDropdown from 'react-native-searchable-dropdown';
-
 import { connect } from 'react-redux';
 
 import { fetchUser, createPlaylist } from '../actions/index';
@@ -538,6 +537,7 @@ class NewPlaylistFlow extends Component {
       BPM: '',
       selectedItems: [],
       selectedItemsString: '',
+      done: false,
     };
   }
 
@@ -564,7 +564,9 @@ class NewPlaylistFlow extends Component {
       workoutLength: parseInt(this.state.length, 10),
       workoutGenre: this.state.selectedItemsString,
     };
+    console.log('playlist in FE: ', playlist);
     this.props.createPlaylist(playlist);
+    // .then(this.props.navigation.navigate('Display'));
   }
 
   onInputBPMChange = (event) => {
@@ -602,18 +604,16 @@ class NewPlaylistFlow extends Component {
       questionNum.currentQ += 1;
       this.setState({ currentQ: questionNum.currentQ });
     } else {
-      console.log(this.state.type);
-      console.log(this.state.length);
-      console.log(this.state.mood);
-      console.log(this.state.energy);
-      console.log(this.state.BPM);
-      console.log(this.state.selectedItemsString);
       // navigate to the generated playlist instead of main
+      this.setState({ done: true });
       this.makePlaylist();
       this.state.currentQ = 0;
     }
   }
 
+  handleClickPlaylist = () => {
+    this.props.navigation.navigate('Display');
+  }
 
   // eslint-disable-next-line consistent-return
   renderQuestion= () => {
@@ -759,17 +759,30 @@ class NewPlaylistFlow extends Component {
 
   render() {
     // eslint-disable-next-line react/destructuring-assignment
-    return (
-      <View style={styles.container}>
-        {this.renderQuestion()}
-        <TouchableOpacity
-          onPress={this.handleClick}
-          style={styles.button}
-        >
-          <Text>Create Playlist!</Text>
-        </TouchableOpacity>
-      </View>
-    );
+    if (this.state.done) {
+      return (
+        <View style={styles.container}>
+          <TouchableOpacity
+            onPress={this.handleClickPlaylist}
+            style={styles.button}
+          >
+            <Text>Really create playlist!</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          {this.renderQuestion()}
+          <TouchableOpacity
+            onPress={this.handleClick}
+            style={styles.button}
+          >
+            <Text>Next!</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
   }
 }
 
