@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 
 import {
-  fetchPlaylist, fetchPlayback, fetchUser, playMedia, pauseMedia,
+  fetchPlayback, fetchUser, playMedia, pauseMedia,
 } from '../actions/index';
 
 class testDisplayPlaylist extends Component {
@@ -105,5 +105,5 @@ function mapStateToProps(reduxState) {
 }
 
 export default connect(mapStateToProps, {
-  fetchPlaylist, fetchPlayback, playMedia, pauseMedia, fetchUser,
+  fetchPlayback, playMedia, pauseMedia, fetchUser,
 })(testDisplayPlaylist);

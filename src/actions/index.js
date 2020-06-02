@@ -69,6 +69,18 @@ export function createPlaylist(playlist) {
   };
 }
 
+export function savePlaylist(spotifyID, playlist) {
+  return () => {
+    axios.post(`${ROOT_URL}/save/`, spotifyID, playlist)
+      .then(() => {
+        console.log('saved playlist to spotify');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
 export function fetchPlaylist(ID) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/playlist/${ID}/`)
