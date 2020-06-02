@@ -51,22 +51,18 @@ class signUp extends Component {
       console.log(spotifyID);
 
       this.props.fetchUser(spotifyID);
-
-      this.props.authenticate();
       console.log('authenticated!');
+
       this.webview.stopLoading();
-      this.props.navigation.navigate('New User Flow'); // fix so everytime log in this doesn't happen, maybe have message in url?
+      this.props.navigation.navigate('New User Flow');
     }
   }
-
-  // https://accounts.spotify.com/authorize?client_id=ae55627afa544de2b83131f8bd07d685&response_type=code&redirect_uri=http://localhost:9090/api/callback
-  // &scope=user-read-private%20user-read-email&state=34fFs29kd09
 
 
   render() {
     const clientId = 'ae55627afa544de2b83131f8bd07d685';
-    // const redirectUri = 'https://workout-playlists-final-proj.herokuapp.com/api/callback';
-    const redirectUri = 'http://localhost:9090/api/callback';
+    const redirectUri = 'https://workout-playlists-final-proj.herokuapp.com/api/callback';
+    // const redirectUri = 'http://localhost:9090/api/callback';
     const scopes = 'user-read-private user-read-email user-modify-playback-state user-read-playback-state user-read-currently-playing  playlist-modify-public';
     if (this.state.login) {
       return (
@@ -107,10 +103,6 @@ class signUp extends Component {
           >
             <Text style={{ color: 'white', fontSize: '17' }}>Log In With Spotify</Text>
           </TouchableOpacity>
-
-          {/* <TouchableOpacity onPress={() => this.props.navigation.navigate('Sign in')}>
-            <Text>Already have an account? Log in here!</Text>
-          </TouchableOpacity> */}
         </View>
       );
     }
@@ -160,7 +152,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(reduxState) {
   return {
-    user: reduxState.user.user,
+    user: reduxState.auth.user,
   };
 }
 

@@ -837,7 +837,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(reduxState) {
   return {
-    user: reduxState.user.user,
+    user: reduxState.auth.user,
     playlist: reduxState.playlist,
   };
 }

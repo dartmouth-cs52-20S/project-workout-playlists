@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Text, Button, SafeAreaView, ScrollView, TouchableOpacity,
+  View, StyleSheet, Text, SafeAreaView, ScrollView, TouchableOpacity,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -33,16 +33,14 @@ class testDisplayPlaylist extends Component {
     play = () => {
       if (this.state.firstPlay) {
         console.log(this.state.firstPlay);
-        this.props.playMedia(this.props.user.accessToken, this.state.uris);
+        this.props.playMedia(this.props.user.accessToken, { uris: this.state.uris });
         this.setState({ firstPlay: false });
       } else {
-        // this.setUris();
         this.props.playMedia(this.props.user.accessToken);
       }
     }
 
     pause = () => {
-      console.log(this.props.user.accessToken);
       this.props.pauseMedia(this.props.user.accessToken);
     }
 
@@ -61,6 +59,7 @@ class testDisplayPlaylist extends Component {
       this.props.playlist.songs.map((song) => {
         uris.push(song.uri);
       });
+
       return uris;
     }
 
@@ -130,9 +129,6 @@ class testDisplayPlaylist extends Component {
                   ))}
 
                 </View>
-                {/* <Button onPress={this.play} title="play" />
-                <Button onPress={this.pause} title="pause" /> */}
-                {/* <Button onPress={this.next} title="next" /> */}
               </View>
             </ScrollView>
             <View style={{
@@ -228,7 +224,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(reduxState) {
   return {
-    user: reduxState.user.user,
+    user: reduxState.auth.user,
     playlist: reduxState.playlist.playlist,
     playback: reduxState.player.playback,
   };

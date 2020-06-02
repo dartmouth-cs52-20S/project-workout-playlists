@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-const ROOT_URL = 'http://localhost:9090/api';
-// const ROOT_URL = 'https://workout-playlists-final-proj.herokuapp.com/api';
+// const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'https://workout-playlists-final-proj.herokuapp.com/api';
 
 export const ActionTypes = {
-  FETCH_USER: 'FETCH_USER',
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
@@ -37,7 +36,7 @@ export function fetchUser(spotifyID) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/getuser/${spotifyID}/`)
       .then((response) => {
-        dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
+        dispatch({ type: ActionTypes.AUTH_USER, payload: response.data });
       })
       .catch((error) => {
         console.log(error);
@@ -49,7 +48,7 @@ export function updateUser(user) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/update/${user.spotifyID}`, user)
       .then((response) => {
-        dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
+        dispatch({ type: ActionTypes.AUTH_USER, payload: response.data });
       })
       .catch((error) => {
         console.log(error);
