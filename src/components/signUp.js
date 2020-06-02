@@ -98,17 +98,19 @@ class signUp extends Component {
           <View style={styles.logocontainer}>
             <Image style={styles.logo} source={require('../imgs/logo3.png')} />
           </View>
-          <View>
-            <Button
-              title="Log in with Spotify"
-              onPress={() => {
-                this.onLogin();
-              }}
-            />
-          </View>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Sign in')}>
-            <Text>Already have an account? Log in here!</Text>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.onLogin();
+            }}
+          >
+            <Text style={{ color: 'white', fontSize: '17' }}>Log In With Spotify</Text>
           </TouchableOpacity>
+
+          {/* <TouchableOpacity onPress={() => this.props.navigation.navigate('Sign in')}>
+            <Text>Already have an account? Log in here!</Text>
+          </TouchableOpacity> */}
         </View>
       );
     }
@@ -137,8 +139,9 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   button: {
-    padding: 5,
-    borderRadius: 5,
+    backgroundColor: 'rgb(255,115,0)',
+    padding: 10,
+    borderRadius: 20,
   },
   input: {
     width: 350,

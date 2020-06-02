@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Text, Button,
+  View, StyleSheet, Text, Button, SafeAreaView, ScrollView, TouchableOpacity,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -72,25 +72,98 @@ class testDisplayPlaylist extends Component {
         );
       } else if (this.props.playlist.songs.length * 3 < this.props.playlist.workoutLength) {
         return (
-          <View style={styles.container}>
-            <Text style={styles.text}>
-              Disclaimer! This playlist is shorter than usual due to your ~unique~ music preferences.
+          <SafeAreaView style={styles.container}>
+
+            <Text style={styles.bodyText}>
+              (!) DISCLAIMER This playlist is shorter than usual due to your ~unique~ music preferences.
               Either hustle the fuck through your workout or be less weird about your music tastes.
             </Text>
-            {this.props.playlist.songs.map((song) => (<Text>{song.name}</Text>))}
 
-            <Button onPress={this.play} title="play" />
-            <Button onPress={this.pause} title="pause" />
-          </View>
+            <Text style={styles.titleText}>YOUR TEMPO PLAYLIST</Text>
+
+            <ScrollView style={styles.scrollView} bounces="true" contentContainerStyle={styles.contentContainer}>
+              <View>
+                {this.props.playlist.songs.map((song) => (
+                  <Text style={{
+                    color: 'white', fontSize: '17', margin: 5,
+                  }}
+                  >
+                    {song.name}
+                  </Text>
+                ))}
+
+              </View>
+            </ScrollView>
+            <View style={{
+              display: 'flex', flexDirection: 'row', marginVertical: 5, backgroundColor: 'rgb(255,115,0)', paddingHorizontal: 150, paddingVertical: 0,
+            }}
+            >
+              <TouchableOpacity
+                style={styles.button}
+                onPress={this.play}
+              >
+                <Text style={{ color: 'white', fontSize: '17', fontWeight: 'bold' }}>play</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={this.pause}
+              >
+                <Text style={{ color: 'white', fontSize: '17', fontWeight: 'bold' }}>pause</Text>
+              </TouchableOpacity>
+            </View>
+          </SafeAreaView>
         );
       } else {
         return (
-          <View style={styles.container}>
-            {this.props.playlist.songs.map((song) => (<Text>{song.name}</Text>))}
-            <Button onPress={this.play} title="play" />
-            <Button onPress={this.pause} title="pause" />
-            <Button onPress={this.next} title="next" />
-          </View>
+          <SafeAreaView style={styles.container}>
+            <Text style={styles.titleText}>YOUR TEMPO PLAYLIST</Text>
+            <ScrollView style={styles.scrollView}>
+              <View style={styles.container}>
+                <View>
+                  {this.props.playlist.songs.map((song) => (
+                    <Text style={{
+                      color: 'white', fontSize: '17', margin: 5,
+                    }}
+                    >
+                      {song.name}
+                    </Text>
+                  ))}
+
+                </View>
+                {/* <Button onPress={this.play} title="play" />
+                <Button onPress={this.pause} title="pause" /> */}
+                {/* <Button onPress={this.next} title="next" /> */}
+              </View>
+            </ScrollView>
+            <View style={{
+              display: 'flex', flexDirection: 'row', marginVertical: 5, backgroundColor: 'rgb(255,115,0)', paddingHorizontal: 100, paddingVertical: 0,
+            }}
+            >
+              <TouchableOpacity
+                style={styles.button}
+                onPress={this.play}
+              >
+                <Text style={{ color: 'white', fontSize: '17', fontWeight: 'bold' }}>play</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={this.pause}
+              >
+                <Text style={{ color: 'white', fontSize: '17', fontWeight: 'bold' }}>pause</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={this.next}
+              >
+                <Text style={{
+                  color: 'white', fontSize: '17', fontWeight: 'bold',
+                }}
+                >
+                  next
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </SafeAreaView>
         );
       }
     }
@@ -101,16 +174,48 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 10,
+    backgroundColor: 'rgb(42,42,42)',
+  },
+  contentContainer: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgb(42,42,42)',
+  },
+  titleText: {
+    flexDirection: 'row',
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: 'white',
+    paddingVertical: 10,
+    paddingHorizontal: 46,
+    backgroundColor: 'rgb(255,115,0)',
+  },
+  bodyText: {
+    color: 'white',
+    backgroundColor: 'red',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    fontSize: 10,
+    fontWeight: 'bold',
+  },
+  scrollView: {
+    paddingHorizontal: 10,
+    backgroundColor: 'rgb(42,42,42)',
   },
   image: {
     width: 100,
     height: 100,
   },
   button: {
-    backgroundColor: 'orange',
-    color: 'white',
+    backgroundColor: 'rgb(255,115,0)',
     padding: 5,
-    borderRadius: 5,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: 'white',
+    margin: 5,
+    display: 'flex',
+    alignItems: 'center',
   },
   text: {
     position: 'absolute',

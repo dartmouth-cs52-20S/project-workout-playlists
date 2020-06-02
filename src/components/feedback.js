@@ -36,9 +36,14 @@ class Feedback extends Component {
           reviewColor="orange"
           onFinishRating={(stars) => this.setState({ rating: stars })}
         />
-        <TouchableOpacity onPress={this.handleSave}>
-          <Text>Save playlist to spotify account</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={this.handleSave}
+        >
+          <Text style={{ color: 'white' }}>Save playlist to spotify account</Text>
         </TouchableOpacity>
+
+
       </View>
     //   <View style={styles.container}>
     //     <Text>My Playlists</Text>
@@ -55,6 +60,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: 'white',
+  },
+  button: {
+    backgroundColor: 'orange',
+    margin: 15,
+    padding: 5,
+    borderRadius: 5,
   },
   titleText: {
     fontSize: 25,
