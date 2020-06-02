@@ -85,7 +85,7 @@ class testDisplayPlaylist extends Component {
               <View>
                 {this.props.playlist.songs.map((song) => (
                   <Text style={{
-                    color: 'white', fontSize: '17', margin: 5,
+                    color: 'white', fontSize: 17, margin: 5,
                   }}
                   >
                     {song.name}
@@ -102,13 +102,13 @@ class testDisplayPlaylist extends Component {
                 style={styles.button}
                 onPress={this.play}
               >
-                <Text style={{ color: 'white', fontSize: '17', fontWeight: 'bold' }}>play</Text>
+                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>play</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.button}
                 onPress={this.pause}
               >
-                <Text style={{ color: 'white', fontSize: '17', fontWeight: 'bold' }}>pause</Text>
+                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>pause</Text>
               </TouchableOpacity>
             </View>
           </SafeAreaView>
@@ -122,7 +122,7 @@ class testDisplayPlaylist extends Component {
                 <View>
                   {this.props.playlist.songs.map((song) => (
                     <Text style={{
-                      color: 'white', fontSize: '17', margin: 5,
+                      color: 'white', fontSize: 17, margin: 5,
                     }}
                     >
                       {song.name}
@@ -143,20 +143,20 @@ class testDisplayPlaylist extends Component {
                 style={styles.button}
                 onPress={this.play}
               >
-                <Text style={{ color: 'white', fontSize: '17', fontWeight: 'bold' }}>play</Text>
+                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>play</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.button}
                 onPress={this.pause}
               >
-                <Text style={{ color: 'white', fontSize: '17', fontWeight: 'bold' }}>pause</Text>
+                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>pause</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.button}
                 onPress={this.next}
               >
                 <Text style={{
-                  color: 'white', fontSize: '17', fontWeight: 'bold',
+                  color: 'white', fontSize: 17, fontWeight: 'bold',
                 }}
                 >
                   next
