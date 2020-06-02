@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 
 import {
-  fetchPlaylist, fetchPlayback, fetchUser, playMedia, pauseMedia,
+  fetchPlayback, fetchUser, playMedia, pauseMedia,
 } from '../actions/index';
 
 class testDisplayPlaylist extends Component {
@@ -63,7 +63,20 @@ class testDisplayPlaylist extends Component {
     render() {
       if (typeof this.props.playlist.songs === 'undefined') {
         return (
-          <View style={styles.container}><Text>Sorry, playlist hasnt been created</Text></View>
+          <View style={styles.container}><Text>Loading!</Text></View>
+        );
+      } else if (this.props.playlist.songs.length * 3 < this.props.playlist.workoutLength) {
+        return (
+          <View style={styles.container}>
+            <Text style={styles.text}>
+              Disclaimer! This playlist is shorter than usual due to your ~unique~ music preferences.
+              Either hustle the fuck through your workout or be less weird about your music tastes.
+            </Text>
+            {this.props.playlist.songs.map((song) => (<Text>{song.name}</Text>))}
+
+            <Button onPress={this.play} title="play" />
+            <Button onPress={this.pause} title="pause" />
+          </View>
         );
       } else {
         return (
@@ -93,6 +106,13 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 5,
   },
+  text: {
+    position: 'absolute',
+    top: 20,
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontFamily: 'Arial',
+  },
 });
 
 function mapStateToProps(reduxState) {
@@ -104,5 +124,5 @@ function mapStateToProps(reduxState) {
 }
 
 export default connect(mapStateToProps, {
-  fetchPlaylist, fetchPlayback, playMedia, pauseMedia, fetchUser,
+  fetchPlayback, playMedia, pauseMedia, fetchUser,
 })(testDisplayPlaylist);
