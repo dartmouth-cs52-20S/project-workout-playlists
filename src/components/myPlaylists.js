@@ -20,7 +20,6 @@ class MyPlaylists extends Component {
 
   componentDidMount() {
     this.props.fetchPlaylists();
-    console.log('mounted in playlist');
   }
 
   // displayPlaylist = () => {

@@ -39,8 +39,6 @@ class NewUserFlow extends Component {
       this.setState({ currentQ: questionNum.currentQ });
       // this.state.currentQ += 1;
     } else {
-      console.log('calling update in new user flow');
-      console.log(this.props.user.spotifyID);
       this.props.updateUser(
         {
           spotifyID: this.props.user.spotifyID,
@@ -225,7 +223,6 @@ class NewUserFlow extends Component {
 
   render() {
     // eslint-disable-next-line react/destructuring-assignment
-    console.log(this.state);
     return (
       <View style={styles.container}>
         <Text h1>Lets get to know you!</Text>

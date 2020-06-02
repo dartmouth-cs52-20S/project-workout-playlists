@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     fontSize: 18,
     fontWeight: '500',
-    borderColor: '#FF8F33', 
+    borderColor: '#FF8F33',
     borderWidth: 2,
   },
 });

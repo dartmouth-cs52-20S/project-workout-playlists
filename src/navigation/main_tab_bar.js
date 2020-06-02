@@ -5,6 +5,11 @@ import { NavigationContainer } from '@react-navigation/native';
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button } from 'react-native-elements';
+import {
+  StyleSheet,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+// import StyleSheet from 'react-native';
 import Main from '../components/Main';
 import SignUp from '../components/signUp';
 import NewUserFlow from '../components/newUserFlow';
@@ -30,8 +35,16 @@ function MyStack() {
           options={{
             headerRight: () => (
               <Button
+                style={styles.button}
+                icon={(
+                  <Icon
+                    // style={styles.button}
+                    name="user-circle"
+                    size={15}
+                    color="orange"
+                  />
+              )}
                 onPress={() => RootNavigation.navigate('User Profile')}
-                title="profile"
               />
             ),
           }}
@@ -40,9 +53,46 @@ function MyStack() {
         <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
         <Tab.Screen name="User Profile" component={UserProfile} />
         <Tab.Screen name="Workout Selector" component={NewPlaylistFlow} />
-        <Tab.Screen name="Display" component={testDisplayPlaylist} />
+        <Tab.Screen name="Display"
+          component={testDisplayPlaylist}
+          options={{
+            headerRight: () => (
+              <Button
+                style={styles.button}
+                icon={(
+                  <Icon
+                    // style={styles.button}
+                    name="heart"
+                    size={15}
+                    color="orange"
+                  />
+              )}
+                onPress={() => RootNavigation.navigate('Feedback Page')}
+              />
+            ),
+          }}
+        />
         <Tab.Screen name="My Playlists" component={MyPlaylists} />
-        <Tab.Screen name="Feedback Page" component={Feedback} />
+        <Tab.Screen name="Feedback Page"
+          component={Feedback}
+          options={{
+            headerRight: () => (
+              <Button
+                style={styles.button}
+                transparent="true"
+                icon={(
+                  <Icon
+                    // style={styles.button}
+                    name="home"
+                    size={15}
+                    color="orange"
+                  />
+              )}
+                onPress={() => RootNavigation.navigate('Main')}
+              />
+            ),
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -96,6 +146,14 @@ function MyStack() {
 //     }
 //   }
 // }
+
+const styles = StyleSheet.create({
+  button:
+  {
+    backgroundColor: 'rgba(52, 52, 52, 0.8)',
+  },
+});
+
 
 const mapStateToProps = (state) => (
   {
