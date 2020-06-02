@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import {
-  StyleSheet, View, Text, Button, TouchableOpacity, Image,
+  StyleSheet, View, Text, Button, TouchableOpacity, Image, ActivityIndicator,
   // TouchableOpacity,
 } from 'react-native';
 
@@ -25,12 +25,17 @@ class signUp extends Component {
 
     this.state = {
       login: false,
+      visible: true,
     };
   }
 
   onLogin = () => {
     console.log('logging in');
     this.setState({ login: true });
+  }
+
+  hideSpinner = () => {
+    this.setState({ visible: false });
   }
 
   handleSpotifyAuth = (newNavState) => {
@@ -65,18 +70,27 @@ class signUp extends Component {
     const scopes = 'user-read-private user-read-email user-modify-playback-state user-read-playback-state user-read-currently-playing  playlist-modify-public';
     if (this.state.login) {
       return (
-        <WebView
-          ref={(ref) => (this.webview = ref)}
-          source={{
-            uri: `${'https://accounts.spotify.com/authorize'
+        <View style={{ flex: 1 }}>
+          <WebView
+            onLoad={() => this.hideSpinner()}
+            ref={(ref) => (this.webview = ref)}
+            source={{
+              uri: `${'https://accounts.spotify.com/authorize'
             + '?client_id='}${`${clientId
-            }&response_type=code`
-            }&redirect_uri=${encodeURIComponent(redirectUri)}`
+              }&response_type=code`
+              }&redirect_uri=${encodeURIComponent(redirectUri)}`
             + `&scope=${encodeURIComponent(scopes)}&show_dialog=true`,
-          }}
-          style={{ marginTop: 20, flex: 1 }}
-          onNavigationStateChange={this.handleSpotifyAuth}
-        />
+            }}
+            style={{ marginTop: 20, flex: 1 }}
+            onNavigationStateChange={this.handleSpotifyAuth}
+          />
+          {this.state.visible && (
+          <ActivityIndicator
+            style={{ position: 'absolute', top: 350, left: 180 }}
+            size="large"
+          />
+          )}
+        </View>
       );
     } else {
       return (
