@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Text,
+  StyleSheet, View, Text, TouchableOpacity,
 } from 'react-native';
+import { connect } from 'react-redux';
 import { AirbnbRating } from 'react-native-ratings';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
@@ -18,7 +19,7 @@ class Feedback extends Component {
 
   handleSave = () => {
     // eslint-disable-next-line react/destructuring-assignment
-    this.props.savePlaylist(this.props.user.spotifyID, this.props.playlist);
+    this.props.savePlaylist(this.props.user.accessToken, this.props.user.spotifyID, this.props.playlist);
   }
 
 
@@ -38,7 +39,7 @@ class Feedback extends Component {
           onFinishRating={(stars) => this.setState({ rating: stars })}
         />
         <TouchableOpacity onPress={this.handleSave}>
-          Save playlist to spotify account
+          <Text>Save playlist to spotify account</Text>
         </TouchableOpacity>
       </View>
     //   <View style={styles.container}>

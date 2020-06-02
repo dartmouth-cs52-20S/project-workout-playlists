@@ -564,7 +564,7 @@ class NewPlaylistFlow extends Component {
       workoutLength: parseInt(this.state.length, 10),
       workoutGenre: this.state.selectedItemsString,
     };
-    console.log('playlist in FE: ', playlist);
+    console.log('playlist in FE: ', playlist.workoutType);
     this.props.createPlaylist(playlist);
     // .then(this.props.navigation.navigate('Display'));
   }

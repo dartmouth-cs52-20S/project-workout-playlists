@@ -69,9 +69,9 @@ export function createPlaylist(playlist) {
   };
 }
 
-export function savePlaylist(spotifyID, playlist) {
+export function savePlaylist(accessToken, spotifyID, playlist) {
   return () => {
-    axios.post(`${ROOT_URL}/save/`, spotifyID, playlist)
+    axios.post(`${ROOT_URL}/save/${accessToken}`, { spotifyID, playlist })
       .then(() => {
         console.log('saved playlist to spotify');
       })
