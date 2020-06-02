@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 
 import {
-  fetchPlayback, fetchUser, playMedia, pauseMedia,
+  fetchPlaylist, fetchPlayback, fetchUser, playMedia, pauseMedia, nextMedia,
 } from '../actions/index';
 
 class testDisplayPlaylist extends Component {
@@ -32,9 +32,11 @@ class testDisplayPlaylist extends Component {
 
     play = () => {
       if (this.state.firstPlay) {
+        console.log(this.state.firstPlay);
         this.props.playMedia(this.props.user.accessToken, this.state.uris);
         this.setState({ firstPlay: false });
       } else {
+        // this.setUris();
         this.props.playMedia(this.props.user.accessToken);
       }
     }
@@ -42,6 +44,10 @@ class testDisplayPlaylist extends Component {
     pause = () => {
       console.log(this.props.user.accessToken);
       this.props.pauseMedia(this.props.user.accessToken);
+    }
+
+    next = () => {
+      this.props.nextMedia(this.props.user.accessToken);
     }
 
     setUris = () => {
@@ -53,7 +59,6 @@ class testDisplayPlaylist extends Component {
 
       // eslint-disable-next-line array-callback-return
       this.props.playlist.songs.map((song) => {
-        console.log(song);
         uris.push(song.uri);
       });
       return uris;
@@ -84,6 +89,7 @@ class testDisplayPlaylist extends Component {
             {this.props.playlist.songs.map((song) => (<Text>{song.name}</Text>))}
             <Button onPress={this.play} title="play" />
             <Button onPress={this.pause} title="pause" />
+            <Button onPress={this.next} title="next" />
           </View>
         );
       }
@@ -124,5 +130,5 @@ function mapStateToProps(reduxState) {
 }
 
 export default connect(mapStateToProps, {
-  fetchPlayback, playMedia, pauseMedia, fetchUser,
+  fetchPlaylist, fetchPlayback, playMedia, pauseMedia, fetchUser, nextMedia,
 })(testDisplayPlaylist);

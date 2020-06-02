@@ -98,7 +98,6 @@ export function fetchPlaylists() {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/playlist`)
       .then((response) => {
-        console.log('response data ', response.data);
         dispatch({ type: ActionTypes.FETCH_PLAYLISTS, payload: response.data });
       })
       .catch((error) => {
@@ -122,7 +121,6 @@ export function fetchPlayback(accessToken) {
 
 export function playMedia(accessToken, uris) {
   return () => {
-    console.log('play media uris', uris);
     axios.put(`${ROOT_URL}/play/${accessToken}/`, uris)
       .then((response) => {
         console.log(response);
@@ -136,6 +134,18 @@ export function playMedia(accessToken, uris) {
 export function pauseMedia(accessToken) {
   return () => {
     axios.put(`${ROOT_URL}/pause/${accessToken}/`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function nextMedia(accessToken) {
+  return () => {
+    axios.post(`${ROOT_URL}/next/${accessToken}/`)
       .then((response) => {
         console.log(response);
       })
