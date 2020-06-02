@@ -530,7 +530,7 @@ class NewPlaylistFlow extends Component {
     super(props);
     this.state = {
       currentQ: 1,
-      type: '',
+      type: 'Run',
       length: 0,
       mood: '',
       energy: 0,
@@ -577,6 +577,10 @@ class NewPlaylistFlow extends Component {
     this.setState({ genre: event.target.value });
   }
 
+  onInputTimeChange = (event) => {
+    this.setState({ genre: event.target.value });
+  }
+
   getChecked = (value) => {
     // value = our checked value
     if (this.state.currentQ === 3) {
@@ -590,19 +594,38 @@ class NewPlaylistFlow extends Component {
 
 
   handleClick = (event) => {
-    if (this.state.currentQ < 6) {
+    if (this.state.currentQ === 2) {
+      console.log('length: ', this.state.length);
+      if (this.state.length !== 0) {
+        const questionNum = {
+          currentQ: this.state.currentQ,
+        };
+        questionNum.currentQ += 1;
+        this.setState({ currentQ: questionNum.currentQ });
+      }
+    } else if (this.state.currentQ === 4) {
+      if (this.state.BPM !== '') {
+        const questionNum = {
+          currentQ: this.state.currentQ,
+        };
+        questionNum.currentQ += 1;
+        this.setState({ currentQ: questionNum.currentQ });
+      }
+    } else if (this.state.currentQ < 6) {
       const questionNum = {
         currentQ: this.state.currentQ,
       };
       questionNum.currentQ += 1;
       this.setState({ currentQ: questionNum.currentQ });
     } else if (this.state.currentQ === 6) {
-      this.objArrToString(this.state.selectedItems);
-      const questionNum = {
-        currentQ: this.state.currentQ,
-      };
-      questionNum.currentQ += 1;
-      this.setState({ currentQ: questionNum.currentQ });
+      if (this.state.selectedItems.length !== 0) {
+        this.objArrToString(this.state.selectedItems);
+        const questionNum = {
+          currentQ: this.state.currentQ,
+        };
+        questionNum.currentQ += 1;
+        this.setState({ currentQ: questionNum.currentQ });
+      }
     } else {
       // navigate to the generated playlist instead of main
       this.setState({ done: true });
@@ -648,19 +671,6 @@ class NewPlaylistFlow extends Component {
             Planned Workout Duration:
           </Text>
           <TextInput style={styles.input} placeholder="Minutes" placeholderTextColor="white" onChangeText={(text) => this.setState({ length: text })} value={this.state.length} />
-          {/* <DropDownPicker
-            items={[
-              { label: '< 15 minutes', value: 15 },
-              { label: 'Around 30 minutes', value: 30 },
-              { label: '45 minutes', value: 45 },
-              { label: 'An hour', value: 60 },
-              { label: 'Longer than an hour', value: 120 },
-            ]}
-            defaultNull
-            placeholder="For how long?"
-            containerStyle={{ height: 40 }}
-            onChangeItem={(item) => this.setState({ question2: item.value })}
-          /> */}
         </View>
       );
     } else if (questionNum === 3) {
