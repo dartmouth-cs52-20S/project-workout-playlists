@@ -69,7 +69,7 @@ class NewUserFlow extends Component {
 
           </Text>
           <Slider
-            step={0.1}
+
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
@@ -101,7 +101,7 @@ class NewUserFlow extends Component {
 
           </Text>
           <Slider
-            step={0.1}
+
             value={this.state.question2}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -134,7 +134,7 @@ class NewUserFlow extends Component {
 
           </Text>
           <Slider
-            step={0.1}
+
             value={this.state.question3}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -167,7 +167,7 @@ class NewUserFlow extends Component {
 
           </Text>
           <Slider
-            step={0.1}
+
             value={this.state.question4}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -200,7 +200,7 @@ class NewUserFlow extends Component {
 
           </Text>
           <Slider
-            step={0.1}
+
             value={this.state.question5}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -233,7 +233,7 @@ class NewUserFlow extends Component {
 
           </Text>
           <Slider
-            step={0.1}
+
             value={this.state.question6}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
     // flexDirection: 'column',
   },
   intro: {
-    //how to move this to the top? 
+    // how to move this to the top?
     alignSelf: 'center',
     color: '#FF7300',
     backgroundColor: 'rgba(180,180,180,0.5)',
