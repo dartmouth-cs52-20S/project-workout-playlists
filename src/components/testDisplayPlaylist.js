@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Text, SafeAreaView, ScrollView, TouchableOpacity,
+  View, StyleSheet, Text, SafeAreaView, ScrollView, TouchableOpacity, ActivityIndicator,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -65,10 +65,22 @@ class testDisplayPlaylist extends Component {
 
 
     render() {
+      console.log(this.props.error);
       if (typeof this.props.playlist.songs === 'undefined') {
-        return (
-          <View style={styles.container}><Text>Loading!</Text></View>
-        );
+        if (this.props.error) {
+          return (
+            <View style={styles.container}><Text style={styles.bodyText}>We are sorry, but your playlist could not be fetched. Please try again and try to loosen your playlist constraints. </Text></View>
+          );
+        } else {
+          return (
+            <View style={styles.container}>
+              <ActivityIndicator
+                style={{ position: 'absolute', top: 350, left: 180 }}
+                size="large"
+              />
+            </View>
+          );
+        }
       } else if (this.props.playlist.songs.length * 3 < this.props.playlist.workoutLength) {
         return (
           <SafeAreaView style={styles.container}>
@@ -80,7 +92,7 @@ class testDisplayPlaylist extends Component {
 
             <Text style={styles.titleText}>YOUR TEMPO PLAYLIST</Text>
 
-            <Text style={styles.noteText}>{`${this.props.playlist.workoutType} for ${this.props.playlist.workoutLength} minutes with approximately ${this.props.playlist.averageTempo}`}</Text>
+            <Text style={styles.noteText}>{`${this.props.playlist.workoutType} for ${this.props.playlist.workoutLength} minutes with approximately ${this.props.playlist.averageTempo} bpm`}</Text>
 
             <ScrollView style={styles.scrollView} bounces="true" contentContainerStyle={styles.contentContainer}>
               <View>
@@ -251,6 +263,7 @@ function mapStateToProps(reduxState) {
     user: reduxState.auth.user,
     playlist: reduxState.playlist.playlist,
     playback: reduxState.player.playback,
+    error: reduxState.playlist.playlist,
   };
 }
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const ROOT_URL = 'http://localhost:9090/api';
-// const ROOT_URL = 'https://workout-playlists-final-proj.herokuapp.com/api';
+// const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'https://workout-playlists-final-proj.herokuapp.com/api';
 
 export const ActionTypes = {
   AUTH_USER: 'AUTH_USER',
@@ -9,6 +9,7 @@ export const ActionTypes = {
   AUTH_ERROR: 'AUTH_ERROR',
   EXIST_USER: 'EXIST_USER',
   FETCH_PLAYLIST: 'FETCH_PLAYLIST',
+  FETCH_PLAYLIST_ERROR: 'FETCH_PLAYLIST_ERROR',
   FETCH_PLAYLISTS: 'FETCH_PLAYLISTS',
   FETCH_PLAYBACK: 'FETCH_PLAYBACK',
 };
@@ -62,7 +63,11 @@ export function createPlaylist(playlist) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/playlist/`, playlist)
       .then((response) => {
-        dispatch({ type: ActionTypes.FETCH_PLAYLIST, payload: response.data });
+        if (response.error) {
+          dispatch({ type: ActionTypes.FETCH_PLAYLIST_ERROR, payload: response.data });
+        } else {
+          dispatch({ type: ActionTypes.FETCH_PLAYLIST, payload: response.data });
+        }
       })
       .catch((error) => {
         console.log(error);
