@@ -10,8 +10,10 @@ import CircularSlider from 'rn-circular-slider';
 import DropDownPicker from 'react-native-dropdown-picker';
 import RadioGroup, { Radio } from 'react-native-radio-input';
 import SearchableDropdown from 'react-native-searchable-dropdown';
+import NumericInput from 'react-native-numeric-input';
 import { connect } from 'react-redux';
 import { fetchUser, createPlaylist } from '../actions/index';
+
 
 // serachable dropdown from https://www.npmjs.com/package/react-native-searchable-dropdown
 const items = [
@@ -671,7 +673,27 @@ class NewPlaylistFlow extends Component {
           <Text style={styles.questions}>
             Planned Workout Duration:
           </Text>
-          <TextInput style={styles.input} placeholder="Minutes" placeholderTextColor="white" onChangeText={(text) => this.setState({ length: text })} value={this.state.length} />
+          <View style={{paddingLeft: 10, paddingTop: 10, paddingBottom: 10}}>
+          <NumericInput 
+            //value={this.state.value} 
+            value={this.state.length}
+            onChange={(value) => this.setState({ length: value})} 
+            //onChangeText={(text) => this.setState({ length: text })}
+            onLimitReached={(isMax,msg) => console.log(isMax,msg)}
+            totalWidth={240} 
+            totalHeight={50} 
+            iconSize={25}
+            placeholder="Minutes"
+            step={5}
+            valueType='real'
+            rounded 
+            textColor='orange' 
+            iconStyle={{ color: 'white' }} 
+            rightButtonBackgroundColor='orange' 
+            leftButtonBackgroundColor='orange'/>
+            </View>
+            
+          {/*<TextInput style={styles.input} placeholder="Minutes" placeholderTextColor="white" onChangeText={(text) => this.setState({ length: text })} value={this.state.length} />*/}
         </View>
       );
     } else if (questionNum === 3) {
