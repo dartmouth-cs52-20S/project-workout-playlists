@@ -80,6 +80,8 @@ class testDisplayPlaylist extends Component {
 
             <Text style={styles.titleText}>YOUR TEMPO PLAYLIST</Text>
 
+            <Text style={styles.noteText}>{`${this.props.playlist.workoutType} for ${this.props.playlist.workoutLength} minutes with approximately ${this.props.playlist.averageTempo}`}</Text>
+
             <ScrollView style={styles.scrollView} bounces="true" contentContainerStyle={styles.contentContainer}>
               <View>
                 {this.props.playlist.songs.map((song) => (
@@ -87,7 +89,7 @@ class testDisplayPlaylist extends Component {
                     color: 'white', fontSize: 17, margin: 5,
                   }}
                   >
-                    {song.name}
+                    {`${song.name} by ${song.artists[0].name}`}
                   </Text>
                 ))}
 
@@ -109,6 +111,17 @@ class testDisplayPlaylist extends Component {
               >
                 <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>pause</Text>
               </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={this.next}
+              >
+                <Text style={{
+                  color: 'white', fontSize: 17, fontWeight: 'bold',
+                }}
+                >
+                  next
+                </Text>
+              </TouchableOpacity>
             </View>
           </SafeAreaView>
         );
@@ -116,15 +129,16 @@ class testDisplayPlaylist extends Component {
         return (
           <SafeAreaView style={styles.container}>
             <Text style={styles.titleText}>YOUR TEMPO PLAYLIST</Text>
+            <Text style={styles.noteText}>{`${this.props.playlist.workoutType} for ${this.props.playlist.workoutLength} minutes with approximately ${this.props.playlist.averageTempo} bpm.`}</Text>
             <ScrollView style={styles.scrollView}>
               <View style={styles.container}>
                 <View>
                   {this.props.playlist.songs.map((song) => (
                     <Text style={{
-                      color: 'white', fontSize: 17, margin: 5,
+                      color: 'white', fontSize: 17, margin: 10,
                     }}
                     >
-                      {song.name}
+                      {`${song.name} by ${song.artists[0].name}`}
                     </Text>
                   ))}
 
@@ -185,6 +199,16 @@ const styles = StyleSheet.create({
     color: 'white',
     paddingVertical: 10,
     paddingHorizontal: 46,
+    backgroundColor: 'rgb(255,115,0)',
+  },
+  noteText: {
+    flexDirection: 'row',
+    fontSize: 20,
+    color: 'white',
+    paddingVertical: 10,
+    paddingHorizontal: 46,
+    marginTop: 20,
+    marginBottom: 15,
     backgroundColor: 'rgb(255,115,0)',
   },
   bodyText: {

@@ -2,7 +2,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Text, TouchableOpacity,
+  StyleSheet, View, Text, TouchableOpacity, SafeAreaView, ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Slider from 'react-native-slider';
@@ -19,7 +19,7 @@ class UserProfile extends Component {
       question4: this.props.user.loudness,
       question5: this.props.user.popularity,
       question6: this.props.user.valence,
-      question7: this.props.user.genres,
+      // question7: this.props.user.genres,
     };
   }
 
@@ -56,142 +56,137 @@ class UserProfile extends Component {
   render() {
     return (
       <View style={styles.container}>
-
-
-        <Text style={{
-          color: 'black',
-          fontSize: 20,
-        }}
-        >
-          Current User Settings for
-          {' '}
-          {this.props.user.spotifyID}
-          {':'}
-
-        </Text>
-
-
-        {/* THIS IS A TEMPORARY SPACER */}
-        <Text>
-          {' '}
-        </Text>
-
-
-        <View>
-          <Text>
-            Acousticness:
+        <ScrollView style={styles.scrollView}>
+          <Text style={styles.genreTitleText}>
+            Current User Settings for
             {' '}
-            {Math.round(this.state.question1 * 10, 2)}
-            {'/10'}
+            {this.props.user.spotifyID}
+            {':'}
+
           </Text>
-          <Slider
-            style={styles.slider}
 
-            minimumTrackTintColor="#FF7300"
-            maximumTrackTintColor="#FFFFFF"
-            thumbTintColor="orange"
-            value={this.state.question1}
-            onValueChange={(question1) => this.setState({ question1 })}
-          />
 
-        </View>
-
-        <View>
+          {/* THIS IS A TEMPORARY SPACER */}
           <Text>
-            Instrumentalness:
             {' '}
-            {Math.round(this.state.question2 * 10, 2)}
-            {'/10'}
           </Text>
-          <Slider
-            style={styles.slider}
 
-            minimumTrackTintColor="#FF7300"
-            maximumTrackTintColor="#FFFFFF"
-            thumbTintColor="orange"
-            value={this.state.question2}
-            onValueChange={(question2) => this.setState({ question2 })}
-          />
 
-        </View>
+          <View>
+            <Text>
+              Acousticness:
+              {' '}
+              {Math.round(this.state.question1 * 10, 2)}
+              {'/10'}
+            </Text>
+            <Slider
+              style={styles.slider}
 
-        <View>
-          <Text>
-            Liveness:
-            {' '}
-            {Math.round(this.state.question3 * 10, 2)}
-            {'/10'}
-          </Text>
-          <Slider
-            style={styles.slider}
+              minimumTrackTintColor="#FF7300"
+              maximumTrackTintColor="#FFFFFF"
+              thumbTintColor="orange"
+              value={this.state.question1}
+              onValueChange={(question1) => this.setState({ question1 })}
+            />
 
-            minimumTrackTintColor="#FF7300"
-            maximumTrackTintColor="#FFFFFF"
-            thumbTintColor="orange"
-            value={this.state.question3}
-            onValueChange={(question3) => this.setState({ question3 })}
-          />
+          </View>
 
-        </View>
+          <View>
+            <Text>
+              Instrumentalness:
+              {' '}
+              {Math.round(this.state.question2 * 10, 2)}
+              {'/10'}
+            </Text>
+            <Slider
+              style={styles.slider}
 
-        <View>
-          <Text>
-            Loudness:
-            {' '}
-            {Math.round(this.state.question4 * 10, 2)}
-            {'/10'}
-          </Text>
-          <Slider
-            style={styles.slider}
+              minimumTrackTintColor="#FF7300"
+              maximumTrackTintColor="#FFFFFF"
+              thumbTintColor="orange"
+              value={this.state.question2}
+              onValueChange={(question2) => this.setState({ question2 })}
+            />
 
-            minimumTrackTintColor="#FF7300"
-            maximumTrackTintColor="#FFFFFF"
-            thumbTintColor="orange"
-            value={this.state.question4}
-            onValueChange={(question4) => this.setState({ question4 })}
-          />
+          </View>
 
-        </View>
+          <View>
+            <Text>
+              Liveness:
+              {' '}
+              {Math.round(this.state.question3 * 10, 2)}
+              {'/10'}
+            </Text>
+            <Slider
+              style={styles.slider}
 
-        <View>
-          <Text>
-            Popularity:
-            {' '}
-            {Math.round(this.state.question5 * 10, 2)}
-            {'/10'}
-          </Text>
-          <Slider
-            style={styles.slider}
+              minimumTrackTintColor="#FF7300"
+              maximumTrackTintColor="#FFFFFF"
+              thumbTintColor="orange"
+              value={this.state.question3}
+              onValueChange={(question3) => this.setState({ question3 })}
+            />
 
-            minimumTrackTintColor="#FF7300"
-            maximumTrackTintColor="#FFFFFF"
-            thumbTintColor="orange"
-            value={this.state.question5}
-            onValueChange={(question5) => this.setState({ question5 })}
-          />
+          </View>
 
-        </View>
+          <View>
+            <Text>
+              Loudness:
+              {' '}
+              {Math.round(this.state.question4 * 10, 2)}
+              {'/10'}
+            </Text>
+            <Slider
+              style={styles.slider}
 
-        <View>
-          <Text>
-            Positivity:
-            {' '}
-            {Math.round(this.state.question6 * 10, 2)}
-            {'/10'}
-          </Text>
-          <Slider
-            style={styles.slider}
+              minimumTrackTintColor="#FF7300"
+              maximumTrackTintColor="#FFFFFF"
+              thumbTintColor="orange"
+              value={this.state.question4}
+              onValueChange={(question4) => this.setState({ question4 })}
+            />
 
-            minimumTrackTintColor="#FF7300"
-            maximumTrackTintColor="#FFFFFF"
-            thumbTintColor="orange"
-            value={this.state.question6}
-            onValueChange={(question6) => this.setState({ question6 })}
-          />
-        </View>
+          </View>
 
-        {/* aborted genre question, here just in case */}
-        {/* <View>
+          <View>
+            <Text>
+              Popularity:
+              {' '}
+              {Math.round(this.state.question5 * 10, 2)}
+              {'/10'}
+            </Text>
+            <Slider
+              style={styles.slider}
+
+              minimumTrackTintColor="#FF7300"
+              maximumTrackTintColor="#FFFFFF"
+              thumbTintColor="orange"
+              value={this.state.question5}
+              onValueChange={(question5) => this.setState({ question5 })}
+            />
+
+          </View>
+
+          <View>
+            <Text>
+              Positivity:
+              {' '}
+              {Math.round(this.state.question6 * 10, 2)}
+              {'/10'}
+            </Text>
+            <Slider
+              style={styles.slider}
+
+              minimumTrackTintColor="#FF7300"
+              maximumTrackTintColor="#FFFFFF"
+              thumbTintColor="orange"
+              value={this.state.question6}
+              onValueChange={(question6) => this.setState({ question6 })}
+            />
+          </View>
+
+          {/* aborted genre question, here just in case */}
+          {/* <View>
           <Text>
             Recently used genres:
             {' '}
@@ -200,20 +195,39 @@ class UserProfile extends Component {
         </View> */}
 
 
-        {/* THIS IS A TEMPORARY SPACER */}
-        <Text>
-          {' '}
-        </Text>
+          {/* THIS IS A TEMPORARY SPACER */}
+          <Text>
+            {' '}
+          </Text>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            this.handleClick();
-          }}
-        >
-          <Text style={{ color: 'white', fontWeight: 'bold' }}>Save Changes</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.handleClick();
+            }}
+          >
+            <Text style={{ color: 'white', fontWeight: 'bold' }}>Save Changes</Text>
+          </TouchableOpacity>
+          <SafeAreaView style={styles.container}>
+            <Text style={styles.genreTitleText}>YOUR TOP GENRES</Text>
+            <Text style={styles.noteText}>These are the top genres of your most listened to artists.</Text>
+            <ScrollView style={styles.scrollView}>
+              <View style={styles.container}>
+                <View>
+                  {this.props.user.genres.map((genre) => (
+                    <Text style={{
+                      color: 'black', fontSize: 17, margin: 10,
+                    }}
+                    >
+                      {genre}
+                    </Text>
+                  ))}
 
+                </View>
+              </View>
+            </ScrollView>
+          </SafeAreaView>
+        </ScrollView>
       </View>
     );
   }
@@ -243,6 +257,26 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     color: 'green',
+  },
+  genreTitleText: {
+    flexDirection: 'row',
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: 'white',
+    paddingVertical: 10,
+    paddingHorizontal: 46,
+    marginTop: 50,
+    backgroundColor: 'rgb(255,115,0)',
+  },
+  noteText: {
+    flexDirection: 'row',
+    fontSize: 20,
+    color: 'white',
+    paddingVertical: 10,
+    paddingHorizontal: 46,
+    marginTop: 20,
+    marginBottom: 15,
+    backgroundColor: 'rgb(255,115,0)',
   },
 });
 

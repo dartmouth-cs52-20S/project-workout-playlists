@@ -42,6 +42,7 @@ class NewUserFlow extends Component {
       this.props.updateUser(
         {
           spotifyID: this.props.user.spotifyID,
+          accessToken: this.props.user.accessToken,
           acousticness: this.state.question1,
           instrumentalness: this.state.question2,
           liveness: this.state.question3,
