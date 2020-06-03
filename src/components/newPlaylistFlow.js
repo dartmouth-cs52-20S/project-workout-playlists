@@ -6,12 +6,12 @@ import {
   StyleSheet, View, TextInput,
   Text, TouchableOpacity,
 } from 'react-native';
+import CircularSlider from 'rn-circular-slider';
 import DropDownPicker from 'react-native-dropdown-picker';
 import RadioGroup, { Radio } from 'react-native-radio-input';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 import { connect } from 'react-redux';
 import { fetchUser, createPlaylist } from '../actions/index';
-import CircularSlider from 'rn-circular-slider'
 
 // serachable dropdown from https://www.npmjs.com/package/react-native-searchable-dropdown
 const items = [
@@ -625,10 +625,10 @@ class NewPlaylistFlow extends Component {
         };
         questionNum.currentQ += 1;
         this.setState({ currentQ: questionNum.currentQ });
-        //this.setState({ done: true });
+        // this.setState({ done: true });
       }
     } else {
-      //navigate to the generated playlist instead of main
+      // navigate to the generated playlist instead of main
       this.setState({ done: true });
       this.makePlaylist();
       this.state.currentQ = 0;
@@ -700,25 +700,25 @@ class NewPlaylistFlow extends Component {
             (Normal resting heartbeat is 60-90 BPM, runners typically train in the 100-160 BPM range)
           </Text>
           <View style={styles.circle}>
-          <CircularSlider
-            step={2}
-            min={'60'}
-            max={'250'}
-            BPM={this.state.BPM}
-            onChange={BPM => this.setState({ BPM })}
-            contentContainerStyle={styles.innercircle}
-            strokeWidth={10}
-            buttonBorderColor="orange"
-            buttonFillColor="#fff"
-            buttonStrokeWidth={10}
-            openingRadian={Math.PI / 4}
-            buttonRadius={10}
-            linearGradient={[{ stop: '0%', color: '#ffa500' }, { stop: '100%', color: '#ff6600' }]}
+            <CircularSlider
+              step={2}
+              min="60"
+              max="250"
+              BPM={this.state.BPM}
+              onChange={(BPM) => this.setState({ BPM })}
+              contentContainerStyle={styles.innercircle}
+              strokeWidth={10}
+              buttonBorderColor="orange"
+              buttonFillColor="#fff"
+              buttonStrokeWidth={10}
+              openingRadian={Math.PI / 4}
+              buttonRadius={10}
+              linearGradient={[{ stop: '0%', color: '#ffa500' }, { stop: '100%', color: '#ff6600' }]}
             >
-          <Text style={styles.inner}>{this.state.BPM}</Text>
-        </CircularSlider>
-      </View>
-      </View>
+              <Text style={styles.inner}>{this.state.BPM}</Text>
+            </CircularSlider>
+          </View>
+        </View>
       );
     } else if (questionNum === 5) {
       return (
@@ -780,7 +780,7 @@ class NewPlaylistFlow extends Component {
                 },
               }
             }
-            listProps={{ nestedScrollEnabled: true, }}
+            listProps={{ nestedScrollEnabled: true }}
           />
         </View>
       );
@@ -805,12 +805,12 @@ class NewPlaylistFlow extends Component {
         <View style={styles.container}>
           {this.renderQuestion()}
           <View style={styles.endButton}>
-          <TouchableOpacity
-            onPress={this.handleClick}
-            style={styles.button}
-          >
-            <Text style={styles.buttonTxt}>Next!</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={this.handleClick}
+              style={styles.button}
+            >
+              <Text style={styles.buttonTxt}>Next!</Text>
+            </TouchableOpacity>
           </View>
         </View>
       );
@@ -863,7 +863,7 @@ const styles = StyleSheet.create({
   },
   endButton:
   {
-    alignContent:'space-around',
+    alignContent: 'space-around',
     zIndex: -1,
   },
   input: {
@@ -899,13 +899,13 @@ const styles = StyleSheet.create({
   },
   innercircle: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   inner: {
     fontWeight: '500',
     fontSize: 32,
-    color: 'orange'
-  }
+    color: 'orange',
+  },
 });
 
 
