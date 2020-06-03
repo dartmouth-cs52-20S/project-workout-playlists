@@ -42,6 +42,7 @@ class UserProfile extends Component {
         genres: this.props.user.genres,
       },
     );
+    this.props.navigation.navigate('Main');
     // this.props.userExists();
   }
 
@@ -84,6 +85,7 @@ class UserProfile extends Component {
           </Text>
           <Slider
             style={styles.slider}
+            step={0.1}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
@@ -102,6 +104,7 @@ class UserProfile extends Component {
           </Text>
           <Slider
             style={styles.slider}
+            step={0.1}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
@@ -120,6 +123,7 @@ class UserProfile extends Component {
           </Text>
           <Slider
             style={styles.slider}
+            step={0.1}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
@@ -138,6 +142,7 @@ class UserProfile extends Component {
           </Text>
           <Slider
             style={styles.slider}
+            step={0.1}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
@@ -156,6 +161,7 @@ class UserProfile extends Component {
           </Text>
           <Slider
             style={styles.slider}
+            step={0.1}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
@@ -174,6 +180,7 @@ class UserProfile extends Component {
           </Text>
           <Slider
             style={styles.slider}
+            step={0.1}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
@@ -240,7 +247,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(reduxState) {
   return {
-    user: reduxState.user.user,
+    user: reduxState.auth.user,
   };
 }
 

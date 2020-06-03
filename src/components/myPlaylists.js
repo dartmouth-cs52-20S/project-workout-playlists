@@ -1,12 +1,12 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
-  StyleSheet, Text, View,
+  StyleSheet, Text, View, ScrollView, SafeAreaView, TouchableOpacity,
 } from 'react-native';
 
 import { connect } from 'react-redux';
 
-import { fetchPlaylists } from '../actions/index';
+import { fetchPlaylists, fetchPlaylist } from '../actions/index';
 
 
 class MyPlaylists extends Component {
@@ -19,6 +19,7 @@ class MyPlaylists extends Component {
   }
 
   componentDidMount() {
+    console.log('mounted in my playlists');
     this.props.fetchPlaylists();
   }
 
@@ -26,16 +27,41 @@ class MyPlaylists extends Component {
   //   if (this.state.favorited === 1)
   // }
 
+  goToPlaylist = (ID) => {
+    this.props.fetchPlaylist(ID);
+    this.props.navigation.navigate('Display');
+  }
+
   render() {
-    console.log(this.props.all);
-    const display = this.props.all.map((playlist) => {
-      return (
-        <View style={styles.container}>
-          <Text>{playlist.id}</Text>
-        </View>
-      );
-    });
-    return display;
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.titleText}>MY PLAYLISTS</Text>
+        <ScrollView style={styles.scrollView}>
+          <View style={styles.container}>
+            {this.props.all.map((playlist) => (
+              <View>
+                <TouchableOpacity
+                  onPress={() => {
+                    this.goToPlaylist(playlist.id);
+                  }}
+                >
+                  <Text style={{
+                    color: 'white', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'rgb(42,42,42)',
+                  }}
+                  >
+                    Tempo
+                    {playlist.workoutType}
+                    {playlist.createdAt}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ))}
+
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+
+    );
   }
 }
 
@@ -46,15 +72,29 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'rgb(42,42,42)',
+    marginTop: 10,
+  },
+  titleText: {
+    flexDirection: 'row',
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: 'white',
+    paddingVertical: 10,
+    paddingHorizontal: 100,
+    backgroundColor: 'rgb(255,115,0)',
+  },
+  scrollView: {
+    paddingHorizontal: 10,
+    backgroundColor: 'rgb(42,42,42)',
   },
 });
 
 function mapStateToProps(reduxState) {
   return {
-    user: reduxState.user.user,
+    user: reduxState.auth.user,
     all: reduxState.playlist.all,
   };
 }
 
-export default connect(mapStateToProps, { fetchPlaylists })(MyPlaylists);
+export default connect(mapStateToProps, { fetchPlaylists, fetchPlaylist })(MyPlaylists);
