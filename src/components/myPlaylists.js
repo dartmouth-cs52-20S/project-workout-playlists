@@ -6,7 +6,7 @@ import {
 
 import { connect } from 'react-redux';
 
-import { fetchPlaylists } from '../actions/index';
+import { fetchPlaylists, fetchPlaylist } from '../actions/index';
 
 
 class MyPlaylists extends Component {
@@ -19,6 +19,7 @@ class MyPlaylists extends Component {
   }
 
   componentDidMount() {
+    console.log('mounted in my playlists');
     this.props.fetchPlaylists();
   }
 
@@ -26,23 +27,12 @@ class MyPlaylists extends Component {
   //   if (this.state.favorited === 1)
   // }
 
+  goToPlaylist = (ID) => {
+    this.props.fetchPlaylist(ID);
+    this.props.navigation.navigate('Display');
+  }
+
   render() {
-    console.log(this.props.all);
-    // const display = this.props.all.map((playlist) => {
-    //   return (
-    // <SafeAreaView style={styles.container}>
-    //   <Text style={styles.titleText}>YOUR TEMPO PLAYLISTS</Text>
-    //   <ScrollView style={styles.scrollView}>
-    //     <View style={styles.container}>
-    //       <Text>
-    //         {playlist.workoutType}
-    //         {playlist.createdAt}
-    //       </Text>
-    //     </View>
-    //   </ScrollView>
-    // </SafeAreaView>
-    //   );
-    // });
     return (
       <SafeAreaView style={styles.container}>
         <Text style={styles.titleText}>MY PLAYLISTS</Text>
@@ -50,7 +40,11 @@ class MyPlaylists extends Component {
           <View style={styles.container}>
             {this.props.all.map((playlist) => (
               <View>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    this.goToPlaylist(playlist.id);
+                  }}
+                >
                   <Text style={{
                     color: 'white', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'black',
                   }}
@@ -103,4 +97,4 @@ function mapStateToProps(reduxState) {
   };
 }
 
-export default connect(mapStateToProps, { fetchPlaylists })(MyPlaylists);
+export default connect(mapStateToProps, { fetchPlaylists, fetchPlaylist })(MyPlaylists);
