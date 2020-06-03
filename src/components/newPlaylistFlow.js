@@ -10,8 +10,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import RadioGroup, { Radio } from 'react-native-radio-input';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 import { connect } from 'react-redux';
-
 import { fetchUser, createPlaylist } from '../actions/index';
+import CircularSlider from 'rn-circular-slider'
 
 // serachable dropdown from https://www.npmjs.com/package/react-native-searchable-dropdown
 const items = [
@@ -625,9 +625,10 @@ class NewPlaylistFlow extends Component {
         };
         questionNum.currentQ += 1;
         this.setState({ currentQ: questionNum.currentQ });
+        //this.setState({ done: true });
       }
     } else {
-      // navigate to the generated playlist instead of main
+      //navigate to the generated playlist instead of main
       this.setState({ done: true });
       this.makePlaylist();
       this.state.currentQ = 0;
@@ -644,7 +645,7 @@ class NewPlaylistFlow extends Component {
     if (questionNum === 1) {
       return (
         <View>
-          <Text>
+          <Text style={styles.questions}>
             Today I am...
           </Text>
           <DropDownPicker
@@ -667,7 +668,7 @@ class NewPlaylistFlow extends Component {
     } else if (questionNum === 2) {
       return (
         <View>
-          <Text>
+          <Text style={styles.questions}>
             Planned Workout Duration:
           </Text>
           <TextInput style={styles.input} placeholder="Minutes" placeholderTextColor="white" onChangeText={(text) => this.setState({ length: text })} value={this.state.length} />
@@ -676,7 +677,7 @@ class NewPlaylistFlow extends Component {
     } else if (questionNum === 3) {
       return (
         <View>
-          <Text>
+          <Text style={styles.questions}>
             What kind of mood are you in?
           </Text>
           <RadioGroup getChecked={this.getChecked}>
@@ -692,16 +693,37 @@ class NewPlaylistFlow extends Component {
     } else if (questionNum === 4) {
       return (
         <View>
-          <Text>
+          <Text style={styles.questions}>
             My ideal BPM today is...
           </Text>
-          <TextInput style={styles.input} placeholder="BPM" placeholderTextColor="black" onChangeText={(text) => this.setState({ BPM: text })} value={this.state.BPM} />
-        </View>
+          <Text style={styles.subtitle}>
+            (Normal resting heartbeat is 60-90 BPM, runners typically train in the 100-160 BPM range)
+          </Text>
+          <View style={styles.circle}>
+          <CircularSlider
+            step={2}
+            min={'60'}
+            max={'250'}
+            BPM={this.state.BPM}
+            onChange={BPM => this.setState({ BPM })}
+            contentContainerStyle={styles.innercircle}
+            strokeWidth={10}
+            buttonBorderColor="orange"
+            buttonFillColor="#fff"
+            buttonStrokeWidth={10}
+            openingRadian={Math.PI / 4}
+            buttonRadius={10}
+            linearGradient={[{ stop: '0%', color: '#ffa500' }, { stop: '100%', color: '#ff6600' }]}
+            >
+          <Text style={styles.inner}>{this.state.BPM}</Text>
+        </CircularSlider>
+      </View>
+      </View>
       );
     } else if (questionNum === 5) {
       return (
         <View>
-          <Text>
+          <Text style={styles.questions}>
             I want the most energy...
           </Text>
           <RadioGroup getChecked={this.getChecked}>
@@ -714,8 +736,11 @@ class NewPlaylistFlow extends Component {
     } else if (questionNum === 6) {
       return (
         <View>
-          <Text>
-            Today, Im feeling like... (pick up to 5)
+          <Text style={styles.questions}>
+            Today, Im feeling like...
+          </Text>
+          <Text style={styles.subtitle}>
+            (pick up to 5)
           </Text>
           <SearchableDropdown
             multi
@@ -755,11 +780,7 @@ class NewPlaylistFlow extends Component {
                 },
               }
             }
-            listProps={
-              {
-                nestedScrollEnabled: true,
-              }
-            }
+            listProps={{ nestedScrollEnabled: true, }}
           />
         </View>
       );
@@ -773,9 +794,9 @@ class NewPlaylistFlow extends Component {
         <View style={styles.container}>
           <TouchableOpacity
             onPress={this.handleClickPlaylist}
-            style={styles.button}
+            style={styles.finalButton}
           >
-            <Text>Really create playlist!</Text>
+            <Text style={styles.finalButtonTxt}>Create playlist!</Text>
           </TouchableOpacity>
         </View>
       );
@@ -783,12 +804,14 @@ class NewPlaylistFlow extends Component {
       return (
         <View style={styles.container}>
           {this.renderQuestion()}
+          <View style={styles.endButton}>
           <TouchableOpacity
             onPress={this.handleClick}
             style={styles.button}
           >
-            <Text>Next!</Text>
+            <Text style={styles.buttonTxt}>Next!</Text>
           </TouchableOpacity>
+          </View>
         </View>
       );
     }
@@ -809,7 +832,7 @@ const styles = StyleSheet.create({
   button:
   {
     display: 'flex',
-    justifyContent: 'center', // this wont center the text?? :(
+    justifyContent: 'space-around', // this wont center the text?? :(
     alignItems: 'center',
     backgroundColor: 'orange',
     padding: 5,
@@ -819,6 +842,28 @@ const styles = StyleSheet.create({
     height: 32,
     // borderWidth: 2,
     // borderColor: 'orange',
+    zIndex: -1,
+  },
+  finalButton:
+  {
+    display: 'flex',
+    justifyContent: 'space-around', // this wont center the text?? :(
+    alignItems: 'center',
+    backgroundColor: 'orange',
+    padding: 10,
+    margin: 10,
+    borderRadius: 14,
+    width: 320,
+    height: 62,
+  },
+  finalButtonTxt:
+  {
+    color: 'white',
+    fontSize: 30,
+  },
+  endButton:
+  {
+    alignContent:'space-around',
     zIndex: -1,
   },
   input: {
@@ -832,6 +877,35 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '500',
   },
+  questions: {
+    color: 'orange',
+    fontSize: 25,
+    shadowColor: 'black',
+    justifyContent: 'flex-start',
+  },
+  subtitle: {
+    color: 'rgb(185,185,185)',
+    fontSize: 15,
+    shadowColor: 'black',
+  },
+  buttonTxt:
+  {
+    color: 'white',
+  },
+
+  circle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  innercircle: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  inner: {
+    fontWeight: '500',
+    fontSize: 32,
+    color: 'orange'
+  }
 });
 
 
