@@ -294,14 +294,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
     fontSize: 20,
-    fontFamily: 'Copperplate',
+    fontFamily: 'Avenir',
     top: -20,
   },
   intro: {
     // how to move this to the top?
     alignSelf: 'center',
     color: '#FF7300',
-    //backgroundColor: 'rgba(180,180,180,0.5)',
+    // backgroundColor: 'rgba(180,180,180,0.5)',
     fontSize: 39,
     paddingTop: 5,
     paddingLeft: 5,
@@ -335,18 +335,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 320,
     height: 32,
-    backgroundColor: 'orange',
+    backgroundColor: 'rgb(255,115,0)',
     margin: 10,
-    padding: 8,
     borderRadius: 14,
     fontSize: 18,
     fontWeight: '500',
+    padding: 3,
   },
   buttonTxt:
   {
     color: 'white',
     fontSize: 20,
-    fontFamily: 'Copperplate',
+    fontFamily: 'Avenir',
   },
 });
 
