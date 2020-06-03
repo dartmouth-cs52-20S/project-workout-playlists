@@ -62,16 +62,22 @@ class NewUserFlow extends Component {
       return (
         <View>
           <Text>
-            Acousticness
+            Acousticness:
+            {' '}
+            {Math.round(this.state.question1 * 10, 2)}
           </Text>
           <Slider
+            step={0.1}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
             value={this.state.question1}
             onValueChange={(question1) => this.setState({ question1 })}
           />
-          <Text>1- Not Acoustic                   10- Very Acoustic</Text>
+          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text>1- Not Acoustic</Text>
+            <Text>10- Very Acoustic</Text>
+          </View>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -86,9 +92,12 @@ class NewUserFlow extends Component {
       return (
         <View>
           <Text>
-            Instrumentalness
+            Instrumentalness:
+            {' '}
+            {Math.round(this.state.question2 * 10, 2)}
           </Text>
           <Slider
+            step={0.1}
             value={this.state.question2}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -96,7 +105,11 @@ class NewUserFlow extends Component {
             // style={styles.slider}
             onValueChange={(question2) => this.setState({ question2 })}
           />
-          <Text>1- Not Instrumental                   10- Very Instrumental</Text>
+
+          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text>1- Not Instrumental</Text>
+            <Text>10- Very Instrumental</Text>
+          </View>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -111,9 +124,12 @@ class NewUserFlow extends Component {
       return (
         <View>
           <Text>
-            Liveness
+            Liveness:
+            {' '}
+            {Math.round(this.state.question3 * 10, 2)}
           </Text>
           <Slider
+            step={0.1}
             value={this.state.question3}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -121,8 +137,10 @@ class NewUserFlow extends Component {
             // style={styles.slider}
             onValueChange={(question3) => this.setState({ question3 })}
           />
-          <Text>1- All Studio                   10- At the Concert</Text>
-
+          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text>1- All Studio</Text>
+            <Text>10- At the Concert</Text>
+          </View>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -137,9 +155,12 @@ class NewUserFlow extends Component {
       return (
         <View>
           <Text>
-            Loudness
+            Loudness:
+            {' '}
+            {Math.round(this.state.question4 * 10, 2)}
           </Text>
           <Slider
+            step={0.1}
             value={this.state.question4}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -147,8 +168,10 @@ class NewUserFlow extends Component {
             // style={styles.slider}
             onValueChange={(question4) => this.setState({ question4 })}
           />
-          <Text>1- quiet                            10-LOUD</Text>
-
+          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text>1- quiet</Text>
+            <Text>10-LOUD</Text>
+          </View>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -163,9 +186,12 @@ class NewUserFlow extends Component {
       return (
         <View>
           <Text>
-            Popular music
+            Popular music:
+            {' '}
+            {Math.round(this.state.question5 * 10, 2)}
           </Text>
           <Slider
+            step={0.1}
             value={this.state.question5}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -173,8 +199,10 @@ class NewUserFlow extends Component {
             // style={styles.slider}
             onValueChange={(question5) => this.setState({ question5 })}
           />
-          <Text>1- niche music only        10-top hits please</Text>
-
+          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text>1- niche music only</Text>
+            <Text>10-top hits please</Text>
+          </View>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -189,9 +217,12 @@ class NewUserFlow extends Component {
       return (
         <View>
           <Text>
-            Positivity
+            Positivity:
+            {' '}
+            {Math.round(this.state.question6 * 10, 2)}
           </Text>
           <Slider
+            step={0.1}
             value={this.state.question6}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -200,8 +231,10 @@ class NewUserFlow extends Component {
             // value={this.state.question1}
             onValueChange={(question6) => this.setState({ question6 })}
           />
-          <Text>1- meh                         10- Happy vibes!</Text>
-
+          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text>1- meh</Text>
+            <Text>10- Happy vibes!</Text>
+          </View>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {

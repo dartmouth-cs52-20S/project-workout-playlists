@@ -85,6 +85,7 @@ class UserProfile extends Component {
           </Text>
           <Slider
             style={styles.slider}
+            step={0.1}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
@@ -103,6 +104,7 @@ class UserProfile extends Component {
           </Text>
           <Slider
             style={styles.slider}
+            step={0.1}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
@@ -121,6 +123,7 @@ class UserProfile extends Component {
           </Text>
           <Slider
             style={styles.slider}
+            step={0.1}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
@@ -139,6 +142,7 @@ class UserProfile extends Component {
           </Text>
           <Slider
             style={styles.slider}
+            step={0.1}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
@@ -157,6 +161,7 @@ class UserProfile extends Component {
           </Text>
           <Slider
             style={styles.slider}
+            step={0.1}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
@@ -175,6 +180,7 @@ class UserProfile extends Component {
           </Text>
           <Slider
             style={styles.slider}
+            step={0.1}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
