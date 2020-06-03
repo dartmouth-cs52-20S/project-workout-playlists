@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import {
-  StyleSheet, View, Text, Button, TouchableOpacity, Image, ActivityIndicator,
+  StyleSheet, View, Text, TouchableOpacity, Image, ActivityIndicator,
   // TouchableOpacity,
 } from 'react-native';
 
