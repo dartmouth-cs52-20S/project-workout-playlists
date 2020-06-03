@@ -692,6 +692,7 @@ class NewPlaylistFlow extends Component {
             rightButtonBackgroundColor='orange' 
             leftButtonBackgroundColor='orange'/>
             </View>
+            
           {/*<TextInput style={styles.input} placeholder="Minutes" placeholderTextColor="white" onChangeText={(text) => this.setState({ length: text })} value={this.state.length} />*/}
         </View>
       );
