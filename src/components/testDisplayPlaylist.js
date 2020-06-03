@@ -75,7 +75,7 @@ class testDisplayPlaylist extends Component {
 
             <Text style={styles.bodyText}>
               (!) DISCLAIMER This playlist is shorter than usual due to your ~unique~ music preferences.
-              Either hustle the fuck through your workout or be less weird about your music tastes.
+              Either hustle through your workout or make a new playlist and be a little less selective about your music tastes.
             </Text>
 
             <Text style={styles.titleText}>YOUR TEMPO PLAYLIST</Text>
