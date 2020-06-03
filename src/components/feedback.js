@@ -33,14 +33,19 @@ class Feedback extends Component {
           defaultRating={5}
           size={40}
           selectedColor="orange"
-          reviewColor="orange"
+          reviewColor="rgb(255,115,0)"
           onFinishRating={(stars) => this.setState({ rating: stars })}
         />
         <TouchableOpacity
           style={styles.button}
           onPress={this.handleSave}
         >
-          <Text style={{ color: 'white' }}>Save playlist to spotify account</Text>
+          <Text style={{
+            color: 'white', fontSize: 15, fontFamily: 'Avenir', fontWeight: 'bold', padding: 5,
+          }}
+          >
+            Save playlist to my Spotify account
+          </Text>
         </TouchableOpacity>
 
 
@@ -62,7 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   button: {
-    backgroundColor: 'orange',
+    backgroundColor: 'rgb(255,115,0)',
     margin: 15,
     padding: 5,
     borderRadius: 5,
@@ -70,7 +75,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 25,
     fontWeight: 'bold',
-    color: 'orange',
+    color: 'rgb(255,115,0)',
   },
 });
 
