@@ -273,6 +273,7 @@ class NewUserFlow extends Component {
         <Text style={styles.intro}>Lets get to know you!</Text>
         {/* <br /> */}
         {this.renderQuestion()}
+        <Text style={styles.break}>Hi</Text>
       </View>
     );
   }
@@ -282,7 +283,8 @@ class NewUserFlow extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     alignItems: 'center',
     // flexDirection: 'column',
   },
@@ -312,6 +314,10 @@ const styles = StyleSheet.create({
     fontSize: 25,
     shadowColor: 'black',
     justifyContent: 'flex-start',
+  },
+  break: {
+    fontSize: 40,
+    color: 'rgba(0,0,0,0)',
   },
   image: {
     width: 400,

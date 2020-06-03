@@ -882,11 +882,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
     shadowColor: 'black',
     justifyContent: 'flex-start',
+    //fontFamily: 'FjallaOne-Regular',
   },
   subtitle: {
     color: 'rgb(185,185,185)',
     fontSize: 15,
     shadowColor: 'black',
+    //fontFamily: 'OpenSans-Regular',
   },
   buttonTxt:
   {
