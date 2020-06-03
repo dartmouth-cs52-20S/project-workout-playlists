@@ -14,7 +14,7 @@ class NewUserFlow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentQ: 1,
+      currentQ: 0,
       question1: 0.5,
       question2: 0.5,
       question3: 0.5,
@@ -59,10 +59,24 @@ class NewUserFlow extends Component {
 
   renderQuestion= () => {
     const questionNum = this.state.currentQ;
+    if (questionNum === 0) {
+      return (
+        <View>
+          <Text style={styles.intro}>First, we need to get to know you...</Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.handleClick();
+            }}
+          >
+            <Text style={styles.buttonTxt}>Let's go!</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
     if (questionNum === 1) {
       return (
         <View>
-
           <Text style={styles.label}>
             Acousticness:
             {' '}
@@ -99,7 +113,6 @@ class NewUserFlow extends Component {
             Instrumentalness:
             {' '}
             {Math.round(this.state.question2 * 10, 2)}
-
           </Text>
           <Slider
 
@@ -131,7 +144,7 @@ class NewUserFlow extends Component {
           <Text style={styles.label}>
             Liveness:
             {' '}
-            {Math.round(this.state.question3 * 10, 2)}
+            <Text style={{fontFamily:'Al Nile'},{fontSize:16}}>{Math.round(this.state.question3 * 10, 2)}</Text>
 
           </Text>
           <Slider
@@ -162,10 +175,7 @@ class NewUserFlow extends Component {
         <View>
 
           <Text style={styles.label}>
-            Loudness:
-            {' '}
-            {Math.round(this.state.question4 * 10, 2)}
-
+            Loudness:{' '}{Math.round(this.state.question4 * 10, 2)}
           </Text>
           <Slider
 
@@ -270,10 +280,8 @@ class NewUserFlow extends Component {
     // eslint-disable-next-line react/destructuring-assignment
     return (
       <View style={styles.container}>
-        <Text style={styles.intro}>Lets get to know you!</Text>
         {/* <br /> */}
         {this.renderQuestion()}
-        <Text style={styles.break}>Hi</Text>
       </View>
     );
   }
@@ -284,7 +292,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     // flexDirection: 'column',
   },
@@ -294,20 +302,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
     fontSize: 20,
-    fontFamily: 'Copperplate',
+    fontFamily: 'Al Nile',
     top: -20,
   },
   intro: {
     // how to move this to the top?
     alignSelf: 'center',
     color: '#FF7300',
-    //backgroundColor: 'rgba(180,180,180,0.5)',
-    fontSize: 39,
-    paddingTop: 5,
-    paddingLeft: 5,
-    paddingRight: 5,
-    justifyContent: 'flex-start',
-    top: -80,
+    fontSize: 35,
+    fontFamily: 'Damascus',
+    //justifyContent: 'flex-start',
   },
   title: {
     color: 'orange',
@@ -334,7 +338,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: 320,
-    height: 32,
+    height: 42,
     backgroundColor: 'orange',
     margin: 10,
     padding: 8,
@@ -346,7 +350,7 @@ const styles = StyleSheet.create({
   {
     color: 'white',
     fontSize: 20,
-    fontFamily: 'Copperplate',
+    fontFamily: 'Al Nile',
   },
 });
 

@@ -878,7 +878,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   questions: {
-    color: 'orange',
+    color: '#ff7000',
     fontSize: 25,
     shadowColor: 'black',
     justifyContent: 'flex-start',
