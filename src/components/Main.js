@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet, View, Text,
-  TouchableOpacity, Image,
+  TouchableOpacity, Image, ActivityIndicator,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -21,46 +21,55 @@ class Main extends Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.logocontainer}>
-          <Image style={styles.logo} source={require('../imgs/logo3.png')} />
-        </View>
-        <View style={styles.modal}>
-          <View style={styles.textcontainer}>
-            <Text style={styles.text}>Recent workouts:</Text>
+    if (this.props.all.length === 0) {
+      return (
+        <ActivityIndicator
+          style={{ position: 'absolute', top: 350, left: 180 }}
+          size="large"
+        />
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          <View style={styles.logocontainer}>
+            <Image style={styles.logo} source={require('../imgs/logo3.png')} />
           </View>
-          {this.props.all.slice(0, 5).map((playlist) => (
-            <View>
-              <TouchableOpacity
-                onPress={() => {
-                  this.goToPlaylist(playlist.id);
-                }}
-                style={styles.playlist}
-              >
-                <Text style={{
-                  color: 'black', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'orange',
-                }}
-                >
-                  {playlist.workoutType}
-                  <Text> on </Text>
-                  {playlist.createdAt}
-                </Text>
-              </TouchableOpacity>
+          <View style={styles.modal}>
+            <View style={styles.textcontainer}>
+              <Text style={styles.text}>Recent workouts:</Text>
             </View>
-          ))}
+            {this.props.all.slice(0, 5).map((playlist) => (
+              <View>
+                <TouchableOpacity
+                  onPress={() => {
+                    this.goToPlaylist(playlist.id);
+                  }}
+                  style={styles.playlist}
+                >
+                  <Text style={{
+                    color: 'black', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'orange',
+                  }}
+                  >
+                    {playlist.workoutType}
+                    <Text> on </Text>
+                    {playlist.createdAt}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ))}
 
+          </View>
+          <View style={styles.buttons}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Workout Selector')} style={styles.button}>
+              <Text style={styles.text}>New Workout</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('My Playlists')} style={styles.button}>
+              <Text style={styles.text}>Playlists</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.buttons}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Workout Selector')} style={styles.button}>
-            <Text style={styles.text}>New Workout</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('My Playlists')} style={styles.button}>
-            <Text style={styles.text}>Playlists</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
+      );
+    }
   }
 }
 

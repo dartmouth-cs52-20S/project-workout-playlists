@@ -11,7 +11,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import RadioGroup, { Radio } from 'react-native-radio-input';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 import { connect } from 'react-redux';
-import CircularSlider from 'rn-circular-slider';
 import { fetchUser, createPlaylist } from '../actions/index';
 
 // serachable dropdown from https://www.npmjs.com/package/react-native-searchable-dropdown
