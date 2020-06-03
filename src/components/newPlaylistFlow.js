@@ -847,7 +847,7 @@ const styles = StyleSheet.create({
   finalButton:
   {
     display: 'flex',
-    justifyContent: 'space-around', // this wont center the text?? :(
+    justifyContent: 'space-around', 
     alignItems: 'center',
     backgroundColor: 'orange',
     padding: 10,
