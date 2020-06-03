@@ -39,20 +39,14 @@ class signUp extends Component {
   }
 
   handleSpotifyAuth = (newNavState) => {
-    console.log('handling!');
     const { url } = newNavState;
-    console.log('url', url);
     if (!url) return;
 
     if (url.includes('?message=authSuccess')) {
-      console.log('success!');
       const tokenStartIndex = url.indexOf('spotifyID') + 10;
       const spotifyID = url.substring(tokenStartIndex, url.length);
-      console.log(spotifyID);
 
       this.props.fetchUser(spotifyID);
-      console.log('authenticated!');
-
       this.webview.stopLoading();
       this.props.navigation.navigate('New User Flow');
     }
@@ -63,7 +57,7 @@ class signUp extends Component {
     const clientId = 'ae55627afa544de2b83131f8bd07d685';
     const redirectUri = 'https://workout-playlists-final-proj.herokuapp.com/api/callback';
     // const redirectUri = 'http://localhost:9090/api/callback';
-    const scopes = 'user-read-private user-read-email user-modify-playback-state user-read-playback-state user-read-currently-playing  playlist-modify-public';
+    const scopes = 'user-read-private user-read-email user-modify-playback-state user-read-playback-state user-read-currently-playing user-top-read playlist-modify-public';
     if (this.state.login) {
       return (
         <View style={{ flex: 1 }}>

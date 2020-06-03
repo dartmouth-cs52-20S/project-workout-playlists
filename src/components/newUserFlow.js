@@ -42,6 +42,7 @@ class NewUserFlow extends Component {
       this.props.updateUser(
         {
           spotifyID: this.props.user.spotifyID,
+          accessToken: this.props.user.accessToken,
           acousticness: this.state.question1,
           instrumentalness: this.state.question2,
           liveness: this.state.question3,
@@ -62,14 +63,14 @@ class NewUserFlow extends Component {
       return (
         <View>
 
-          <Text>
+          <Text style={styles.label}>
             Acousticness:
             {' '}
             {Math.round(this.state.question1 * 10, 2)}
 
           </Text>
           <Slider
-            step={0.1}
+
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
@@ -86,7 +87,7 @@ class NewUserFlow extends Component {
               this.handleClick();
             }}
           >
-            <Text>Next</Text>
+            <Text style={styles.buttonTxt}>Next</Text>
           </TouchableOpacity>
         </View>
       );
@@ -94,14 +95,14 @@ class NewUserFlow extends Component {
       return (
         <View>
 
-          <Text>
+          <Text style={styles.label}>
             Instrumentalness:
             {' '}
             {Math.round(this.state.question2 * 10, 2)}
 
           </Text>
           <Slider
-            step={0.1}
+
             value={this.state.question2}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -120,21 +121,21 @@ class NewUserFlow extends Component {
               this.handleClick();
             }}
           >
-            <Text>Next</Text>
+            <Text style={styles.buttonTxt}>Next</Text>
           </TouchableOpacity>
         </View>
       );
     } else if (questionNum === 3) {
       return (
         <View>
-          <Text>
+          <Text style={styles.label}>
             Liveness:
             {' '}
             {Math.round(this.state.question3 * 10, 2)}
 
           </Text>
           <Slider
-            step={0.1}
+
             value={this.state.question3}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -152,7 +153,7 @@ class NewUserFlow extends Component {
               this.handleClick();
             }}
           >
-            <Text>Next</Text>
+            <Text style={styles.buttonTxt}>Next</Text>
           </TouchableOpacity>
         </View>
       );
@@ -160,14 +161,14 @@ class NewUserFlow extends Component {
       return (
         <View>
 
-          <Text>
+          <Text style={styles.label}>
             Loudness:
             {' '}
             {Math.round(this.state.question4 * 10, 2)}
 
           </Text>
           <Slider
-            step={0.1}
+
             value={this.state.question4}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -185,7 +186,7 @@ class NewUserFlow extends Component {
               this.handleClick();
             }}
           >
-            <Text>Next</Text>
+            <Text style={styles.buttonTxt}>Next</Text>
           </TouchableOpacity>
         </View>
       );
@@ -193,14 +194,14 @@ class NewUserFlow extends Component {
       return (
         <View>
 
-          <Text>
+          <Text style={styles.label}>
             Popular music:
             {' '}
             {Math.round(this.state.question5 * 10, 2)}
 
           </Text>
           <Slider
-            step={0.1}
+
             value={this.state.question5}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -218,7 +219,7 @@ class NewUserFlow extends Component {
               this.handleClick();
             }}
           >
-            <Text>Next</Text>
+            <Text style={styles.buttonTxt}>Next</Text>
           </TouchableOpacity>
         </View>
       );
@@ -226,14 +227,14 @@ class NewUserFlow extends Component {
       return (
         <View>
 
-          <Text>
+          <Text style={styles.label}>
             Positivity:
             {' '}
             {Math.round(this.state.question6 * 10, 2)}
 
           </Text>
           <Slider
-            step={0.1}
+
             value={this.state.question6}
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
@@ -252,7 +253,7 @@ class NewUserFlow extends Component {
               this.handleClick();
             }}
           >
-            <Text sytle={styles.buttonTxt}>Next</Text>
+            <Text style={styles.buttonTxt}>Next</Text>
           </TouchableOpacity>
         </View>
       );
@@ -269,7 +270,7 @@ class NewUserFlow extends Component {
     // eslint-disable-next-line react/destructuring-assignment
     return (
       <View style={styles.container}>
-        <Text style={styles.intro}>Let's get to know you!</Text>
+        <Text style={styles.intro}>Lets get to know you!</Text>
         {/* <br /> */}
         {this.renderQuestion()}
         <Text style={styles.break}>Hi</Text>
@@ -287,15 +288,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // flexDirection: 'column',
   },
+  label: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontSize: 20,
+    fontFamily: 'Copperplate',
+    top: -20,
+  },
   intro: {
+    // how to move this to the top?
+    alignSelf: 'center',
     color: '#FF7300',
-    backgroundColor: 'rgba(180,180,180,0.5)',
+    //backgroundColor: 'rgba(180,180,180,0.5)',
     fontSize: 39,
-    paddingBottom: 5,
     paddingTop: 5,
     paddingLeft: 5,
     paddingRight: 5,
     justifyContent: 'flex-start',
+    top: -80,
   },
   title: {
     color: 'orange',
@@ -333,6 +345,8 @@ const styles = StyleSheet.create({
   buttonTxt:
   {
     color: 'white',
+    fontSize: 20,
+    fontFamily: 'Copperplate',
   },
 });
 
