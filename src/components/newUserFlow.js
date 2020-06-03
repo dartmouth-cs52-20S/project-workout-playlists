@@ -288,7 +288,6 @@ const styles = StyleSheet.create({
     // flexDirection: 'column',
   },
   intro: {
-    //how to move this to the top? 
     color: '#FF7300',
     backgroundColor: 'rgba(180,180,180,0.5)',
     fontSize: 39,
