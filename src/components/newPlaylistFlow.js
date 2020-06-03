@@ -624,12 +624,12 @@ class NewPlaylistFlow extends Component {
           currentQ: this.state.currentQ,
         };
         questionNum.currentQ += 1;
-        this.setState({ currentQ: questionNum.currentQ });
-        // this.setState({ done: true });
+        this.setState({ currentQ: questionNum.currentQ, done: true });
+        //this.setState({ done: true });
       }
     } else {
       // navigate to the generated playlist instead of main
-      this.setState({ done: true });
+      //this.setState({ done: true });
       this.makePlaylist();
       this.state.currentQ = 0;
     }
@@ -847,7 +847,7 @@ const styles = StyleSheet.create({
   finalButton:
   {
     display: 'flex',
-    justifyContent: 'space-around', // this wont center the text?? :(
+    justifyContent: 'space-around', 
     alignItems: 'center',
     backgroundColor: 'orange',
     padding: 10,
