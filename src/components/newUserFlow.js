@@ -61,10 +61,12 @@ class NewUserFlow extends Component {
     if (questionNum === 1) {
       return (
         <View>
+
           <Text>
             Acousticness:
             {' '}
             {Math.round(this.state.question1 * 10, 2)}
+
           </Text>
           <Slider
             step={0.1}
@@ -91,10 +93,12 @@ class NewUserFlow extends Component {
     } else if (questionNum === 2) {
       return (
         <View>
+
           <Text>
             Instrumentalness:
             {' '}
             {Math.round(this.state.question2 * 10, 2)}
+
           </Text>
           <Slider
             step={0.1}
@@ -127,6 +131,7 @@ class NewUserFlow extends Component {
             Liveness:
             {' '}
             {Math.round(this.state.question3 * 10, 2)}
+
           </Text>
           <Slider
             step={0.1}
@@ -154,10 +159,12 @@ class NewUserFlow extends Component {
     } else if (questionNum === 4) {
       return (
         <View>
+
           <Text>
             Loudness:
             {' '}
             {Math.round(this.state.question4 * 10, 2)}
+
           </Text>
           <Slider
             step={0.1}
@@ -185,10 +192,12 @@ class NewUserFlow extends Component {
     } else if (questionNum === 5) {
       return (
         <View>
+
           <Text>
             Popular music:
             {' '}
             {Math.round(this.state.question5 * 10, 2)}
+
           </Text>
           <Slider
             step={0.1}
@@ -216,10 +225,12 @@ class NewUserFlow extends Component {
     } else if (questionNum === 6) {
       return (
         <View>
+
           <Text>
             Positivity:
             {' '}
             {Math.round(this.state.question6 * 10, 2)}
+
           </Text>
           <Slider
             step={0.1}
@@ -241,7 +252,7 @@ class NewUserFlow extends Component {
               this.handleClick();
             }}
           >
-            <Text>Next</Text>
+            <Text sytle={styles.buttonTxt}>Next</Text>
           </TouchableOpacity>
         </View>
       );
@@ -258,7 +269,7 @@ class NewUserFlow extends Component {
     // eslint-disable-next-line react/destructuring-assignment
     return (
       <View style={styles.container}>
-        <Text h1>Lets get to know you!</Text>
+        <Text style={styles.intro}>Let's get to know you!</Text>
         {/* <br /> */}
         {this.renderQuestion()}
       </View>
@@ -273,6 +284,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     // flexDirection: 'column',
+  },
+  intro: {
+    //how to move this to the top? 
+    alignSelf: 'center',
+    color: '#FF7300',
+    backgroundColor: 'rgba(180,180,180,0.5)',
+    fontSize: 39,
+    paddingBottom: 5,
+    paddingTop: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
+    justifyContent: 'flex-start',
+  },
+  title: {
+    color: 'orange',
+    fontSize: 25,
+    shadowColor: 'black',
+    justifyContent: 'flex-start',
   },
   image: {
     width: 400,
@@ -296,6 +325,10 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     fontSize: 18,
     fontWeight: '500',
+  },
+  buttonTxt:
+  {
+    color: 'white',
   },
 });
 
