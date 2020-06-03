@@ -556,6 +556,7 @@ class NewPlaylistFlow extends Component {
 
 
   makePlaylist = () => {
+    console.log('calling make playlist');
     const playlist = {
       user: this.props.user,
       workoutType: this.state.type,
@@ -597,7 +598,6 @@ class NewPlaylistFlow extends Component {
 
   handleClick = (event) => {
     if (this.state.currentQ === 2) {
-      console.log('length: ', this.state.length);
       if (this.state.length !== 0) {
         const questionNum = {
           currentQ: this.state.currentQ,
@@ -626,13 +626,14 @@ class NewPlaylistFlow extends Component {
           currentQ: this.state.currentQ,
         };
         questionNum.currentQ += 1;
-        this.setState({ currentQ: questionNum.currentQ, done: true });
-        //this.setState({ done: true });
+        this.setState({ currentQ: questionNum.currentQ });
+        // this.setState({ done: true });
       }
     } else {
       // navigate to the generated playlist instead of main
-      //this.setState({ done: true });
+      console.log('making playlist and setting done to true');
       this.makePlaylist();
+      this.setState({ done: true });
       this.state.currentQ = 0;
     }
   }
@@ -673,26 +674,27 @@ class NewPlaylistFlow extends Component {
           <Text style={styles.questions}>
             Planned Workout Duration:
           </Text>
-          <View style={{paddingLeft: 10, paddingTop: 10, paddingBottom: 10}}>
-          <NumericInput 
-            //value={this.state.value} 
-            value={this.state.length}
-            onChange={(value) => this.setState({ length: value})} 
-            //onChangeText={(text) => this.setState({ length: text })}
-            onLimitReached={(isMax,msg) => console.log(isMax,msg)}
-            totalWidth={240} 
-            totalHeight={50} 
-            iconSize={25}
-            placeholder="Minutes"
-            step={5}
-            valueType='real'
-            rounded 
-            textColor='orange' 
-            iconStyle={{ color: 'white' }} 
-            rightButtonBackgroundColor='orange' 
-            leftButtonBackgroundColor='orange'/>
-            </View>
-          {/*<TextInput style={styles.input} placeholder="Minutes" placeholderTextColor="white" onChangeText={(text) => this.setState({ length: text })} value={this.state.length} />*/}
+          <View style={{ paddingLeft: 10, paddingTop: 10, paddingBottom: 10 }}>
+            <NumericInput
+            // value={this.state.value}
+              value={this.state.length}
+              onChange={(value) => this.setState({ length: value })}
+            // onChangeText={(text) => this.setState({ length: text })}
+              onLimitReached={(isMax, msg) => console.log(isMax, msg)}
+              totalWidth={240}
+              totalHeight={50}
+              iconSize={25}
+              placeholder="Minutes"
+              step={5}
+              valueType="real"
+              rounded
+              textColor="orange"
+              iconStyle={{ color: 'white' }}
+              rightButtonBackgroundColor="orange"
+              leftButtonBackgroundColor="orange"
+            />
+          </View>
+          {/* <TextInput style={styles.input} placeholder="Minutes" placeholderTextColor="white" onChangeText={(text) => this.setState({ length: text })} value={this.state.length} /> */}
         </View>
       );
     } else if (questionNum === 3) {
@@ -868,7 +870,7 @@ const styles = StyleSheet.create({
   finalButton:
   {
     display: 'flex',
-    justifyContent: 'space-around', 
+    justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: 'rgb(255,115,0)',
     padding: 10,
