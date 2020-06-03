@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: 'rgb(255,115,0)',
     padding: 5,
     width: 150,
     height: 150,
@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     shadowRadius: 5, // IOS
   },
   text: {
+    color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
     fontFamily: 'Arial',
