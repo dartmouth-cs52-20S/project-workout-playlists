@@ -42,6 +42,7 @@ class UserProfile extends Component {
         genres: this.props.user.genres,
       },
     );
+    this.props.navigation.navigate('Main');
     // this.props.userExists();
   }
 

@@ -46,7 +46,7 @@ class MyPlaylists extends Component {
                   }}
                 >
                   <Text style={{
-                    color: 'white', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'black',
+                    color: 'white', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'rgb(42,42,42)',
                   }}
                   >
                     Tempo
