@@ -39,7 +39,7 @@ class Main extends Component {
               <Text style={styles.text}>Recent workouts:</Text>
             </View>
             {this.props.all.slice(0, 5).map((playlist) => (
-              <View>
+              <View style={styles.playlistcontainer}>
                 <TouchableOpacity
                   onPress={() => {
                     this.goToPlaylist(playlist.id);
@@ -61,10 +61,10 @@ class Main extends Component {
           </View>
           <View style={styles.buttons}>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Workout Selector')} style={styles.button}>
-              <Text style={styles.text}>New Workout</Text>
+              <Text style={styles.btnText}>New Workout</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('My Playlists')} style={styles.button}>
-              <Text style={styles.text}>Playlists</Text>
+              <Text style={styles.btnText}>Playlists</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -84,14 +84,20 @@ const styles = StyleSheet.create({
   },
   logocontainer: {
     display: 'flex',
-    position: 'absolute',
-    top: 0,
-    justifyContent: 'center',
-    width: 420,
-    height: 180,
+    top: -70,
+    //position: 'absolute',
+    //position: flex-s
+    //top: 0,
+    //justifyContent: 'center',
+    width: 200,
+    height: 200,
+    resizeMode:"contain",
   },
   title: {
     display: 'flex',
+  },
+  playlistcontainer: {
+    top: -80,
   },
   logo: {
     flex: 1,
@@ -113,9 +119,9 @@ const styles = StyleSheet.create({
   buttons: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    position: 'absolute',
-    bottom: 80,
+    alignItems: 'center',
+    //position: 'absolute',
+    bottom: 45,
     shadowColor: 'grey',
   },
   // modal: {
@@ -126,10 +132,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: 'orange',
-    padding: 5,
-    width: 150,
-    height: 150,
-    borderRadius: 5,
+    padding: 10,
+    //width: 150,
+    //height: 150,
+    borderRadius: 15,
     marginHorizontal: 10,
     alignItems: 'center',
     shadowColor: 'rgba(0,0,0, .4)', // IOS
@@ -138,9 +144,14 @@ const styles = StyleSheet.create({
     shadowRadius: 5, // IOS
   },
   text: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
     fontFamily: 'Arial',
+  },
+  btnText: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    fontFamily: 'Georgia',
   },
   playlist: {
     backgroundColor: 'orange',
@@ -151,6 +162,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    top: -110,
   },
 });
 
