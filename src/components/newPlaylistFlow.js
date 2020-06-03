@@ -708,7 +708,7 @@ class NewPlaylistFlow extends Component {
               onChange={(BPM) => this.setState({ BPM })}
               contentContainerStyle={styles.innercircle}
               strokeWidth={10}
-              buttonBorderColor="orange"
+              buttonBorderColor="rgb(255,115,0)"
               buttonFillColor="#fff"
               buttonStrokeWidth={10}
               openingRadian={Math.PI / 4}
@@ -834,7 +834,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'space-around', // this wont center the text?? :(
     alignItems: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: 'rgb(255,115,0)',
     padding: 5,
     margin: 5,
     borderRadius: 14,
@@ -849,7 +849,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'space-around', // this wont center the text?? :(
     alignItems: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: 'rgb(255,115,0)',
     padding: 10,
     margin: 10,
     borderRadius: 14,
@@ -869,7 +869,7 @@ const styles = StyleSheet.create({
   input: {
     width: 350,
     height: 55,
-    backgroundColor: 'orange',
+    backgroundColor: 'rgb(255,115,0)',
     margin: 10,
     padding: 8,
     color: 'white',
@@ -878,17 +878,17 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   questions: {
-    color: 'orange',
+    color: 'rgb(255,115,0)',
     fontSize: 25,
     shadowColor: 'black',
     justifyContent: 'flex-start',
-    //fontFamily: 'FjallaOne-Regular',
+    fontFamily: 'Avenir',
   },
   subtitle: {
     color: 'rgb(185,185,185)',
     fontSize: 15,
     shadowColor: 'black',
-    //fontFamily: 'OpenSans-Regular',
+    // fontFamily: 'OpenSans-Regular',
   },
   buttonTxt:
   {
@@ -906,7 +906,7 @@ const styles = StyleSheet.create({
   inner: {
     fontWeight: '500',
     fontSize: 32,
-    color: 'orange',
+    color: 'rgb(255,115,0)',
   },
 });
 
