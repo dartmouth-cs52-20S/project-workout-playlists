@@ -36,9 +36,9 @@ class Main extends Component {
           </View>
           <View style={styles.modal}>
             <View style={styles.textcontainer}>
-              <Text style={styles.text}>Recent workouts:</Text>
+              <Text style={styles.text}>Your recent playlists:</Text>
             </View>
-            {this.props.all.slice(0, 5).map((playlist) => (
+            {this.props.all.slice(0, 4).map((playlist) => (
               <View style={styles.playlistcontainer}>
                 <TouchableOpacity
                   onPress={() => {
@@ -47,7 +47,7 @@ class Main extends Component {
                   style={styles.playlist}
                 >
                   <Text style={{
-                    color: 'black', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'orange',
+                    color: 'rgb(42,42,42)', fontFamily: 'Avenir', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'orange',
                   }}
                   >
                     {playlist.workoutType}
@@ -61,7 +61,7 @@ class Main extends Component {
           </View>
           <View style={styles.buttons}>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Workout Selector')} style={styles.button}>
-              <Text style={styles.btnText}>New Workout</Text>
+              <Text style={styles.btnText}>New Playlist</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('My Playlists')} style={styles.button}>
               <Text style={styles.btnText}>Playlists</Text>
@@ -84,12 +84,12 @@ const styles = StyleSheet.create({
   },
   logocontainer: {
     display: 'flex',
-    top: -70,
+    top: -40,
     //position: 'absolute',
     //position: flex-s
     //top: 0,
-    //justifyContent: 'center',
-    width: 200,
+    alignContent: 'center',
+    width: null,
     height: 200,
     resizeMode:"contain",
   },
@@ -97,13 +97,14 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
   playlistcontainer: {
-    top: -80,
+    top: -70,
   },
   logo: {
     flex: 1,
-    width: null,
+    width: 300,
     height: null,
     resizeMode: 'contain',
+    //justifyContent: 'center',
   },
   imgcontainer: {
     display: 'flex',
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     //position: 'absolute',
-    bottom: 45,
+    bottom: 35,
     shadowColor: 'grey',
   },
   // modal: {
@@ -131,10 +132,10 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: '#ff7300',
     padding: 10,
-    //width: 150,
-    //height: 150,
+    width: 150,
+    height: 100,
     borderRadius: 15,
     marginHorizontal: 10,
     alignItems: 'center',
@@ -144,14 +145,17 @@ const styles = StyleSheet.create({
     shadowRadius: 5, // IOS
   },
   text: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
-    fontFamily: 'Arial',
+    fontFamily: 'Damascus',
+    top: 20,
+    color: 'rgb(42,42,42)',
   },
   btnText: {
     fontSize: 22,
     fontWeight: 'bold',
-    fontFamily: 'Georgia',
+    fontFamily: 'Damascus',
+    color: 'white',
   },
   playlist: {
     backgroundColor: 'orange',
@@ -162,7 +166,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    top: -110,
+    paddingRight: 65,
+    top: -90,
   },
 });
 
