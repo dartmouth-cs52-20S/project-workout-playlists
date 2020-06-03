@@ -87,7 +87,8 @@ class singlePlaylistView extends Component {
                     color: 'white', fontSize: 17, margin: 5,
                   }}
                   >
-                    {song.name}
+                    {console.log(song.artists)}
+                    {`${song.name} by `}
                   </Text>
                 ))}
 
