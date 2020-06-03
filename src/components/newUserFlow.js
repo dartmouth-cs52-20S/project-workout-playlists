@@ -269,7 +269,7 @@ class NewUserFlow extends Component {
     // eslint-disable-next-line react/destructuring-assignment
     return (
       <View style={styles.container}>
-        <Text style={styles.intro}>Let's get to know you!</Text>
+        <Text style={styles.intro}>Lets get to know you!</Text>
         {/* <br /> */}
         {this.renderQuestion()}
       </View>

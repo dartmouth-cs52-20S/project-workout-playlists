@@ -6,18 +6,51 @@ import {
   TouchableOpacity, Image,
 } from 'react-native';
 
+import { connect } from 'react-redux';
+import { fetchPlaylists, fetchPlaylist } from '../actions/index';
+
 
 class Main extends Component {
+  componentDidMount() {
+    this.props.fetchPlaylists();
+  }
+
+  goToPlaylist = (ID) => {
+    this.props.fetchPlaylist(ID);
+    this.props.navigation.navigate('Display');
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.logocontainer}>
           <Image style={styles.logo} source={require('../imgs/logo3.png')} />
         </View>
-        <View style={styles.imgcontainer}>
-          <Image style={styles.img} source={require('../imgs/healthkit.png')} />
+        <View style={styles.modal}>
+          <View style={styles.textcontainer}>
+            <Text style={styles.text}>Recent workouts:</Text>
+          </View>
+          {this.props.all.slice(0, 5).map((playlist) => (
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  this.goToPlaylist(playlist.id);
+                }}
+                style={styles.playlist}
+              >
+                <Text style={{
+                  color: 'black', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'orange',
+                }}
+                >
+                  {playlist.workoutType}
+                  <Text> on </Text>
+                  {playlist.createdAt}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ))}
+
         </View>
-        <View style={styles.body} />
         <View style={styles.buttons}>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('Workout Selector')} style={styles.button}>
             <Text style={styles.text}>New Workout</Text>
@@ -35,7 +68,7 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: 'white',
@@ -61,8 +94,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     top: 50,
     justifyContent: 'center',
-    width: 420,
-    height: 400,
   },
   img: {
     flex: 1,
@@ -78,6 +109,10 @@ const styles = StyleSheet.create({
     bottom: 80,
     shadowColor: 'grey',
   },
+  // modal: {
+  //   position: 'absolute',
+  //   top: 180,
+  // },
   button: {
     flexDirection: 'column',
     justifyContent: 'center',
@@ -98,6 +133,23 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Arial',
   },
+  playlist: {
+    backgroundColor: 'orange',
+    marginTop: 7,
+    borderRadius: 8,
+  },
+  textcontainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
 });
 
-export default Main;
+function mapStateToProps(reduxState) {
+  return {
+    all: reduxState.playlist.all,
+  };
+}
+
+
+export default connect(mapStateToProps, { fetchPlaylists, fetchPlaylist })(Main);
