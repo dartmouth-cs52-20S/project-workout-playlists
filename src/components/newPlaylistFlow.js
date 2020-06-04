@@ -536,7 +536,7 @@ class NewPlaylistFlow extends Component {
       length: 0,
       mood: '',
       energy: 0,
-      BPM: '',
+      BPM: 60,
       selectedItems: [],
       selectedItemsString: '',
       done: false,
@@ -649,11 +649,11 @@ class NewPlaylistFlow extends Component {
       return (
         <View>
           <Text style={styles.questions}>
-            Today I am...
+            Select a Workout
           </Text>
           <DropDownPicker
             items={[
-              { label: 'Running', value: 'Run' },
+              { label: 'Running', value: 'Run'},
               { label: 'Walking', value: 'Walk' },
               { label: 'Biking', value: 'Bike Ride' },
               { label: 'Yoga', value: 'Yoga' },
@@ -662,7 +662,13 @@ class NewPlaylistFlow extends Component {
               { label: 'Hiking', value: 'Hike' },
             ]}
             placeholder="What kind of workout?"
-            containerStyle={{ height: 40 }}
+            containerStyle={{ height: 270,/* backgroundColor: 'orange',*/ top: -40}}
+            style={{position: 'absolute', backgroundColor: 'orange'}}
+            itemStyle={{ bottomBorderColor: 'green'}}
+            //itemStyle={{display: 'flex', top: -80}}
+            //itemStyle={{backgroundColor: 'green', top: -50}}
+            dropDownStyle={{/*backgroundColor: 'pink',*/ height: 240}}
+            dropDownMaxHeight={240}
             value={this.state.type}
             onChangeItem={(item) => this.setState({ type: item.value })}
           />
@@ -672,9 +678,14 @@ class NewPlaylistFlow extends Component {
       return (
         <View>
           <Text style={styles.questions}>
-            Planned Workout Duration:
+            Planned Workout Duration: 
           </Text>
-          <View style={{ paddingLeft: 10, paddingTop: 10, paddingBottom: 10 }}>
+          <Text style={styles.questions}>
+          <Text style={styles.subtitle}>
+            In minutes
+          </Text>
+          </Text>
+          <View style={{alignItems: 'center', paddingRight: 10, top: -20}}>
             <NumericInput
             // value={this.state.value}
               value={this.state.length}
@@ -703,7 +714,10 @@ class NewPlaylistFlow extends Component {
           <Text style={styles.questions}>
             What kind of mood are you in?
           </Text>
-          <RadioGroup getChecked={this.getChecked}>
+          <RadioGroup 
+            RadioGroupStyle={{top: -35}}
+            getChecked={this.getChecked}
+            >
             <Radio label="Happy" value="Happy" />
             <Radio label="Sad" value="Sad" />
             <Radio label="Angry" value="Angry" />
@@ -719,14 +733,18 @@ class NewPlaylistFlow extends Component {
           <Text style={styles.questions}>
             My ideal BPM today is...
           </Text>
+          <Text style={styles.questions}>
           <Text style={styles.subtitle}>
             (Normal resting heartbeat is 60-90 BPM, runners typically train in the 100-160 BPM range)
+          </Text>
           </Text>
           <View style={styles.circle}>
             <CircularSlider
               step={2}
               min="60"
-              max="250"
+              max="200"
+              value={this.state.BPM}
+              style={styles.userInput}
               BPM={this.state.BPM}
               onChange={(BPM) => this.setState({ BPM })}
               contentContainerStyle={styles.innercircle}
@@ -749,7 +767,9 @@ class NewPlaylistFlow extends Component {
           <Text style={styles.questions}>
             I want the most energy...
           </Text>
-          <RadioGroup getChecked={this.getChecked}>
+          <RadioGroup 
+          RadioGroupStyle={{top: -35}}
+          getChecked={this.getChecked}>
             <Radio label="At the beginning" value={-1} />
             <Radio label="THE WHOLE TIME" value={0} />
             <Radio label="At the end" value={1} />
@@ -762,9 +782,6 @@ class NewPlaylistFlow extends Component {
           <Text style={styles.questions}>
             Today, Im feeling like...
           </Text>
-          <Text style={styles.subtitle}>
-            (pick up to 5)
-          </Text>
           <SearchableDropdown
             multi
             selectedItems={this.state.selectedItems}
@@ -773,7 +790,7 @@ class NewPlaylistFlow extends Component {
               its.push(item);
               this.setState({ selectedItems: its });
             }}
-            containerStyle={{ padding: 5 }}
+            containerStyle={{ padding: 5, top: -80 }}
             onRemoveItem={(item, index) => {
               const its = this.state.selectedItems.filter((sitem) => sitem.id !== item.id);
               this.setState({ selectedItems: its });
@@ -786,6 +803,7 @@ class NewPlaylistFlow extends Component {
               borderWidth: 1,
               borderRadius: 5,
             }}
+            style={styles.userInput}
             itemTextStyle={{ color: '#222' }}
             itemsContainerStyle={{ maxHeight: 140 }}
             items={items}
@@ -805,6 +823,11 @@ class NewPlaylistFlow extends Component {
             }
             listProps={{ nestedScrollEnabled: true }}
           />
+          <Text style={{textAlign: 'center'}}>
+          <Text style={styles.subtitle}>
+            (pick up to 5)
+          </Text>
+          </Text>
         </View>
       );
     }
@@ -866,6 +889,7 @@ const styles = StyleSheet.create({
     // borderWidth: 2,
     // borderColor: 'orange',
     zIndex: -1,
+    top: 30,
   },
   finalButton:
   {
@@ -906,6 +930,7 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     justifyContent: 'flex-start',
     fontFamily: 'Avenir',
+    top: -85,
   },
   subtitle: {
     color: 'rgb(185,185,185)',
@@ -917,10 +942,10 @@ const styles = StyleSheet.create({
   {
     color: 'white',
   },
-
   circle: {
     justifyContent: 'center',
     alignItems: 'center',
+    top: -30
   },
   innercircle: {
     justifyContent: 'center',
