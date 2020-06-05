@@ -14,7 +14,7 @@ class NewUserFlow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentQ: 1,
+      currentQ: 0,
       question1: 0.5,
       question2: 0.5,
       question3: 0.5,
@@ -59,7 +59,27 @@ class NewUserFlow extends Component {
 
   renderQuestion= () => {
     const questionNum = this.state.currentQ;
-    if (questionNum === 1) {
+    if (questionNum === 0) {
+      return (
+        <View>
+          <Text style={styles.intro}>
+            Let's get to know you...
+          </Text>
+          <Text style={styles.subtitle}>
+            Time to enter some user preferences! Don't worry, these can all be changed in settings later. 
+          </Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.handleClick();
+            }}
+          >
+            <Text style={styles.buttonTxt}>Get started</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+    else if (questionNum === 1) {
       return (
         <View>
 
@@ -297,22 +317,31 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir',
     top: -20,
   },
+  subtitle: {
+    top: -20,
+    textAlign: 'center',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'rgb(165,165,165)',
+    fontSize: 17,
+    fontFamily: 'Avenir',
+  },
   intro: {
     // how to move this to the top?
     alignSelf: 'center',
     color: '#FF7300',
-    // backgroundColor: 'rgba(180,180,180,0.5)',
-    fontSize: 39,
+    fontSize: 36,
     paddingTop: 5,
     paddingLeft: 5,
     paddingRight: 5,
     justifyContent: 'flex-start',
-    top: -80,
+    top: -50,
   },
   title: {
     color: 'orange',
     fontSize: 25,
-    shadowColor: 'black',
+    //shadowColor: 'black',
     justifyContent: 'flex-start',
   },
   break: {
