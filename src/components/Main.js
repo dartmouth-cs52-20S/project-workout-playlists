@@ -24,6 +24,7 @@ class Main extends Component {
     if (this.props.all.length === 0) {
       return (
         <ActivityIndicator
+          color="#FF8F33"
           style={{ position: 'absolute', top: 350, left: 180 }}
           size="large"
         />
