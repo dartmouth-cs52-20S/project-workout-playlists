@@ -33,6 +33,7 @@ function MyStack() {
         <Tab.Screen name="Main"
           component={Main}
           options={{
+            headerLeft: null,
             headerRight: () => (
               <Button
                 style={styles.button}
@@ -49,7 +50,12 @@ function MyStack() {
             ),
           }}
         />
-        <Tab.Screen name="New User Flow" component={NewUserFlow} />
+        <Tab.Screen name="New User Flow"
+          options={{
+            headerLeft: null,
+          }}
+          component={NewUserFlow}
+        />
         <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
         <Tab.Screen name="User Profile" component={UserProfile} />
         <Tab.Screen name="Workout Selector" component={NewPlaylistFlow} />
