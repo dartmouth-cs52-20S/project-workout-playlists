@@ -782,6 +782,7 @@ class NewPlaylistFlow extends Component {
           <Text style={styles.questions}>
             Today, Im feeling like...
           </Text>
+          <View style={styles.inputContainer}>
           <SearchableDropdown
             multi
             selectedItems={this.state.selectedItems}
@@ -790,7 +791,7 @@ class NewPlaylistFlow extends Component {
               its.push(item);
               this.setState({ selectedItems: its });
             }}
-            containerStyle={{ padding: 5, top: -80 }}
+            containerStyle={{ padding: 5, top: -80}}
             onRemoveItem={(item, index) => {
               const its = this.state.selectedItems.filter((sitem) => sitem.id !== item.id);
               this.setState({ selectedItems: its });
@@ -823,6 +824,7 @@ class NewPlaylistFlow extends Component {
             }
             listProps={{ nestedScrollEnabled: true }}
           />
+          </View>
           <Text style={{ textAlign: 'center' }}>
             <Text style={styles.subtitle}>
               (pick up to 5)
@@ -870,6 +872,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  inputContainer: {
+    //this won't work i want to scream
+    width: 400,
+    height: 300,
   },
   image: {
     width: 400,

@@ -31,8 +31,8 @@ class Main extends Component {
             <View style={styles.textcontainer}>
               <Text style={styles.text}>Your recent playlists:</Text>
             </View>
-            <View>
-              <Text>Looks like you haven't created any playlists yet! Click new playlists to get started.</Text>
+            <View style={styles.warningContainer}>
+              <Text style={styles.warningFont}>Looks like you haven't created any playlists yet! Click the new playlist button to get started.</Text>
             </View>
           </View>
           <View style={styles.buttons}>
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     // position: 'absolute',
-    bottom: 35,
+    bottom: -30,
     shadowColor: 'grey',
   },
   // modal: {
@@ -187,6 +187,24 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingRight: 65,
     top: -90,
+  },
+  warningContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    borderRadius: 8,
+    borderWidth: 3,
+    borderColor: 'rgb(255,115,0)',
+    top: -70,
+    display: 'flex',
+    height: 100,
+    width: 300,
+    backgroundColor: 'rgb(245,245,245)',
+  },
+  warningFont: {
+    alignSelf: 'center',
+    color: 'rgb(255,115,0)',
+    fontSize: 20,
+    fontFamily: 'Avenir',
   },
 });
 
