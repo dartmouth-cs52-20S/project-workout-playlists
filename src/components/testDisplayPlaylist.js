@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 
 import {
-  fetchPlaylist, fetchPlayback, fetchUser, playMedia, pauseMedia, nextMedia,
+  fetchPlaylist, fetchPlayback, fetchUser, playMedia, pauseMedia, nextMedia, fetchPlaylists,
 } from '../actions/index';
 
 class testDisplayPlaylist extends Component {
@@ -27,6 +27,7 @@ class testDisplayPlaylist extends Component {
       if (typeof this.props.playlist.songs !== 'undefined') {
         this.setUris();
       }
+      this.props.fetchPlaylists(this.props.user.id);
     }
 
 
@@ -268,5 +269,5 @@ function mapStateToProps(reduxState) {
 }
 
 export default connect(mapStateToProps, {
-  fetchPlaylist, fetchPlayback, playMedia, pauseMedia, fetchUser, nextMedia,
+  fetchPlaylist, fetchPlayback, playMedia, pauseMedia, fetchUser, nextMedia, fetchPlaylists,
 })(testDisplayPlaylist);

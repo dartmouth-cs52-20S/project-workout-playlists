@@ -12,7 +12,7 @@ import { fetchPlaylists, fetchPlaylist } from '../actions/index';
 
 class Main extends Component {
   componentDidMount() {
-    this.props.fetchPlaylists();
+    this.props.fetchPlaylists(this.props.user.id);
   }
 
   goToPlaylist = (ID) => {
@@ -23,11 +23,27 @@ class Main extends Component {
   render() {
     if (this.props.all.length === 0) {
       return (
-        <ActivityIndicator
-          color="#FF8F33"
-          style={{ position: 'absolute', top: 350, left: 180 }}
-          size="large"
-        />
+        <View style={styles.container}>
+          <View style={styles.logocontainer}>
+            <Image style={styles.logo} source={require('../imgs/logo3.png')} />
+          </View>
+          <View style={styles.modal}>
+            <View style={styles.textcontainer}>
+              <Text style={styles.text}>Your recent playlists:</Text>
+            </View>
+            <View>
+              <Text>Looks like you haven't created any playlists yet! Click new playlists to get started.</Text>
+            </View>
+          </View>
+          <View style={styles.buttons}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Workout Selector')} style={styles.button}>
+              <Text style={styles.btnText}>New Playlist</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('My Playlists')} style={styles.button}>
+              <Text style={styles.btnText}>My Playlists</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       );
     } else {
       return (
@@ -177,6 +193,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(reduxState) {
   return {
     all: reduxState.playlist.all,
+    user: reduxState.auth.user,
   };
 }
 
