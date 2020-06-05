@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const ROOT_URL = 'http://localhost:9090/api';
-const ROOT_URL = 'https://workout-playlists-final-proj.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'https://workout-playlists-final-proj.herokuapp.com/api';
 
 export const ActionTypes = {
   AUTH_USER: 'AUTH_USER',
@@ -99,10 +99,10 @@ export function fetchPlaylist(ID) {
   };
 }
 
-export function fetchPlaylists() {
-  console.log('into fetch playlists FE');
+export function fetchPlaylists(id) {
+  console.log('into fetch playlists FE', id);
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/playlist`)
+    axios.get(`${ROOT_URL}/playlists/${id}`)
       .then((response) => {
         dispatch({ type: ActionTypes.FETCH_PLAYLISTS, payload: response.data });
       })
