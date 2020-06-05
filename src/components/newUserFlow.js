@@ -306,7 +306,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // flexDirection: 'column',
   },
   label: {
     display: 'flex',
@@ -328,7 +327,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir',
   },
   intro: {
-    // how to move this to the top?
     alignSelf: 'center',
     color: '#FF7300',
     fontSize: 36,
@@ -341,7 +339,6 @@ const styles = StyleSheet.create({
   title: {
     color: 'orange',
     fontSize: 25,
-    //shadowColor: 'black',
     justifyContent: 'flex-start',
   },
   break: {
@@ -357,8 +354,7 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 50,
   },
-  button:
-  {
+  button: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -371,8 +367,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     padding: 3,
   },
-  buttonTxt:
-  {
+  buttonTxt: {
     color: 'white',
     fontSize: 20,
     fontFamily: 'Avenir',
