@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, HeaderBackButton } from '@react-navigation/stack';
 import { Button } from 'react-native-elements';
 import {
   StyleSheet,
@@ -56,6 +56,7 @@ function MyStack() {
         <Tab.Screen name="Display"
           component={testDisplayPlaylist}
           options={{
+            headerLeft: () => (<HeaderBackButton title="Main" backTitleVisible onPress={() => RootNavigation.navigate('Main')} />),
             headerRight: () => (
               <Button
                 style={styles.button}

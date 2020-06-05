@@ -76,6 +76,7 @@ class signUp extends Component {
           />
           {this.state.visible && (
           <ActivityIndicator
+            color="#FF8F33"
             style={{ position: 'absolute', top: 350, left: 180 }}
             size="large"
           />

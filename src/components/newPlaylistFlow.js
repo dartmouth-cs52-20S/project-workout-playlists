@@ -3,7 +3,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, TextInput,
+  StyleSheet, View,
   Text, TouchableOpacity,
 } from 'react-native';
 import CircularSlider from 'rn-circular-slider';
@@ -653,7 +653,7 @@ class NewPlaylistFlow extends Component {
           </Text>
           <DropDownPicker
             items={[
-              { label: 'Running', value: 'Run'},
+              { label: 'Running', value: 'Run' },
               { label: 'Walking', value: 'Walk' },
               { label: 'Biking', value: 'Bike Ride' },
               { label: 'Yoga', value: 'Yoga' },
@@ -662,12 +662,12 @@ class NewPlaylistFlow extends Component {
               { label: 'Hiking', value: 'Hike' },
             ]}
             placeholder="What kind of workout?"
-            containerStyle={{ height: 270,/* backgroundColor: 'orange',*/ top: -40}}
-            style={{position: 'absolute', backgroundColor: 'orange'}}
-            itemStyle={{ bottomBorderColor: 'green'}}
-            //itemStyle={{display: 'flex', top: -80}}
-            //itemStyle={{backgroundColor: 'green', top: -50}}
-            dropDownStyle={{/*backgroundColor: 'pink',*/ height: 240}}
+            containerStyle={{ height: 270, /* backgroundColor: 'orange', */ top: -40 }}
+            style={{ position: 'absolute', backgroundColor: 'orange' }}
+            itemStyle={{ bottomBorderColor: 'green' }}
+            // itemStyle={{display: 'flex', top: -80}}
+            // itemStyle={{backgroundColor: 'green', top: -50}}
+            dropDownStyle={{ /* backgroundColor: 'pink', */ height: 240 }}
             dropDownMaxHeight={240}
             value={this.state.type}
             onChangeItem={(item) => this.setState({ type: item.value })}
@@ -678,14 +678,14 @@ class NewPlaylistFlow extends Component {
       return (
         <View>
           <Text style={styles.questions}>
-            Planned Workout Duration: 
+            Planned Workout Duration:
           </Text>
           <Text style={styles.questions}>
-          <Text style={styles.subtitle}>
-            In minutes
+            <Text style={styles.subtitle}>
+              In minutes
+            </Text>
           </Text>
-          </Text>
-          <View style={{alignItems: 'center', paddingRight: 10, top: -20}}>
+          <View style={{ alignItems: 'center', paddingRight: 10, top: -20 }}>
             <NumericInput
             // value={this.state.value}
               value={this.state.length}
@@ -714,10 +714,10 @@ class NewPlaylistFlow extends Component {
           <Text style={styles.questions}>
             What kind of mood are you in?
           </Text>
-          <RadioGroup 
-            RadioGroupStyle={{top: -35}}
+          <RadioGroup
+            RadioGroupStyle={{ top: -35 }}
             getChecked={this.getChecked}
-            >
+          >
             <Radio label="Happy" value="Happy" />
             <Radio label="Sad" value="Sad" />
             <Radio label="Angry" value="Angry" />
@@ -734,9 +734,9 @@ class NewPlaylistFlow extends Component {
             My ideal BPM today is...
           </Text>
           <Text style={styles.questions}>
-          <Text style={styles.subtitle}>
-            (Normal resting heartbeat is 60-90 BPM, runners typically train in the 100-160 BPM range)
-          </Text>
+            <Text style={styles.subtitle}>
+              (Normal resting heartbeat is 60-90 BPM, runners typically train in the 100-160 BPM range)
+            </Text>
           </Text>
           <View style={styles.circle}>
             <CircularSlider
@@ -767,9 +767,10 @@ class NewPlaylistFlow extends Component {
           <Text style={styles.questions}>
             I want the most energy...
           </Text>
-          <RadioGroup 
-          RadioGroupStyle={{top: -35}}
-          getChecked={this.getChecked}>
+          <RadioGroup
+            RadioGroupStyle={{ top: -35 }}
+            getChecked={this.getChecked}
+          >
             <Radio label="At the beginning" value={-1} />
             <Radio label="THE WHOLE TIME" value={0} />
             <Radio label="At the end" value={1} />
@@ -823,10 +824,10 @@ class NewPlaylistFlow extends Component {
             }
             listProps={{ nestedScrollEnabled: true }}
           />
-          <Text style={{textAlign: 'center'}}>
-          <Text style={styles.subtitle}>
-            (pick up to 5)
-          </Text>
+          <Text style={{ textAlign: 'center' }}>
+            <Text style={styles.subtitle}>
+              (pick up to 5)
+            </Text>
           </Text>
         </View>
       );
@@ -945,7 +946,7 @@ const styles = StyleSheet.create({
   circle: {
     justifyContent: 'center',
     alignItems: 'center',
-    top: -30
+    top: -30,
   },
   innercircle: {
     justifyContent: 'center',
