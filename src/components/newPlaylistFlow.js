@@ -631,7 +631,6 @@ class NewPlaylistFlow extends Component {
       }
     } else {
       // navigate to the generated playlist instead of main
-      console.log('making playlist and setting done to true');
       this.makePlaylist();
       this.setState({ done: true });
       this.state.currentQ = 0;
@@ -809,7 +808,7 @@ class NewPlaylistFlow extends Component {
             itemsContainerStyle={{ maxHeight: 140 }}
             items={items}
             chip
-            resetValue={false}
+            resetValue
             textInputProps={
               {
                 placeholder: 'Search for a genre',
