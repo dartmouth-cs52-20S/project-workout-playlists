@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Text, TouchableOpacity,
+  StyleSheet, View, Text,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { AirbnbRating } from 'react-native-ratings';
-import { savePlaylist, fetchUser } from '../actions';
+import { fetchUser } from '../actions';
 
 class Feedback extends Component {
   constructor(props) {
@@ -15,18 +15,12 @@ class Feedback extends Component {
     };
   }
 
-  handleSave = () => {
-    // eslint-disable-next-line react/destructuring-assignment
-    this.props.savePlaylist(this.props.user.accessToken, this.props.user.spotifyID, this.props.playlist);
-  }
-
-
   render() {
     // eslint-disable-next-line react/destructuring-assignment
     console.log(this.state.rating);
     return (
       <View style={styles.container}>
-        <Text style={styles.titleText}>Rate this Playlist</Text>
+        <Text style={styles.titleText}>Rate this Playlist:</Text>
         <AirbnbRating
           count={5}
           reviews={['Terrible', 'Bad', 'OK', 'Good', 'Great!']}
@@ -36,23 +30,7 @@ class Feedback extends Component {
           reviewColor="rgb(255,115,0)"
           onFinishRating={(stars) => this.setState({ rating: stars })}
         />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={this.handleSave}
-        >
-          <Text style={{
-            color: 'white', fontSize: 15, fontFamily: 'Avenir', fontWeight: 'bold', padding: 5,
-          }}
-          >
-            Save playlist to my Spotify account
-          </Text>
-        </TouchableOpacity>
-
-
       </View>
-    //   <View style={styles.container}>
-    //     <Text>My Playlists</Text>
-    //   </View>
     );
   }
 }
@@ -82,11 +60,9 @@ const styles = StyleSheet.create({
 function mapStateToProps(reduxState) {
   return {
     user: reduxState.auth.user,
-    playlist: reduxState.playlist.playlist,
-    playback: reduxState.player.playback,
   };
 }
 
 export default connect(mapStateToProps, {
-  savePlaylist, fetchUser,
+  fetchUser,
 })(Feedback);
