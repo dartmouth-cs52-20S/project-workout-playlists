@@ -61,12 +61,12 @@ class NewUserFlow extends Component {
     const questionNum = this.state.currentQ;
     if (questionNum === 0) {
       return (
-        <View>
+        <View style={styles.first}>
           <Text style={styles.intro}>
             Let's get to know you...
           </Text>
           <Text style={styles.subtitle}>
-            Time to enter some user preferences! Don't worry, these can all be changed in settings later. 
+            Time to enter some user preferences! Don't worry, these can all be changed in settings later.
           </Text>
           <TouchableOpacity
             style={styles.button}
@@ -78,8 +78,7 @@ class NewUserFlow extends Component {
           </TouchableOpacity>
         </View>
       );
-    }
-    else if (questionNum === 1) {
+    } else if (questionNum === 1) {
       return (
         <View>
 
@@ -305,6 +304,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  first: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   label: {

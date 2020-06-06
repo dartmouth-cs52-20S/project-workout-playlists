@@ -22,29 +22,39 @@ class Main extends Component {
 
   render() {
     if (this.props.all.length === 0) {
-      return (
-        <View style={styles.container}>
-          <View style={styles.logocontainer}>
-            <Image style={styles.logo} source={require('../imgs/logo3.png')} />
-          </View>
-          <View style={styles.modal}>
-            <View style={styles.textcontainer}>
-              <Text style={styles.text}>Your recent playlists:</Text>
+      if (!(this.props.none)) {
+        return (
+          <View style={styles.container}>
+            <View style={styles.logocontainer}>
+              <Image style={styles.logo} source={require('../imgs/logo3.png')} />
             </View>
-            <View style={styles.warningContainer}>
-              <Text style={styles.warningFont}>Looks like you haven't created any playlists yet! Click the new playlist button to get started.</Text>
+            <View style={styles.modal}>
+              <View style={styles.textcontainer}>
+                <Text style={styles.text}>Your recent playlists:</Text>
+              </View>
+              <View style={styles.warningContainer}>
+                <Text style={styles.warningFont}>Looks like you haven't created any playlists yet! Click the new playlist button to get started.</Text>
+              </View>
+            </View>
+            <View style={styles.buttons}>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('Workout Selector')} style={styles.button}>
+                <Text style={styles.btnText}>New Playlist</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('My Playlists')} style={styles.button}>
+                <Text style={styles.btnText}>My Playlists</Text>
+              </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.buttons}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Workout Selector')} style={styles.button}>
-              <Text style={styles.btnText}>New Playlist</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('My Playlists')} style={styles.button}>
-              <Text style={styles.btnText}>My Playlists</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      );
+        );
+      } else {
+        return (
+          <ActivityIndicator
+            color="#FF8F33"
+            style={{ position: 'absolute', top: 350, left: 180 }}
+            size="large"
+          />
+        );
+      }
     } else {
       return (
         <View style={styles.container}>
@@ -195,7 +205,6 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: 'rgb(255,115,0)',
     top: -70,
-    display: 'flex',
     height: 100,
     width: 300,
     backgroundColor: 'rgb(245,245,245)',
@@ -212,6 +221,7 @@ function mapStateToProps(reduxState) {
   return {
     all: reduxState.playlist.all,
     user: reduxState.auth.user,
+    none: reduxState.playlist.none,
   };
 }
 

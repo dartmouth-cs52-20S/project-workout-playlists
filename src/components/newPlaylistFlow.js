@@ -654,7 +654,7 @@ class NewPlaylistFlow extends Component {
             items={[
               { label: 'Running', value: 'Run' },
               { label: 'Walking', value: 'Walk' },
-              { label: 'Biking', value: 'Bike Ride' },
+              { label: 'Biking', value: 'Bike' },
               { label: 'Yoga', value: 'Yoga' },
               { label: 'Lifting', value: 'Lift' },
               { label: 'Swimming', value: 'Swim' },
@@ -783,34 +783,34 @@ class NewPlaylistFlow extends Component {
             Today, Im feeling like...
           </Text>
           <View style={styles.inputContainer}>
-          <SearchableDropdown
-            multi
-            selectedItems={this.state.selectedItems}
-            onItemSelect={(item) => {
-              const its = this.state.selectedItems;
-              its.push(item);
-              this.setState({ selectedItems: its });
-            }}
-            containerStyle={{ padding: 5, top: -80}}
-            onRemoveItem={(item, index) => {
-              const its = this.state.selectedItems.filter((sitem) => sitem.id !== item.id);
-              this.setState({ selectedItems: its });
-            }}
-            itemStyle={{
-              padding: 10,
-              marginTop: 2,
-              backgroundColor: '#ddd',
-              borderColor: '#bbb',
-              borderWidth: 1,
-              borderRadius: 5,
-            }}
-            style={styles.userInput}
-            itemTextStyle={{ color: '#222' }}
-            itemsContainerStyle={{ maxHeight: 140 }}
-            items={items}
-            chip
-            resetValue
-            textInputProps={
+            <SearchableDropdown
+              multi
+              selectedItems={this.state.selectedItems}
+              onItemSelect={(item) => {
+                const its = this.state.selectedItems;
+                its.push(item);
+                this.setState({ selectedItems: its });
+              }}
+              containerStyle={{ padding: 5, top: -80 }}
+              onRemoveItem={(item, index) => {
+                const its = this.state.selectedItems.filter((sitem) => sitem.id !== item.id);
+                this.setState({ selectedItems: its });
+              }}
+              itemStyle={{
+                padding: 10,
+                marginTop: 2,
+                backgroundColor: '#ddd',
+                borderColor: '#bbb',
+                borderWidth: 1,
+                borderRadius: 5,
+              }}
+              style={styles.userInput}
+              itemTextStyle={{ color: '#222' }}
+              itemsContainerStyle={{ maxHeight: 140 }}
+              items={items}
+              chip
+              resetValue
+              textInputProps={
               {
                 placeholder: 'Search for a genre',
                 underlineColor: 'transparent',
@@ -822,8 +822,8 @@ class NewPlaylistFlow extends Component {
                 },
               }
             }
-            listProps={{ nestedScrollEnabled: true }}
-          />
+              listProps={{ nestedScrollEnabled: true }}
+            />
           </View>
           <Text style={{ textAlign: 'center' }}>
             <Text style={styles.subtitle}>
@@ -874,7 +874,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   inputContainer: {
-    //this won't work i want to scream
+    // this won't work i want to scream
     width: 400,
     height: 300,
   },

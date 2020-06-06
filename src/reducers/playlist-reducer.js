@@ -4,6 +4,7 @@ const initialState = {
   playlist: '',
   all: [],
   error: '',
+  none: true,
 };
 
 const playlistReducer = (state = initialState, action) => {
@@ -14,7 +15,11 @@ const playlistReducer = (state = initialState, action) => {
       };
     case ActionTypes.FETCH_PLAYLISTS:
       return {
-        ...state, all: action.payload,
+        ...state, all: action.payload, none: false,
+      };
+    case ActionTypes.NONE_PLAYLIST:
+      return {
+        ...state, none: true,
       };
     case ActionTypes.FETCH_PLAYLIST_ERROR:
       return {
