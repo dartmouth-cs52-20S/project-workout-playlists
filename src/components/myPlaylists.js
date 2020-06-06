@@ -1,12 +1,13 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {
-  StyleSheet, Text, View, ScrollView, SafeAreaView, TouchableOpacity,
+  StyleSheet, Text, View, ScrollView, SafeAreaView, TouchableOpacity, Button,
 } from 'react-native';
 
 import { connect } from 'react-redux';
 
-import { fetchPlaylists, fetchPlaylist } from '../actions/index';
+import { fetchPlaylists, fetchPlaylist, deletePlaylist } from '../actions/index';
 
 
 class MyPlaylists extends Component {
@@ -27,9 +28,14 @@ class MyPlaylists extends Component {
   //   if (this.state.favorited === 1)
   // }
 
-  goToPlaylist = (ID) => {
-    this.props.fetchPlaylist(ID);
+  goToPlaylist = (id) => {
+    this.props.fetchPlaylist(id);
     this.props.navigation.navigate('Display');
+  }
+
+  onDelete = (id) => {
+    this.props.deletePlaylist(id);
+    this.props.fetchPlaylists(this.props.user.id);
   }
 
   render() {
@@ -53,6 +59,20 @@ class MyPlaylists extends Component {
                     {playlist.workoutType}
                     {playlist.createdAt}
                   </Text>
+                  <Button
+                    title="delete"
+                    onPress={() => {
+                      this.onDelete(playlist.id);
+                    }}
+                    style={styles.button}
+                    icon={(
+                      <Icon
+                        name="times"
+                        size={15}
+                        color="orange"
+                      />
+)}
+                  />
                 </TouchableOpacity>
               </View>
             ))}
@@ -97,4 +117,4 @@ function mapStateToProps(reduxState) {
   };
 }
 
-export default connect(mapStateToProps, { fetchPlaylists, fetchPlaylist })(MyPlaylists);
+export default connect(mapStateToProps, { fetchPlaylists, fetchPlaylist, deletePlaylist })(MyPlaylists);

@@ -87,9 +87,21 @@ export function savePlaylist(accessToken, spotifyID, playlist) {
   };
 }
 
-export function fetchPlaylist(ID) {
+export function fetchPlaylist(id) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/playlist/${ID}/`)
+    axios.get(`${ROOT_URL}/playlist/${id}/`)
+      .then((response) => {
+        dispatch({ type: ActionTypes.FETCH_PLAYLIST, payload: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function deletePlaylist(id) {
+  return (dispatch) => {
+    axios.delete(`${ROOT_URL}/playlist/${id}/`)
       .then((response) => {
         dispatch({ type: ActionTypes.FETCH_PLAYLIST, payload: response.data });
       })

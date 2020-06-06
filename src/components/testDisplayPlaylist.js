@@ -8,61 +8,66 @@ import { connect } from 'react-redux';
 
 
 import {
-  fetchPlaylist, fetchPlayback, fetchUser, playMedia, pauseMedia, nextMedia, fetchPlaylists,
+  fetchPlaylist, fetchPlayback, fetchUser, savePlaylist, fetchPlaylists,
 } from '../actions/index';
 
 class testDisplayPlaylist extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      uris: '',
-      firstPlay: true,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   // this.state = {
+  //   //   uris: '',
+  //   //   firstPlay: true,
+  //   // };
+  // }
 
     componentDidMount = () => {
       if (this.props.user.accessToken) {
         this.props.fetchPlayback(this.props.user.accessToken);
       }
-      if (typeof this.props.playlist.songs !== 'undefined') {
-        this.setUris();
-      }
+      // if (typeof this.props.playlist.songs !== 'undefined') {
+      //   this.setUris();
+      // }
       this.props.fetchPlaylists(this.props.user.id);
     }
 
-
-    play = () => {
-      if (this.state.firstPlay) {
-        console.log(this.state.firstPlay);
-        this.props.playMedia(this.props.user.accessToken, { uris: this.state.uris });
-        this.setState({ firstPlay: false });
-      } else {
-        this.props.playMedia(this.props.user.accessToken);
-      }
+    handleSave = () => {
+      // eslint-disable-next-line react/destructuring-assignment
+      this.props.savePlaylist(this.props.user.accessToken, this.props.user.spotifyID, this.props.playlist);
     }
 
-    pause = () => {
-      this.props.pauseMedia(this.props.user.accessToken);
-    }
 
-    next = () => {
-      this.props.nextMedia(this.props.user.accessToken);
-    }
+    // play = () => {
+    //   if (this.state.firstPlay) {
+    //     console.log(this.state.firstPlay);
+    //     this.props.playMedia(this.props.user.accessToken, { uris: this.state.uris });
+    //     this.setState({ firstPlay: false });
+    //   } else {
+    //     this.props.playMedia(this.props.user.accessToken);
+    //   }
+    // }
 
-    setUris = () => {
-      this.setState({ uris: this.getTrackUris() });
-    }
+    // pause = () => {
+    //   this.props.pauseMedia(this.props.user.accessToken);
+    // }
 
-    getTrackUris = () => {
-      const uris = [];
+    // next = () => {
+    //   this.props.nextMedia(this.props.user.accessToken);
+    // }
 
-      // eslint-disable-next-line array-callback-return
-      this.props.playlist.songs.map((song) => {
-        uris.push(song.uri);
-      });
+    // setUris = () => {
+    //   this.setState({ uris: this.getTrackUris() });
+    // }
 
-      return uris;
-    }
+    // getTrackUris = () => {
+    //   const uris = [];
+
+    //   // eslint-disable-next-line array-callback-return
+    //   this.props.playlist.songs.map((song) => {
+    //     uris.push(song.uri);
+    //   });
+
+    //   return uris;
+    // }
 
 
     render() {
@@ -114,26 +119,9 @@ class testDisplayPlaylist extends Component {
             >
               <TouchableOpacity
                 style={styles.button}
-                onPress={this.play}
+                onPress={this.handleSave}
               >
-                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>play</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={this.pause}
-              >
-                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>pause</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={this.next}
-              >
-                <Text style={{
-                  color: 'white', fontSize: 17, fontWeight: 'bold',
-                }}
-                >
-                  next
-                </Text>
+                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>Save to Spotify</Text>
               </TouchableOpacity>
             </View>
           </SafeAreaView>
@@ -164,26 +152,9 @@ class testDisplayPlaylist extends Component {
             >
               <TouchableOpacity
                 style={styles.button}
-                onPress={this.play}
+                onPress={this.handleSave}
               >
-                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>play</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={this.pause}
-              >
-                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>pause</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={this.next}
-              >
-                <Text style={{
-                  color: 'white', fontSize: 17, fontWeight: 'bold',
-                }}
-                >
-                  next
-                </Text>
+                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>Save to Spotify</Text>
               </TouchableOpacity>
             </View>
           </SafeAreaView>
@@ -269,5 +240,5 @@ function mapStateToProps(reduxState) {
 }
 
 export default connect(mapStateToProps, {
-  fetchPlaylist, fetchPlayback, playMedia, pauseMedia, fetchUser, nextMedia, fetchPlaylists,
+  fetchPlaylist, fetchPlayback, savePlaylist, fetchUser, fetchPlaylists,
 })(testDisplayPlaylist);
