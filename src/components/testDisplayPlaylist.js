@@ -6,9 +6,10 @@ import {
 
 import { connect } from 'react-redux';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {
-  fetchPlaylist, fetchPlayback, fetchUser, savePlaylist, fetchPlaylists,
+  fetchPlaylist, fetchPlayback, fetchUser, savePlaylist, fetchPlaylists, deletePlaylist,
 } from '../actions/index';
 
 class testDisplayPlaylist extends Component {
@@ -35,6 +36,11 @@ class testDisplayPlaylist extends Component {
       this.props.savePlaylist(this.props.user.accessToken, this.props.user.spotifyID, this.props.playlist);
     }
 
+    onDelete = (id) => {
+      this.props.deletePlaylist(id);
+      this.props.fetchPlaylists(this.props.user.id);
+      this.props.navigation.navigate('Main');
+    }
 
     // play = () => {
     //   if (this.state.firstPlay) {
@@ -123,6 +129,14 @@ class testDisplayPlaylist extends Component {
               >
                 <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>Save to Spotify</Text>
               </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  this.onDelete(this.props.playlist.id);
+                }}
+                style={styles.button}
+              >
+                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>Delete playlist</Text>
+              </TouchableOpacity>
             </View>
           </SafeAreaView>
         );
@@ -155,6 +169,14 @@ class testDisplayPlaylist extends Component {
                 onPress={this.handleSave}
               >
                 <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>Save to Spotify</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  this.onDelete(this.props.playlist.id);
+                }}
+                style={styles.button}
+              >
+                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>Delete playlist</Text>
               </TouchableOpacity>
             </View>
           </SafeAreaView>
@@ -240,5 +262,5 @@ function mapStateToProps(reduxState) {
 }
 
 export default connect(mapStateToProps, {
-  fetchPlaylist, fetchPlayback, savePlaylist, fetchUser, fetchPlaylists,
+  fetchPlaylist, fetchPlayback, savePlaylist, fetchUser, fetchPlaylists, deletePlaylist,
 })(testDisplayPlaylist);

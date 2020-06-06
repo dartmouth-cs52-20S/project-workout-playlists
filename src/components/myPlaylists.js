@@ -1,8 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {
-  StyleSheet, Text, View, ScrollView, SafeAreaView, TouchableOpacity, Button,
+  StyleSheet, Text, View, ScrollView, SafeAreaView, TouchableOpacity,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -33,10 +32,6 @@ class MyPlaylists extends Component {
     this.props.navigation.navigate('Display');
   }
 
-  onDelete = (id) => {
-    this.props.deletePlaylist(id);
-    this.props.fetchPlaylists(this.props.user.id);
-  }
 
   render() {
     return (
@@ -59,20 +54,6 @@ class MyPlaylists extends Component {
                     {playlist.workoutType}
                     {playlist.createdAt}
                   </Text>
-                  <Button
-                    title="delete"
-                    onPress={() => {
-                      this.onDelete(playlist.id);
-                    }}
-                    style={styles.button}
-                    icon={(
-                      <Icon
-                        name="times"
-                        size={15}
-                        color="orange"
-                      />
-)}
-                  />
                 </TouchableOpacity>
               </View>
             ))}

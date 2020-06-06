@@ -12,6 +12,7 @@ export const ActionTypes = {
   FETCH_PLAYLIST_ERROR: 'FETCH_PLAYLIST_ERROR',
   FETCH_PLAYLISTS: 'FETCH_PLAYLISTS',
   FETCH_PLAYBACK: 'FETCH_PLAYBACK',
+  NONE_PLAYLIST: 'NONE_PLAYLIST',
 };
 
 export function authError(error) {
@@ -116,7 +117,11 @@ export function fetchPlaylists(id) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/playlists/${id}`)
       .then((response) => {
-        dispatch({ type: ActionTypes.FETCH_PLAYLISTS, payload: response.data });
+        if (response.data.length !== 0) {
+          dispatch({ type: ActionTypes.FETCH_PLAYLISTS, payload: response.data });
+        } else {
+          dispatch({ type: ActionTypes.NONE_PLAYLIST, payload: true });
+        }
       })
       .catch((error) => {
         console.log(error);
