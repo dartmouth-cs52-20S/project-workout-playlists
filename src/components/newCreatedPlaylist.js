@@ -24,9 +24,6 @@ class newCreatedPlaylist extends Component {
       if (this.props.user.accessToken) {
         this.props.fetchPlayback(this.props.user.accessToken);
       }
-      // if (typeof this.props.playlist.songs !== 'undefined') {
-      //   this.setUris();
-      // }
       this.props.fetchPlaylists(this.props.user.id);
     }
 
@@ -41,38 +38,6 @@ class newCreatedPlaylist extends Component {
       this.props.navigation.navigate('Main');
     }
 
-    // play = () => {
-    //   if (this.state.firstPlay) {
-    //     console.log(this.state.firstPlay);
-    //     this.props.playMedia(this.props.user.accessToken, { uris: this.state.uris });
-    //     this.setState({ firstPlay: false });
-    //   } else {
-    //     this.props.playMedia(this.props.user.accessToken);
-    //   }
-    // }
-
-    // pause = () => {
-    //   this.props.pauseMedia(this.props.user.accessToken);
-    // }
-
-    // next = () => {
-    //   this.props.nextMedia(this.props.user.accessToken);
-    // }
-
-    // setUris = () => {
-    //   this.setState({ uris: this.getTrackUris() });
-    // }
-
-    // getTrackUris = () => {
-    //   const uris = [];
-
-    //   // eslint-disable-next-line array-callback-return
-    //   this.props.playlist.songs.map((song) => {
-    //     uris.push(song.uri);
-    //   });
-
-    //   return uris;
-    // }
 
     editTitle = (event) => {
       this.setState({ isEditing: true });
@@ -97,9 +62,6 @@ class newCreatedPlaylist extends Component {
                 placeholder={this.props.playlist.playlistName}
               />
               <TouchableOpacity onPress={() => { this.notEditing(); }} style={styles.button}>
-                {/* onPress={() => {
-                  this.onDelete(this.props.playlist.id);
-                }} */}
                 <Text style={{ color: 'white', fontWeight: 'bold' }}>SAVE</Text>
               </TouchableOpacity>
             </View>
@@ -126,24 +88,7 @@ class newCreatedPlaylist extends Component {
           </View>
         );
       }
-      // let editInputOrButton = null;
-      // if (this.state.isEditing) {
-      //   editInputOrButton = (
-      //     <div className="editNote">
-      //       <p className="editLabels">New Title: </p>
-      //       <input type="text" value={this.state.newNoteTitle} onChange={this.editNoteTitle} />
-      //       <p className="editLabels">New Text:</p>
-      //       <TextareaAutosize value={this.state.newNoteText} onChange={this.editNoteText} />
-      //       <button type="button" onClick={this.saveNote}>Save New Note</button>
-      //     </div>
-      //   );
-      // } else {
-      //   editInputOrButton = <button type="button" onClick={this.editNoteTitle}> Edit Title</button>;
-      //   editInputOrButton = <button type="button" onClick={this.editNoteText}>Edit Note</button>;
-      // }
 
-
-      console.log(this.props.error);
       if (typeof this.props.playlist.songs === 'undefined') {
         if (this.props.error) {
           return (
@@ -168,13 +113,11 @@ class newCreatedPlaylist extends Component {
               Either hustle through your workout or make a new playlist and be a little less selective about your music tastes.
             </Text>
 
-            {/* <Text style={styles.titleText}>YOUR TEMPO PLAYLIST</Text> */}
             {editInputOrButton}
 
             <Text
               style={styles.noteText}
             >
-              {/* {`${this.props.playlist.workoutType} for ${this.props.playlist.workoutLength} minutes with approximately ${this.props.playlist.averageTempo} BPM.`} */}
               {` A ${this.props.playlist.workoutLength} minute ${this.props.playlist.workoutType} workout at ~ ${this.props.playlist.averageTempo} BPM.`}
             </Text>
 

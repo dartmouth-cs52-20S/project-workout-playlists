@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import {
   StyleSheet, View, Text,
@@ -17,7 +18,6 @@ class Feedback extends Component {
 
   render() {
     // eslint-disable-next-line react/destructuring-assignment
-    console.log(this.state.rating);
     return (
       <View style={styles.container}>
         <Text style={styles.titleText}>Rate this Playlist:</Text>

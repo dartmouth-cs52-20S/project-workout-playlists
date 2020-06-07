@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
@@ -126,7 +127,6 @@ class NewUserFlow extends Component {
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
-            // style={styles.slider}
             onValueChange={(question2) => this.setState({ question2 })}
           />
 
@@ -159,7 +159,6 @@ class NewUserFlow extends Component {
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
-            // style={styles.slider}
             onValueChange={(question3) => this.setState({ question3 })}
           />
           <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -192,7 +191,6 @@ class NewUserFlow extends Component {
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
-            // style={styles.slider}
             onValueChange={(question4) => this.setState({ question4 })}
           />
           <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -225,7 +223,6 @@ class NewUserFlow extends Component {
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
-            // style={styles.slider}
             onValueChange={(question5) => this.setState({ question5 })}
           />
           <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -258,8 +255,6 @@ class NewUserFlow extends Component {
             minimumTrackTintColor="#FF7300"
             maximumTrackTintColor="#FFFFFF"
             thumbTintColor="orange"
-            // style={styles.slider}
-            // value={this.state.question1}
             onValueChange={(question6) => this.setState({ question6 })}
           />
           <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>

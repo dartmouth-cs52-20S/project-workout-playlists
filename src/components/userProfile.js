@@ -25,12 +25,9 @@ class UserProfile extends Component {
 
   componentDidMount = () => {
     this.props.fetchUser(this.props.user.spotifyID);
-    console.log('mounted');
   }
 
   handleClick = (event) => {
-    console.log('updating preferences in profile for');
-    console.log(this.props.user.spotifyID);
     this.props.updateUser(
       {
         spotifyID: this.props.user.spotifyID,
@@ -47,12 +44,6 @@ class UserProfile extends Component {
     // this.props.userExists();
   }
 
-  // aborted genre because this depends on playlists and it will build up to be too much!
-  // genreChecker = (props) = {
-  //   if (question7 === 0) {
-  //     return <Text>You don't have any </Text>
-  //   }
-  // }
   render() {
     return (
       <View style={styles.container}>
@@ -66,7 +57,6 @@ class UserProfile extends Component {
           </Text>
 
 
-          {/* THIS IS A TEMPORARY SPACER */}
           <Text>
             {' '}
           </Text>
@@ -185,17 +175,6 @@ class UserProfile extends Component {
             />
           </View>
 
-          {/* aborted genre question, here just in case */}
-          {/* <View>
-          <Text>
-            Recently used genres:
-            {' '}
-            {this.props.user.genres}
-          </Text>
-        </View> */}
-
-
-          {/* THIS IS A TEMPORARY SPACER */}
           <Text>
             {' '}
           </Text>

@@ -6,15 +6,10 @@ import { connect } from 'react-redux';
 
 import {
   StyleSheet, View, Text, TouchableOpacity, Image, ActivityIndicator,
-  // TouchableOpacity,
 } from 'react-native';
 
 import { WebView } from 'react-native-webview';
 import { authenticate, fetchUser } from '../actions';
-// import spotifyCredentials from '../secrets';
-
-// const { clientId } = spotifyCredentials; // Your client id
-// const { redirectUri } = spotifyCredentials; // Your redirect uri
 
 
 class signUp extends Component {
@@ -30,7 +25,6 @@ class signUp extends Component {
   }
 
   onLogin = () => {
-    console.log('logging in');
     this.setState({ login: true });
   }
 

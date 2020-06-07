@@ -547,7 +547,6 @@ class NewPlaylistFlow extends Component {
 
   componentDidMount = () => {
     this.props.fetchUser(this.props.user.spotifyID);
-    console.log('mounted in new playlist flow');
   }
 
   objArrToString = (arr) => {
@@ -561,16 +560,7 @@ class NewPlaylistFlow extends Component {
     this.setState({ playlistName: tempo.concat(this.state.type) });
   }
 
-  // string concatenation
-  //   var totn_string = 'Tech';
-
-  // console.log(totn_string.concat('On','The','Net'));
-
-  // console.log(totn_string);
-
   makePlaylist = () => {
-    console.log(this.state.playlistName);
-    console.log('calling make playlist');
     const playlist = {
       user: this.props.user,
       workoutType: this.state.type,
@@ -582,9 +572,7 @@ class NewPlaylistFlow extends Component {
       workoutGenre: this.state.selectedItemsString,
       playlistName: this.state.playlistName,
     };
-    console.log('playlist in FE: ', playlist.workoutType);
     this.props.createPlaylist(playlist);
-    // .then(this.props.navigation.navigate('Display'));
   }
 
   onPlaylistNameChange = (event) => {
@@ -595,10 +583,8 @@ class NewPlaylistFlow extends Component {
     // value = our checked value
     if (this.state.currentQ === 3) {
       this.setState({ mood: value });
-      // console.log(mood)
     } else {
       this.setState({ energy: value });
-      // console.log(energy)
     }
   }
 
@@ -668,12 +654,9 @@ class NewPlaylistFlow extends Component {
               { label: 'Swimming', value: 'Swim' },
               { label: 'Hiking', value: 'Hike' },
             ]}
-            // placeholder="What kind of workout?"
             containerStyle={{ height: 270, /* backgroundColor: 'orange', */ top: -40 }}
             style={{ position: 'absolute', backgroundColor: 'orange' }}
             itemStyle={{ bottomBorderColor: 'green' }}
-            // itemStyle={{display: 'flex', top: -80}}
-            // itemStyle={{backgroundColor: 'green', top: -50}}
             dropDownStyle={{ /* backgroundColor: 'pink', */ height: 240 }}
             dropDownMaxHeight={240}
             value={this.state.type}
@@ -694,10 +677,8 @@ class NewPlaylistFlow extends Component {
           </Text>
           <View style={{ alignItems: 'center', paddingRight: 10, top: -20 }}>
             <NumericInput
-            // value={this.state.value}
               value={this.state.length}
               onChange={(value) => this.setState({ length: value })}
-            // onChangeText={(text) => this.setState({ length: text })}
               onLimitReached={(isMax, msg) => console.log(isMax, msg)}
               totalWidth={240}
               totalHeight={50}
@@ -712,7 +693,6 @@ class NewPlaylistFlow extends Component {
               leftButtonBackgroundColor="orange"
             />
           </View>
-          {/* <TextInput style={styles.input} placeholder="Minutes" placeholderTextColor="white" onChangeText={(text) => this.setState({ length: text })} value={this.state.length} /> */}
         </View>
       );
     } else if (questionNum === 3) {
@@ -846,18 +826,12 @@ class NewPlaylistFlow extends Component {
           <Text style={styles.questions}>
             Name this Playlist!
           </Text>
-          {/* <Text style={styles.questions}>
-            Playlist Name:
-            {' '}
-            {this.state.playlistName}
-          </Text> */}
           <TextInput
             style={{
               height: 40, borderColor: 'gray', borderWidth: 1, width: 400,
             }}
             onChangeText={(text) => this.setState({ playlistName: text })}
             placeholder="Playlist Name Here"
-            // value={this.state.playlistName}
           />
         </View>
       );
@@ -914,7 +888,7 @@ const styles = StyleSheet.create({
   button:
   {
     display: 'flex',
-    justifyContent: 'space-around', // this wont center the text?? :(
+    justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: 'rgb(255,115,0)',
     padding: 5,
@@ -922,8 +896,6 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     width: 320,
     height: 32,
-    // borderWidth: 2,
-    // borderColor: 'orange',
     zIndex: -1,
     top: 30,
   },
@@ -972,7 +944,6 @@ const styles = StyleSheet.create({
     color: 'rgb(185,185,185)',
     fontSize: 15,
     shadowColor: 'black',
-    // fontFamily: 'OpenSans-Regular',
   },
   buttonTxt:
   {
