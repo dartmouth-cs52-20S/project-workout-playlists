@@ -5,9 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator, HeaderBackButton } from '@react-navigation/stack';
 import { Button } from 'react-native-elements';
-import {
-  StyleSheet,
-} from 'react-native';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 // import StyleSheet from 'react-native';
 import Main from '../components/Main';
@@ -33,16 +31,18 @@ function MyStack() {
         <Tab.Screen name="Main"
           component={Main}
           options={{
+            headerTintColor: 'rgb(255,115,0)',
             headerLeft: null,
             headerRight: () => (
               <Button
-                style={styles.button}
+                type="clear"
+                style={{ backgroundColor: 'white', paddingRight: 10 }}
                 icon={(
                   <Icon
                     // style={styles.button}
                     name="user-circle"
-                    size={15}
-                    color="orange"
+                    size={25}
+                    color="rgb(255,115,0)"
                   />
               )}
                 onPress={() => RootNavigation.navigate('User Profile')}
@@ -52,31 +52,44 @@ function MyStack() {
         />
         <Tab.Screen name="New User Flow"
           options={{
+            headerTintColor: 'rgb(255,115,0)',
             headerLeft: null,
           }}
           component={NewUserFlow}
         />
-        <Tab.Screen name="New Created Playlist" component={selectedPlaylist} />
-        <Tab.Screen name="User Profile" component={UserProfile} />
+        <Tab.Screen name="New Created Playlist"
+          options={{ headerTintColor: 'rgb(255,115,0)' }}
+          component={selectedPlaylist}
+        />
+        <Tab.Screen name="User Profile"
+          component={UserProfile}
+          options={{
+            headerTintColor: 'rgb(255,115,0)',
+            headerLeft: () => (<HeaderBackButton tintColor="rgb(255,115,0)" title="Main" backTitleVisible onPress={() => RootNavigation.navigate('Main')} />),
+          }}
+        />
         <Tab.Screen name="Workout Selector"
           component={NewPlaylistFlow}
           options={{
+            headerTintColor: 'rgb(255,115,0)',
             headerLeft: () => (<HeaderBackButton tintColor="rgb(255,115,0)" title="Main" backTitleVisible onPress={() => RootNavigation.navigate('Main')} />),
           }}
         />
         <Tab.Screen name="Display New"
           component={NewCreatedPlaylist}
           options={{
+            headerTintColor: 'rgb(255,115,0)',
             headerLeft: () => (<HeaderBackButton tintColor="rgb(255,115,0)" title="Main" backTitleVisible onPress={() => RootNavigation.navigate('Main')} />),
             headerRight: () => (
               <Button
-                style={styles.button}
+                type="clear"
+                style={{ backgroundColor: 'white', paddingRight: 10 }}
                 icon={(
                   <Icon
                     // style={styles.button}
                     name="heart"
-                    size={15}
-                    color="orange"
+                    size={20}
+                    color="rgb(255,115,0)"
                   />
               )}
                 onPress={() => RootNavigation.navigate('Feedback Page')}
@@ -87,16 +100,18 @@ function MyStack() {
         <Tab.Screen name="Display Selected"
           component={selectedPlaylist}
           options={{
+            headerTintColor: 'rgb(255,115,0)',
             headerLeft: () => (<HeaderBackButton tintColor="rgb(255,115,0)" title="Main" backTitleVisible onPress={() => RootNavigation.navigate('My Playlists')} />),
             headerRight: () => (
               <Button
-                style={styles.button}
+                type="clear"
+                style={{ backgroundColor: 'white', paddingRight: 10 }}
                 icon={(
                   <Icon
                     // style={styles.button}
                     name="heart"
-                    size={15}
-                    color="orange"
+                    size={20}
+                    color="rgb(255,115,0)"
                   />
               )}
                 onPress={() => RootNavigation.navigate('Feedback Page')}
@@ -107,23 +122,25 @@ function MyStack() {
         <Tab.Screen name="My Playlists"
           component={MyPlaylists}
           options={{
+            headerTintColor: 'rgb(255,115,0)',
             headerLeft: () => (<HeaderBackButton tintColor="rgb(255,115,0)" title="Main" backTitleVisible onPress={() => RootNavigation.navigate('Main')} />),
           }}
         />
         <Tab.Screen name="Feedback Page"
           component={Feedback}
           options={{
-            // headerLeft: () => (<HeaderBackButton tintColor="rgb(255,115,0)" title="Main" backTitleVisible onPress={() => RootNavigation.navigate('Main')} />),
+            headerTintColor: 'rgb(255,115,0)',
             headerRight: () => (
               <Button
-                style={styles.button}
+                type="clear"
+                style={{ backgroundColor: 'white', paddingRight: 10 }}
                 transparent="true"
                 icon={(
                   <Icon
                     // style={styles.button}
                     name="home"
-                    size={15}
-                    color="orange"
+                    size={25}
+                    color="rgb(255,115,0)"
                   />
               )}
                 onPress={() => RootNavigation.navigate('Main')}
@@ -184,13 +201,6 @@ function MyStack() {
 //     }
 //   }
 // }
-
-const styles = StyleSheet.create({
-  button:
-  {
-    backgroundColor: 'rgba(52, 52, 52, 0.8)',
-  },
-});
 
 
 const mapStateToProps = (state) => (
