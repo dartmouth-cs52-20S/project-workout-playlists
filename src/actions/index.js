@@ -47,7 +47,6 @@ export function fetchUser(spotifyID) {
 }
 
 export function updateUser(user) {
-  console.log('user is updated to', user);
   return (dispatch) => {
     axios.put(`${ROOT_URL}/update/${user.spotifyID}`, user)
       .then((response) => {
@@ -73,7 +72,6 @@ export function updatePlaylist(id, playlist) {
 
 
 export function createPlaylist(playlist) {
-  console.log('playlist creating to', playlist);
   return (dispatch) => {
     axios.post(`${ROOT_URL}/playlist/`, playlist)
       .then((response) => {
@@ -93,7 +91,7 @@ export function savePlaylist(accessToken, spotifyID, playlist) {
   return () => {
     axios.post(`${ROOT_URL}/save/${accessToken}`, { spotifyID, playlist })
       .then(() => {
-        console.log('saved playlist to spotify');
+        // console.log('saved playlist to spotify');
       })
       .catch((error) => {
         console.log(error);
@@ -126,7 +124,6 @@ export function deletePlaylist(id) {
 }
 
 export function fetchPlaylists(id) {
-  console.log('into fetch playlists FE', id);
   return (dispatch) => {
     axios.get(`${ROOT_URL}/playlists/${id}`)
       .then((response) => {

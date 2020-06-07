@@ -82,8 +82,6 @@ class Main extends Component {
                     {' ('}
                     {playlist.workoutType}
                     {')'}
-                    {/* <Text> on </Text> */}
-                    {/* {playlist.createdAt} */}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -116,9 +114,6 @@ const styles = StyleSheet.create({
   logocontainer: {
     display: 'flex',
     top: -40,
-    // position: 'absolute',
-    // position: flex-s
-    // top: 0,
     alignContent: 'center',
     width: null,
     height: 200,
@@ -156,10 +151,6 @@ const styles = StyleSheet.create({
     bottom: -30,
     shadowColor: 'grey',
   },
-  // modal: {
-  //   position: 'absolute',
-  //   top: 180,
-  // },
   button: {
     flexDirection: 'column',
     justifyContent: 'center',
@@ -189,7 +180,6 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   playlist: {
-    // backgroundColor: 'orange',
     marginTop: 7,
     borderRadius: 8,
     borderWidth: 3,

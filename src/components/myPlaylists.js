@@ -19,13 +19,7 @@ class MyPlaylists extends Component {
   }
 
   componentDidMount() {
-    console.log('mounted in my playlists');
-    // this.props.fetchPlaylists();
   }
-
-  // displayPlaylist = () => {
-  //   if (this.state.favorited === 1)
-  // }
 
   goToPlaylist = (id) => {
     this.props.fetchPlaylist(id);
@@ -57,7 +51,6 @@ class MyPlaylists extends Component {
                     Tempo
                     {' '}
                     {playlist.workoutType}
-                    {/* {playlist.createdAt} */}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -88,8 +81,6 @@ const styles = StyleSheet.create({
     color: 'white',
     paddingVertical: 15,
     fontFamily: 'Avenir',
-    // paddingHorizontal: 100,
-    // backgroundColor: 'rgb(255,115,0)',
   },
   scrollView: {
     paddingHorizontal: 10,
