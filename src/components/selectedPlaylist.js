@@ -45,6 +45,7 @@ class selectedPlaylist extends Component {
     notEditing = (event) => {
       this.setState({ isEditing: false });
       this.props.updatePlaylist(this.props.playlist.id, { playlistName: this.state.playlistName });
+      this.props.fetchPlaylists(this.props.user.id);
     }
 
     render() {
@@ -57,7 +58,7 @@ class selectedPlaylist extends Component {
                 style={{
                   height: 40, borderColor: 'white', borderWidth: 1, width: 300,
                 }}
-                onChangeText={(text) => this.setState({ playlistName: text })}
+                onChangeText={(text) => { if (text !== '') { console.log('~~~~~~~'); this.setState({ playlistName: text }); } }}
                 placeholder={this.props.playlist.playlistName}
               />
               <TouchableOpacity onPress={() => { this.notEditing(); }} style={styles.button}>
