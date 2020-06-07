@@ -12,6 +12,7 @@ import RadioGroup, { Radio } from 'react-native-radio-input';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 import NumericInput from 'react-native-numeric-input';
 import { connect } from 'react-redux';
+import { TextInput } from 'react-native-gesture-handler';
 import { fetchUser, createPlaylist } from '../actions/index';
 
 
@@ -540,6 +541,7 @@ class NewPlaylistFlow extends Component {
       selectedItems: [],
       selectedItemsString: '',
       done: false,
+      playlistName: 'untitled',
     };
   }
 
@@ -556,6 +558,7 @@ class NewPlaylistFlow extends Component {
 
 
   makePlaylist = () => {
+    console.log(this.state.playlistName);
     console.log('calling make playlist');
     const playlist = {
       user: this.props.user,
@@ -566,22 +569,27 @@ class NewPlaylistFlow extends Component {
       // tempoFlag: ,
       workoutLength: parseInt(this.state.length, 10),
       workoutGenre: this.state.selectedItemsString,
+      playlistName: this.state.playlistName,
     };
     console.log('playlist in FE: ', playlist.workoutType);
     this.props.createPlaylist(playlist);
     // .then(this.props.navigation.navigate('Display'));
   }
 
-  onInputBPMChange = (event) => {
-    this.setState({ BPM: event.target.value });
-  }
+  // onInputBPMChange = (event) => {
+  //   this.setState({ BPM: event.target.value });
+  // }
 
-  onInputGenreChange = (event) => {
-    this.setState({ genre: event.target.value });
-  }
+  // onInputGenreChange = (event) => {
+  //   this.setState({ genre: event.target.value });
+  // }
 
-  onInputTimeChange = (event) => {
-    this.setState({ genre: event.target.value });
+  // onInputTimeChange = (event) => {
+  //   this.setState({ genre: event.target.value });
+  // }
+
+  onPlaylistNameChange = (event) => {
+    this.setState({ playlistName: event.target.value });
   }
 
   getChecked = (value) => {
@@ -613,13 +621,13 @@ class NewPlaylistFlow extends Component {
         questionNum.currentQ += 1;
         this.setState({ currentQ: questionNum.currentQ });
       }
-    } else if (this.state.currentQ < 6) {
+    } else if (this.state.currentQ < 7) {
       const questionNum = {
         currentQ: this.state.currentQ,
       };
       questionNum.currentQ += 1;
       this.setState({ currentQ: questionNum.currentQ });
-    } else if (this.state.currentQ === 6) {
+    } else if (this.state.currentQ === 7) {
       if (this.state.selectedItems.length !== 0) {
         this.objArrToString(this.state.selectedItems);
         const questionNum = {
@@ -648,7 +656,7 @@ class NewPlaylistFlow extends Component {
       return (
         <View>
           <Text style={styles.questions}>
-            Select a Workout
+            Select a Workout Type:
           </Text>
           <DropDownPicker
             items={[
@@ -660,7 +668,7 @@ class NewPlaylistFlow extends Component {
               { label: 'Swimming', value: 'Swim' },
               { label: 'Hiking', value: 'Hike' },
             ]}
-            placeholder="What kind of workout?"
+            // placeholder="What kind of workout?"
             containerStyle={{ height: 270, /* backgroundColor: 'orange', */ top: -40 }}
             style={{ position: 'absolute', backgroundColor: 'orange' }}
             itemStyle={{ bottomBorderColor: 'green' }}
@@ -830,6 +838,27 @@ class NewPlaylistFlow extends Component {
               (pick up to 5)
             </Text>
           </Text>
+        </View>
+      );
+    } else if (questionNum === 7) {
+      return (
+        <View>
+          <Text style={styles.questions}>
+            Name this Playlist!
+          </Text>
+          {/* <Text style={styles.questions}>
+            Playlist Name:
+            {' '}
+            {this.state.playlistName}
+          </Text> */}
+          <TextInput
+            style={{
+              height: 40, borderColor: 'gray', borderWidth: 1, width: 400,
+            }}
+            onChangeText={(text) => this.setState({ playlistName: text })}
+            placeholder="Playlist Name Here"
+            // value={this.state.playlistName}
+          />
         </View>
       );
     }

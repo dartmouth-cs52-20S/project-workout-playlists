@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     color: 'rgb(255,115,0)',
+    fontFamily: 'Avenir',
   },
 });
 
