@@ -646,7 +646,7 @@ class NewPlaylistFlow extends Component {
   }
 
   handleClickPlaylist = () => {
-    this.props.navigation.navigate('Display');
+    this.props.navigation.navigate('Display New');
   }
 
   // eslint-disable-next-line consistent-return

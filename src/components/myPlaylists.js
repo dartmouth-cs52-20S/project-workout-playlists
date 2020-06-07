@@ -29,7 +29,7 @@ class MyPlaylists extends Component {
 
   goToPlaylist = (id) => {
     this.props.fetchPlaylist(id);
-    this.props.navigation.navigate('Display');
+    this.props.navigation.navigate('Display Selected');
   }
 
 

@@ -6,27 +6,17 @@ import {
 
 import { connect } from 'react-redux';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {
   fetchPlaylist, fetchPlayback, fetchUser, savePlaylist, fetchPlaylists, deletePlaylist,
 } from '../actions/index';
 
-class testDisplayPlaylist extends Component {
+class selectedPlaylist extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isEditing: false,
       playlistName: this.props.playlist.playlistName,
-      // type: this.props.playlist.type,
-      // length: this.props.playlist.length,
-      // mood: this.props.playlist.mood,
-      // energy: this.props.playlist.energy,
-      // BPM: this.props.playlist.bpm,
-      // selectedItems: [],
-      // selectedItemsString: '',
-      // done: false,
-      // playlistName: 'untitled',
     };
   }
 
@@ -375,4 +365,4 @@ function mapStateToProps(reduxState) {
 
 export default connect(mapStateToProps, {
   fetchPlaylist, fetchPlayback, savePlaylist, fetchUser, fetchPlaylists, deletePlaylist,
-})(testDisplayPlaylist);
+})(selectedPlaylist);

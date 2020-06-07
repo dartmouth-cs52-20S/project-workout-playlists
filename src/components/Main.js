@@ -17,7 +17,7 @@ class Main extends Component {
 
   goToPlaylist = (ID) => {
     this.props.fetchPlaylist(ID);
-    this.props.navigation.navigate('Display');
+    this.props.navigation.navigate('Display New');
   }
 
   render() {
