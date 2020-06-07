@@ -16,7 +16,7 @@ import NewUserFlow from '../components/newUserFlow';
 import NewCreatedPlaylist from '../components/newCreatedPlaylist';
 import UserProfile from '../components/userProfile';
 import NewPlaylistFlow from '../components/newPlaylistFlow';
-import testDisplayPlaylist from '../components/testDisplayPlaylist';
+import selectedPlaylist from '../components/selectedPlaylist';
 import MyPlaylists from '../components/myPlaylists';
 import Feedback from '../components/feedback';
 import * as RootNavigation from './rootNavigation';
@@ -56,7 +56,7 @@ function MyStack() {
           }}
           component={NewUserFlow}
         />
-        <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
+        <Tab.Screen name="New Created Playlist" component={selectedPlaylist} />
         <Tab.Screen name="User Profile" component={UserProfile} />
         <Tab.Screen name="Workout Selector"
           component={NewPlaylistFlow}
@@ -64,12 +64,30 @@ function MyStack() {
             headerLeft: () => (<HeaderBackButton tintColor="rgb(255,115,0)" title="Main" backTitleVisible onPress={() => RootNavigation.navigate('Main')} />),
           }}
         />
-        <Tab.Screen name="Display"
-          component={testDisplayPlaylist}
+        <Tab.Screen name="Display New"
+          component={NewCreatedPlaylist}
           options={{
-            // headerLeft: () => (<HeaderBackButton tintColor="rgb(255,115,0)" title="Main" backTitleVisible onPress={() => RootNavigation.navigate('Main')} />),
-            // I don't necessarily want this to go back to the main page every time, ie sometimes I want to return to myPlaylists. Not sure how to style without the .navigate
-            // SAME ISSUE Exists for all the unstyled blue back buttons on various screens!!
+            headerLeft: () => (<HeaderBackButton tintColor="rgb(255,115,0)" title="Main" backTitleVisible onPress={() => RootNavigation.navigate('Main')} />),
+            headerRight: () => (
+              <Button
+                style={styles.button}
+                icon={(
+                  <Icon
+                    // style={styles.button}
+                    name="heart"
+                    size={15}
+                    color="orange"
+                  />
+              )}
+                onPress={() => RootNavigation.navigate('Feedback Page')}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen name="Display Selected"
+          component={selectedPlaylist}
+          options={{
+            headerLeft: () => (<HeaderBackButton tintColor="rgb(255,115,0)" title="Main" backTitleVisible onPress={() => RootNavigation.navigate('My Playlists')} />),
             headerRight: () => (
               <Button
                 style={styles.button}
