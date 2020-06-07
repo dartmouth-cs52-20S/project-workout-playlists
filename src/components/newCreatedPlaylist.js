@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 
 import {
-  fetchPlaylist, fetchPlayback, fetchUser, savePlaylist, fetchPlaylists, deletePlaylist,
+  fetchPlaylist, fetchPlayback, fetchUser, savePlaylist, fetchPlaylists, deletePlaylist, updatePlaylist,
 } from '../actions/index';
 
 class newCreatedPlaylist extends Component {
@@ -80,6 +80,7 @@ class newCreatedPlaylist extends Component {
 
     notEditing = (event) => {
       this.setState({ isEditing: false });
+      this.props.updatePlaylist(this.props.playlist.id, { playlistName: this.state.playlistName });
     }
 
     render() {
@@ -87,13 +88,6 @@ class newCreatedPlaylist extends Component {
       if (this.state.isEditing === true) {
         editInputOrButton = (
           <View style={{ backgroundColor: 'rgb(255,115,0)', paddingHorizontal: 100 }}>
-            {/* take this out after testing */}
-            <Text style={{ color: 'white' }}>
-              New Playlist Name:
-              {' '}
-              {this.state.playlistName}
-            </Text>
-            {/* to here */}
             <View style={{ flexDirection: 'row' }}>
               <TextInput
                 style={{
@@ -364,5 +358,5 @@ function mapStateToProps(reduxState) {
 }
 
 export default connect(mapStateToProps, {
-  fetchPlaylist, fetchPlayback, savePlaylist, fetchUser, fetchPlaylists, deletePlaylist,
+  fetchPlaylist, fetchPlayback, savePlaylist, fetchUser, fetchPlaylists, deletePlaylist, updatePlaylist,
 })(newCreatedPlaylist);

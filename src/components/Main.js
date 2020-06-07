@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable global-require */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';

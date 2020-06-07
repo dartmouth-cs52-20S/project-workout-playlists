@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 
 import {
-  fetchPlaylist, fetchPlayback, fetchUser, savePlaylist, fetchPlaylists, deletePlaylist,
+  fetchPlaylist, fetchPlayback, fetchUser, savePlaylist, fetchPlaylists, deletePlaylist, updatePlaylist,
 } from '../actions/index';
 
 class selectedPlaylist extends Component {
@@ -41,45 +41,13 @@ class selectedPlaylist extends Component {
       this.props.navigation.navigate('Main');
     }
 
-    // play = () => {
-    //   if (this.state.firstPlay) {
-    //     console.log(this.state.firstPlay);
-    //     this.props.playMedia(this.props.user.accessToken, { uris: this.state.uris });
-    //     this.setState({ firstPlay: false });
-    //   } else {
-    //     this.props.playMedia(this.props.user.accessToken);
-    //   }
-    // }
-
-    // pause = () => {
-    //   this.props.pauseMedia(this.props.user.accessToken);
-    // }
-
-    // next = () => {
-    //   this.props.nextMedia(this.props.user.accessToken);
-    // }
-
-    // setUris = () => {
-    //   this.setState({ uris: this.getTrackUris() });
-    // }
-
-    // getTrackUris = () => {
-    //   const uris = [];
-
-    //   // eslint-disable-next-line array-callback-return
-    //   this.props.playlist.songs.map((song) => {
-    //     uris.push(song.uri);
-    //   });
-
-    //   return uris;
-    // }
-
     editTitle = (event) => {
       this.setState({ isEditing: true });
     }
 
     notEditing = (event) => {
       this.setState({ isEditing: false });
+      this.props.updatePlaylist(this.props.playlist.id, { playlistName: this.state.playlistName });
     }
 
     render() {
@@ -87,13 +55,6 @@ class selectedPlaylist extends Component {
       if (this.state.isEditing === true) {
         editInputOrButton = (
           <View style={{ backgroundColor: 'rgb(255,115,0)', paddingHorizontal: 100 }}>
-            {/* take this out after testing */}
-            <Text style={{ color: 'white' }}>
-              New Playlist Name:
-              {' '}
-              {this.state.playlistName}
-            </Text>
-            {/* to here */}
             <View style={{ flexDirection: 'row' }}>
               <TextInput
                 style={{
@@ -364,5 +325,5 @@ function mapStateToProps(reduxState) {
 }
 
 export default connect(mapStateToProps, {
-  fetchPlaylist, fetchPlayback, savePlaylist, fetchUser, fetchPlaylists, deletePlaylist,
+  fetchPlaylist, fetchPlayback, savePlaylist, fetchUser, fetchPlaylists, deletePlaylist, updatePlaylist,
 })(selectedPlaylist);
