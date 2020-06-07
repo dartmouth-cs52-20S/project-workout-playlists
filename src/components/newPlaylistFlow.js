@@ -541,7 +541,7 @@ class NewPlaylistFlow extends Component {
       selectedItems: [],
       selectedItemsString: '',
       done: false,
-      playlistName: 'untitled',
+      playlistName: '',
     };
   }
 
@@ -556,6 +556,17 @@ class NewPlaylistFlow extends Component {
     this.setState({ selectedItemsString: stringified });
   }
 
+  setPlaylistName = () => {
+    const tempo = 'Tempo ';
+    this.setState({ playlistName: tempo.concat(this.state.type) });
+  }
+
+  // string concatenation
+  //   var totn_string = 'Tech';
+
+  // console.log(totn_string.concat('On','The','Net'));
+
+  // console.log(totn_string);
 
   makePlaylist = () => {
     console.log(this.state.playlistName);
@@ -575,18 +586,6 @@ class NewPlaylistFlow extends Component {
     this.props.createPlaylist(playlist);
     // .then(this.props.navigation.navigate('Display'));
   }
-
-  // onInputBPMChange = (event) => {
-  //   this.setState({ BPM: event.target.value });
-  // }
-
-  // onInputGenreChange = (event) => {
-  //   this.setState({ genre: event.target.value });
-  // }
-
-  // onInputTimeChange = (event) => {
-  //   this.setState({ genre: event.target.value });
-  // }
 
   onPlaylistNameChange = (event) => {
     this.setState({ playlistName: event.target.value });
@@ -612,6 +611,7 @@ class NewPlaylistFlow extends Component {
         };
         questionNum.currentQ += 1;
         this.setState({ currentQ: questionNum.currentQ });
+        this.setPlaylistName();
       }
     } else if (this.state.currentQ === 4) {
       if (this.state.BPM !== '') {

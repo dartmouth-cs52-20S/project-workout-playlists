@@ -59,6 +59,19 @@ export function updateUser(user) {
   };
 }
 
+export function updatePlaylist(id, playlist) {
+  return (dispatch) => {
+    axios.put(`${ROOT_URL}/playlists/${id}/`, playlist)
+      .then((response) => {
+        dispatch({ type: ActionTypes.FETCH_PLAYLIST, payload: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+
 export function createPlaylist(playlist) {
   console.log('playlist creating to', playlist);
   return (dispatch) => {
