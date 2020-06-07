@@ -60,136 +60,142 @@ class UserProfile extends Component {
           <Text>
             {' '}
           </Text>
+          <View style={{ alignItems: 'center' }}>
 
+            <View>
+              <Text>
+                Acousticness:
+                {' '}
+                {Math.round(this.state.question1 * 10, 2)}
+                {'/10'}
+              </Text>
+              <Slider
+                style={styles.slider}
 
-          <View>
+                minimumTrackTintColor="#FF7300"
+                maximumTrackTintColor="#FFFFFF"
+                thumbTintColor="orange"
+                value={this.state.question1}
+                onValueChange={(question1) => this.setState({ question1 })}
+              />
+
+            </View>
+
+            <View>
+              <Text>
+                Instrumentalness:
+                {' '}
+                {Math.round(this.state.question2 * 10, 2)}
+                {'/10'}
+              </Text>
+              <Slider
+                style={styles.slider}
+
+                minimumTrackTintColor="#FF7300"
+                maximumTrackTintColor="#FFFFFF"
+                thumbTintColor="orange"
+                value={this.state.question2}
+                onValueChange={(question2) => this.setState({ question2 })}
+              />
+
+            </View>
+
+            <View>
+              <Text>
+                Liveness:
+                {' '}
+                {Math.round(this.state.question3 * 10, 2)}
+                {'/10'}
+              </Text>
+              <Slider
+                style={styles.slider}
+
+                minimumTrackTintColor="#FF7300"
+                maximumTrackTintColor="#FFFFFF"
+                thumbTintColor="orange"
+                value={this.state.question3}
+                onValueChange={(question3) => this.setState({ question3 })}
+              />
+
+            </View>
+
+            <View>
+              <Text>
+                Loudness:
+                {' '}
+                {Math.round(this.state.question4 * 10, 2)}
+                {'/10'}
+              </Text>
+              <Slider
+                style={styles.slider}
+
+                minimumTrackTintColor="#FF7300"
+                maximumTrackTintColor="#FFFFFF"
+                thumbTintColor="orange"
+                value={this.state.question4}
+                onValueChange={(question4) => this.setState({ question4 })}
+              />
+
+            </View>
+
+            <View>
+              <Text>
+                Popularity:
+                {' '}
+                {Math.round(this.state.question5 * 10, 2)}
+                {'/10'}
+              </Text>
+              <Slider
+                style={styles.slider}
+
+                minimumTrackTintColor="#FF7300"
+                maximumTrackTintColor="#FFFFFF"
+                thumbTintColor="orange"
+                value={this.state.question5}
+                onValueChange={(question5) => this.setState({ question5 })}
+              />
+
+            </View>
+
+            <View>
+              <Text>
+                Positivity:
+                {' '}
+                {Math.round(this.state.question6 * 10, 2)}
+                {'/10'}
+              </Text>
+              <Slider
+                style={styles.slider}
+
+                minimumTrackTintColor="#FF7300"
+                maximumTrackTintColor="#FFFFFF"
+                thumbTintColor="orange"
+                value={this.state.question6}
+                onValueChange={(question6) => this.setState({ question6 })}
+              />
+            </View>
+
             <Text>
-              Acousticness:
               {' '}
-              {Math.round(this.state.question1 * 10, 2)}
-              {'/10'}
             </Text>
-            <Slider
-              style={styles.slider}
 
-              minimumTrackTintColor="#FF7300"
-              maximumTrackTintColor="#FFFFFF"
-              thumbTintColor="orange"
-              value={this.state.question1}
-              onValueChange={(question1) => this.setState({ question1 })}
-            />
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                this.handleClick();
+              }}
+            >
 
+              <View style={{ alignItems: 'center' }}>
+                <Text style={{ color: 'white', fontWeight: 'bold' }}>Save Changes</Text>
+              </View>
+            </TouchableOpacity>
           </View>
-
-          <View>
-            <Text>
-              Instrumentalness:
-              {' '}
-              {Math.round(this.state.question2 * 10, 2)}
-              {'/10'}
-            </Text>
-            <Slider
-              style={styles.slider}
-
-              minimumTrackTintColor="#FF7300"
-              maximumTrackTintColor="#FFFFFF"
-              thumbTintColor="orange"
-              value={this.state.question2}
-              onValueChange={(question2) => this.setState({ question2 })}
-            />
-
-          </View>
-
-          <View>
-            <Text>
-              Liveness:
-              {' '}
-              {Math.round(this.state.question3 * 10, 2)}
-              {'/10'}
-            </Text>
-            <Slider
-              style={styles.slider}
-
-              minimumTrackTintColor="#FF7300"
-              maximumTrackTintColor="#FFFFFF"
-              thumbTintColor="orange"
-              value={this.state.question3}
-              onValueChange={(question3) => this.setState({ question3 })}
-            />
-
-          </View>
-
-          <View>
-            <Text>
-              Loudness:
-              {' '}
-              {Math.round(this.state.question4 * 10, 2)}
-              {'/10'}
-            </Text>
-            <Slider
-              style={styles.slider}
-
-              minimumTrackTintColor="#FF7300"
-              maximumTrackTintColor="#FFFFFF"
-              thumbTintColor="orange"
-              value={this.state.question4}
-              onValueChange={(question4) => this.setState({ question4 })}
-            />
-
-          </View>
-
-          <View>
-            <Text>
-              Popularity:
-              {' '}
-              {Math.round(this.state.question5 * 10, 2)}
-              {'/10'}
-            </Text>
-            <Slider
-              style={styles.slider}
-
-              minimumTrackTintColor="#FF7300"
-              maximumTrackTintColor="#FFFFFF"
-              thumbTintColor="orange"
-              value={this.state.question5}
-              onValueChange={(question5) => this.setState({ question5 })}
-            />
-
-          </View>
-
-          <View>
-            <Text>
-              Positivity:
-              {' '}
-              {Math.round(this.state.question6 * 10, 2)}
-              {'/10'}
-            </Text>
-            <Slider
-              style={styles.slider}
-
-              minimumTrackTintColor="#FF7300"
-              maximumTrackTintColor="#FFFFFF"
-              thumbTintColor="orange"
-              value={this.state.question6}
-              onValueChange={(question6) => this.setState({ question6 })}
-            />
-          </View>
-
-          <Text>
-            {' '}
-          </Text>
-
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              this.handleClick();
-            }}
-          >
-            <Text style={{ color: 'white', fontWeight: 'bold' }}>Save Changes</Text>
-          </TouchableOpacity>
           <SafeAreaView style={styles.container}>
-            <Text style={styles.genreTitleText}>YOUR TOP GENRES</Text>
-            <Text style={styles.noteText}>These are the top genres of your most listened to artists.</Text>
+            <View style={{ backgroundColor: 'rgb(255,115,0)', marginVertical: 20 }}>
+              <Text style={styles.genreTitleText}>YOUR TOP GENRES</Text>
+              <Text style={styles.noteText}>These are the top genres of your most listened to artists.</Text>
+            </View>
             <ScrollView style={styles.scrollView}>
               <View style={styles.container}>
                 <View>
@@ -228,9 +234,10 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   button: {
-    backgroundColor: 'rgb(255,115,0)',
+    backgroundColor: 'orange',
     padding: 5,
     borderRadius: 5,
+    width: 150,
   },
   titleText: {
     fontSize: 25,
@@ -244,17 +251,14 @@ const styles = StyleSheet.create({
     color: 'white',
     paddingVertical: 10,
     paddingHorizontal: 46,
-    marginTop: 50,
     backgroundColor: 'rgb(255,115,0)',
   },
   noteText: {
     flexDirection: 'row',
-    fontSize: 20,
+    fontSize: 15,
     color: 'white',
-    paddingVertical: 10,
+    paddingBottom: 10,
     paddingHorizontal: 46,
-    marginTop: 20,
-    marginBottom: 15,
     backgroundColor: 'rgb(255,115,0)',
   },
 });
