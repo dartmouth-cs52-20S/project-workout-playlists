@@ -36,7 +36,9 @@ class MyPlaylists extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Text style={styles.titleText}>MY PLAYLISTS</Text>
+        <View style={{ width: 450, backgroundColor: 'rgb(255,115,0)', alignItems: 'center' }}>
+          <Text style={styles.titleText}>MY PLAYLISTS</Text>
+        </View>
         <ScrollView style={styles.scrollView}>
           <View style={styles.container}>
             {this.props.all.map((playlist) => (
@@ -47,12 +49,15 @@ class MyPlaylists extends Component {
                   }}
                 >
                   <Text style={{
-                    color: 'white', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'rgb(42,42,42)',
+                    color: 'white', fontFamily: 'Avenir', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'rgb(42,42,42)',
                   }}
                   >
+                    {playlist.playlistName}
+                    {' '}
                     Tempo
+                    {' '}
                     {playlist.workoutType}
-                    {playlist.createdAt}
+                    {/* {playlist.createdAt} */}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -81,9 +86,10 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     color: 'white',
-    paddingVertical: 10,
-    paddingHorizontal: 100,
-    backgroundColor: 'rgb(255,115,0)',
+    paddingVertical: 15,
+    fontFamily: 'Avenir',
+    // paddingHorizontal: 100,
+    // backgroundColor: 'rgb(255,115,0)',
   },
   scrollView: {
     paddingHorizontal: 10,

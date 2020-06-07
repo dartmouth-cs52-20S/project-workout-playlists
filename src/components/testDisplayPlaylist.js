@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Text, SafeAreaView, ScrollView, TouchableOpacity, ActivityIndicator,
+  View, StyleSheet, Text, SafeAreaView, ScrollView, TouchableOpacity, ActivityIndicator, TextInput,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -13,13 +13,22 @@ import {
 } from '../actions/index';
 
 class testDisplayPlaylist extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   // this.state = {
-  //   //   uris: '',
-  //   //   firstPlay: true,
-  //   // };
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isEditing: false,
+      playlistName: this.props.playlist.playlistName,
+      // type: this.props.playlist.type,
+      // length: this.props.playlist.length,
+      // mood: this.props.playlist.mood,
+      // energy: this.props.playlist.energy,
+      // BPM: this.props.playlist.bpm,
+      // selectedItems: [],
+      // selectedItemsString: '',
+      // done: false,
+      // playlistName: 'untitled',
+    };
+  }
 
     componentDidMount = () => {
       if (this.props.user.accessToken) {
@@ -75,8 +84,81 @@ class testDisplayPlaylist extends Component {
     //   return uris;
     // }
 
+    editTitle = (event) => {
+      this.setState({ isEditing: true });
+    }
+
+    notEditing = (event) => {
+      this.setState({ isEditing: false });
+    }
 
     render() {
+      let editInputOrButton = null;
+      if (this.state.isEditing === true) {
+        editInputOrButton = (
+          <View style={{ backgroundColor: 'rgb(255,115,0)', paddingHorizontal: 100 }}>
+            {/* take this out after testing */}
+            <Text style={{ color: 'white' }}>
+              New Playlist Name:
+              {' '}
+              {this.state.playlistName}
+            </Text>
+            {/* to here */}
+            <View style={{ flexDirection: 'row' }}>
+              <TextInput
+                style={{
+                  height: 40, borderColor: 'white', borderWidth: 1, width: 300,
+                }}
+                onChangeText={(text) => this.setState({ playlistName: text })}
+                placeholder={this.props.playlist.playlistName}
+              />
+              <TouchableOpacity onPress={() => { this.notEditing(); }} style={styles.button}>
+                {/* onPress={() => {
+                  this.onDelete(this.props.playlist.id);
+                }} */}
+                <Text style={{ color: 'white', fontWeight: 'bold' }}>SAVE</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
+      } else {
+        editInputOrButton = (
+          <View style={{
+            backgroundColor: 'rgb(255,115,0)', width: 415, paddingTop: 5, paddingHorizontal: 40,
+          }}
+          >
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{
+                color: 'white', fontFamily: 'Avenir', fontSize: 27, fontWeight: 'bold',
+              }}
+              >
+                {this.props.playlist.playlistName}
+              </Text>
+              <TouchableOpacity onPress={() => { this.editTitle(); }} style={styles.button}>
+                <Text style={{ color: 'white' }}>EDIT</Text>
+              </TouchableOpacity>
+              {/* MAKE EDITABLE!!! */}
+            </View>
+          </View>
+        );
+      }
+      // let editInputOrButton = null;
+      // if (this.state.isEditing) {
+      //   editInputOrButton = (
+      //     <div className="editNote">
+      //       <p className="editLabels">New Title: </p>
+      //       <input type="text" value={this.state.newNoteTitle} onChange={this.editNoteTitle} />
+      //       <p className="editLabels">New Text:</p>
+      //       <TextareaAutosize value={this.state.newNoteText} onChange={this.editNoteText} />
+      //       <button type="button" onClick={this.saveNote}>Save New Note</button>
+      //     </div>
+      //   );
+      // } else {
+      //   editInputOrButton = <button type="button" onClick={this.editNoteTitle}> Edit Title</button>;
+      //   editInputOrButton = <button type="button" onClick={this.editNoteText}>Edit Note</button>;
+      // }
+
+
       console.log(this.props.error);
       if (typeof this.props.playlist.songs === 'undefined') {
         if (this.props.error) {
@@ -102,15 +184,21 @@ class testDisplayPlaylist extends Component {
               Either hustle through your workout or make a new playlist and be a little less selective about your music tastes.
             </Text>
 
-            <Text style={styles.titleText}>YOUR TEMPO PLAYLIST</Text>
+            {/* <Text style={styles.titleText}>YOUR TEMPO PLAYLIST</Text> */}
+            {editInputOrButton}
 
-            <Text style={styles.noteText}>{`${this.props.playlist.workoutType} for ${this.props.playlist.workoutLength} minutes with approximately ${this.props.playlist.averageTempo} bpm`}</Text>
+            <Text
+              style={styles.noteText}
+            >
+              {/* {`${this.props.playlist.workoutType} for ${this.props.playlist.workoutLength} minutes with approximately ${this.props.playlist.averageTempo} BPM.`} */}
+              {` A ${this.props.playlist.workoutLength} minute ${this.props.playlist.workoutType} workout at ~ ${this.props.playlist.averageTempo} BPM.`}
+            </Text>
 
             <ScrollView style={styles.scrollView} bounces="true" contentContainerStyle={styles.contentContainer}>
               <View>
                 {this.props.playlist.songs.map((song) => (
                   <Text style={{
-                    color: 'white', fontSize: 17, margin: 5,
+                    color: 'white', fontFamily: 'Avenir', fontSize: 17, margin: 5,
                   }}
                   >
                     {`${song.name} by ${song.artists[0].name}`}
@@ -127,7 +215,12 @@ class testDisplayPlaylist extends Component {
                 style={styles.button}
                 onPress={this.handleSave}
               >
-                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>Save to Spotify</Text>
+                <Text style={{
+                  color: 'white', fontFamily: 'Avenir', fontSize: 17, fontWeight: 'bold',
+                }}
+                >
+                  Save to Spotify
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
@@ -135,7 +228,12 @@ class testDisplayPlaylist extends Component {
                 }}
                 style={styles.button}
               >
-                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>Delete playlist</Text>
+                <Text style={{
+                  color: 'white', fontFamily: 'Avenir', fontSize: 17, fontWeight: 'bold',
+                }}
+                >
+                  Delete playlist
+                </Text>
               </TouchableOpacity>
             </View>
           </SafeAreaView>
@@ -143,14 +241,14 @@ class testDisplayPlaylist extends Component {
       } else {
         return (
           <SafeAreaView style={styles.container}>
-            <Text style={styles.titleText}>YOUR TEMPO PLAYLIST</Text>
-            <Text style={styles.noteText}>{`${this.props.playlist.workoutType} for ${this.props.playlist.workoutLength} minutes with approximately ${this.props.playlist.averageTempo} bpm.`}</Text>
+            {editInputOrButton}
+            <Text style={styles.noteText}>{` A ${this.props.playlist.workoutLength} minute ${this.props.playlist.workoutType} workout at ~ ${this.props.playlist.averageTempo} BPM.`}</Text>
             <ScrollView style={styles.scrollView}>
               <View style={styles.container}>
                 <View>
                   {this.props.playlist.songs.map((song) => (
                     <Text style={{
-                      color: 'white', fontSize: 17, margin: 10,
+                      color: 'white', fontFamily: 'Avenir', fontSize: 17, margin: 10,
                     }}
                     >
                       {`${song.name} by ${song.artists[0].name}`}
@@ -168,7 +266,12 @@ class testDisplayPlaylist extends Component {
                 style={styles.button}
                 onPress={this.handleSave}
               >
-                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>Save to Spotify</Text>
+                <Text style={{
+                  color: 'white', fontFamily: 'Avenir', fontSize: 17, fontWeight: 'bold',
+                }}
+                >
+                  Save to Spotify
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
@@ -176,7 +279,12 @@ class testDisplayPlaylist extends Component {
                 }}
                 style={styles.button}
               >
-                <Text style={{ color: 'white', fontSize: 17, fontWeight: 'bold' }}>Delete playlist</Text>
+                <Text style={{
+                  color: 'white', fontFamily: 'Avenir', fontSize: 17, fontWeight: 'bold',
+                }}
+                >
+                  Delete playlist
+                </Text>
               </TouchableOpacity>
             </View>
           </SafeAreaView>
@@ -203,22 +311,26 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     color: 'white',
+    fontFamily: 'Avenir',
     paddingVertical: 10,
-    paddingHorizontal: 46,
+    paddingHorizontal: 100,
     backgroundColor: 'rgb(255,115,0)',
   },
   noteText: {
     flexDirection: 'row',
-    fontSize: 20,
+    fontSize: 18,
     color: 'white',
-    paddingVertical: 10,
-    paddingHorizontal: 46,
-    marginTop: 20,
-    marginBottom: 15,
+    fontFamily: 'Avenir',
+    paddingTop: 5,
+    paddingBottom: 10,
+    paddingHorizontal: 40,
+    width: 420,
     backgroundColor: 'rgb(255,115,0)',
+    justifyContent: 'center',
   },
   bodyText: {
     color: 'white',
+    fontFamily: 'Avenir',
     backgroundColor: 'red',
     paddingHorizontal: 20,
     paddingVertical: 10,

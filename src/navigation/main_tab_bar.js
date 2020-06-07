@@ -58,11 +58,18 @@ function MyStack() {
         />
         <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
         <Tab.Screen name="User Profile" component={UserProfile} />
-        <Tab.Screen name="Workout Selector" component={NewPlaylistFlow} />
+        <Tab.Screen name="Workout Selector"
+          component={NewPlaylistFlow}
+          options={{
+            headerLeft: () => (<HeaderBackButton tintColor="rgb(255,115,0)" title="Main" backTitleVisible onPress={() => RootNavigation.navigate('Main')} />),
+          }}
+        />
         <Tab.Screen name="Display"
           component={testDisplayPlaylist}
           options={{
-            headerLeft: () => (<HeaderBackButton title="Main" backTitleVisible onPress={() => RootNavigation.navigate('Main')} />),
+            // headerLeft: () => (<HeaderBackButton tintColor="rgb(255,115,0)" title="Main" backTitleVisible onPress={() => RootNavigation.navigate('Main')} />),
+            // I don't necessarily want this to go back to the main page every time, ie sometimes I want to return to myPlaylists. Not sure how to style without the .navigate
+            // SAME ISSUE Exists for all the unstyled blue back buttons on various screens!!
             headerRight: () => (
               <Button
                 style={styles.button}
@@ -79,10 +86,16 @@ function MyStack() {
             ),
           }}
         />
-        <Tab.Screen name="My Playlists" component={MyPlaylists} />
+        <Tab.Screen name="My Playlists"
+          component={MyPlaylists}
+          options={{
+            headerLeft: () => (<HeaderBackButton tintColor="rgb(255,115,0)" title="Main" backTitleVisible onPress={() => RootNavigation.navigate('Main')} />),
+          }}
+        />
         <Tab.Screen name="Feedback Page"
           component={Feedback}
           options={{
+            // headerLeft: () => (<HeaderBackButton tintColor="rgb(255,115,0)" title="Main" backTitleVisible onPress={() => RootNavigation.navigate('Main')} />),
             headerRight: () => (
               <Button
                 style={styles.button}

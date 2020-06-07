@@ -74,12 +74,15 @@ class Main extends Component {
                   style={styles.playlist}
                 >
                   <Text style={{
-                    color: 'rgb(255,115,0)', fontFamily: 'Avenir', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'white',
+                    color: 'rgb(255,115,0)', fontFamily: 'Avenir', fontSize: 17, paddingVertical: 15, paddingLeft: 10, margin: 2, backgroundColor: 'white',
                   }}
                   >
+                    {playlist.playlistName}
+                    {' ('}
                     {playlist.workoutType}
-                    <Text> on </Text>
-                    {playlist.createdAt}
+                    {')'}
+                    {/* <Text> on </Text> */}
+                    {/* {playlist.createdAt} */}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -190,6 +193,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 3,
     borderColor: 'rgb(255,115,0)',
+    marginHorizontal: 10,
   },
   textcontainer: {
     display: 'flex',
