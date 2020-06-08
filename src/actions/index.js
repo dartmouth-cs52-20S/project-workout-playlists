@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = 'http://localhost:9090/api';
-// const ROOT_URL = 'https://workout-playlists-final-proj.herokuapp.com/api';
+const ROOT_URL = 'https://workout-playlists-final-proj.herokuapp.com/api';
 
 export const ActionTypes = {
   AUTH_USER: 'AUTH_USER',
@@ -13,6 +12,7 @@ export const ActionTypes = {
   FETCH_PLAYLISTS: 'FETCH_PLAYLISTS',
   FETCH_PLAYBACK: 'FETCH_PLAYBACK',
   NONE_PLAYLIST: 'NONE_PLAYLIST',
+  ERASE_PLAYLIST_ERROR: 'ERASE_PLAYLIST_ERROR',
 };
 
 export function authError(error) {
@@ -31,6 +31,13 @@ export function authenticate() {
 export function userExists() {
   return (dispatch) => {
     dispatch({ type: ActionTypes.EXIST_USER });
+  };
+}
+
+export function eraseError() {
+  console.log('calling erase error');
+  return (dispatch) => {
+    dispatch({ type: ActionTypes.ERASE_PLAYLIST_ERROR });
   };
 }
 
@@ -75,8 +82,8 @@ export function createPlaylist(playlist) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/playlist/`, playlist)
       .then((response) => {
-        if (response.error) {
-          dispatch({ type: ActionTypes.FETCH_PLAYLIST_ERROR, payload: response.data });
+        if (response.data.error) {
+          dispatch({ type: ActionTypes.FETCH_PLAYLIST_ERROR });
         } else {
           dispatch({ type: ActionTypes.FETCH_PLAYLIST, payload: response.data });
         }
@@ -127,60 +134,13 @@ export function fetchPlaylists(id) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/playlists/${id}`)
       .then((response) => {
+        console.log(response.data.length);
         if (response.data.length !== 0) {
           dispatch({ type: ActionTypes.FETCH_PLAYLISTS, payload: response.data });
         } else {
-          dispatch({ type: ActionTypes.NONE_PLAYLIST, payload: true });
+          console.log('dispatching none');
+          dispatch({ type: ActionTypes.NONE_PLAYLIST });
         }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-}
-
-export function fetchPlayback(accessToken) {
-  return (dispatch) => {
-    axios.get(`${ROOT_URL}/playback/${accessToken}/`)
-      .then((response) => {
-        console.log(response.data);
-        dispatch({ type: ActionTypes.FETCH_PLAYBACK, payload: response.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-}
-
-export function playMedia(accessToken, uris) {
-  return () => {
-    axios.put(`${ROOT_URL}/play/${accessToken}/`, uris)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-}
-
-export function pauseMedia(accessToken) {
-  return () => {
-    axios.put(`${ROOT_URL}/pause/${accessToken}/`)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-}
-
-export function nextMedia(accessToken) {
-  return () => {
-    axios.post(`${ROOT_URL}/next/${accessToken}/`)
-      .then((response) => {
-        console.log(response);
       })
       .catch((error) => {
         console.log(error);

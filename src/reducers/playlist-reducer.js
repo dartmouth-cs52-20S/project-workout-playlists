@@ -3,8 +3,8 @@ import { ActionTypes } from '../actions';
 const initialState = {
   playlist: '',
   all: [],
-  error: '',
-  none: true,
+  error: false,
+  none: false,
 };
 
 const playlistReducer = (state = initialState, action) => {
@@ -23,7 +23,11 @@ const playlistReducer = (state = initialState, action) => {
       };
     case ActionTypes.FETCH_PLAYLIST_ERROR:
       return {
-        ...state, error: action.payload,
+        ...state, error: true,
+      };
+    case ActionTypes.ERASE_PLAYLIST_ERROR:
+      return {
+        ...state, error: false,
       };
     default:
       return state;

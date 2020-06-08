@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 
 import {
-  fetchPlaylist, fetchPlayback, fetchUser, savePlaylist, fetchPlaylists, deletePlaylist, updatePlaylist,
+  fetchPlaylist, fetchUser, savePlaylist, fetchPlaylists, deletePlaylist, updatePlaylist,
 } from '../actions/index';
 
 class selectedPlaylist extends Component {
@@ -21,9 +21,6 @@ class selectedPlaylist extends Component {
   }
 
     componentDidMount = () => {
-      if (this.props.user.accessToken) {
-        this.props.fetchPlayback(this.props.user.accessToken);
-      }
       this.props.fetchPlaylists(this.props.user.id);
     }
 
@@ -295,11 +292,10 @@ function mapStateToProps(reduxState) {
   return {
     user: reduxState.auth.user,
     playlist: reduxState.playlist.playlist,
-    playback: reduxState.player.playback,
     error: reduxState.playlist.playlist,
   };
 }
 
 export default connect(mapStateToProps, {
-  fetchPlaylist, fetchPlayback, savePlaylist, fetchUser, fetchPlaylists, deletePlaylist, updatePlaylist,
+  fetchPlaylist, savePlaylist, fetchUser, fetchPlaylists, deletePlaylist, updatePlaylist,
 })(selectedPlaylist);

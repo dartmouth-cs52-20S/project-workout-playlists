@@ -20,6 +20,8 @@ import Feedback from '../components/feedback';
 import * as RootNavigation from './rootNavigation';
 import { navigationRef } from './rootNavigation';
 
+import { eraseError, authenticate } from '../actions/index';
+
 
 const Tab = createStackNavigator();
 
@@ -153,56 +155,6 @@ function MyStack() {
   );
 }
 
-// const Tab = createBottomTabNavigator();
-
-// class MainTabBar extends Component {
-//   render() {
-//     if (this.props.auth) {
-//       if (this.props.newUser) {
-//         return (
-//           <NavigationContainer>
-//             <Tab.Navigator showLabels>
-//               <Tab.Screen name="Main" component={Main} />
-//               <Tab.Screen name="New User Flow" component={NewUserFlow} />
-//               <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
-//               <Tab.Screen name="User Profile" component={UserProfile} />
-//               <Tab.Screen name="Workout Selector" component={NewPlaylistFlow} />
-//               <Tab.Screen name="Display" component={testDisplayPlaylist} />
-//               <Tab.Screen name="My Playlists" component={MyPlaylists} />
-//               <Tab.Screen name="Feedback Page" component={Feedback} />
-//             </Tab.Navigator>
-//           </NavigationContainer>
-//         );
-//       } else {
-//         return (
-//           <NavigationContainer>
-//             <Tab.Navigator>
-//               <Tab.Screen name="Main" component={Main} />
-//               <Tab.Screen name="New Created Playlist" component={NewCreatedPlaylist} />
-//               <Tab.Screen name="User Profile" component={UserProfile} />
-//               <Tab.Screen name="Workout Selector" component={NewPlaylistFlow} />
-//               <Tab.Screen name="Display" component={testDisplayPlaylist} />
-//               <Tab.Screen name="My Playlists" component={MyPlaylists} />
-//               <Tab.Screen name="Feedback Page" component={Feedback} />
-
-//             </Tab.Navigator>
-//           </NavigationContainer>
-//         );
-//       }
-//     } else {
-//       return (
-//         <NavigationContainer>
-//           <Tab.Navigator>
-//             <Tab.Screen name="Sign up" component={SignUp} />
-//             <Tab.Screen name="New User Flow" component={NewUserFlow} />
-//           </Tab.Navigator>
-//         </NavigationContainer>
-//       );
-//     }
-//   }
-// }
-
-
 const mapStateToProps = (state) => (
   {
     auth: state.auth.authenticated,
@@ -210,4 +162,4 @@ const mapStateToProps = (state) => (
   }
 );
 
-export default connect(mapStateToProps, null)(MyStack);
+export default connect(mapStateToProps, { eraseError, authenticate })(MyStack);

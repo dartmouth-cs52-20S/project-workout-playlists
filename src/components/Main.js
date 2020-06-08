@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { fetchPlaylists, fetchPlaylist } from '../actions/index';
+import { fetchPlaylists, fetchPlaylist, eraseError } from '../actions/index';
 
 
 class Main extends Component {
@@ -17,13 +17,14 @@ class Main extends Component {
   }
 
   goToPlaylist = (ID) => {
+    this.props.eraseError();
     this.props.fetchPlaylist(ID);
     this.props.navigation.navigate('Display New');
   }
 
   render() {
     if (this.props.all.length === 0) {
-      if (!(this.props.none)) {
+      if ((this.props.none)) {
         return (
           <View style={styles.container}>
             <View style={styles.logocontainer}>
@@ -221,4 +222,4 @@ function mapStateToProps(reduxState) {
 }
 
 
-export default connect(mapStateToProps, { fetchPlaylists, fetchPlaylist })(Main);
+export default connect(mapStateToProps, { fetchPlaylists, fetchPlaylist, eraseError })(Main);
