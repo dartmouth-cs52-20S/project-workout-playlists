@@ -136,7 +136,7 @@ class newCreatedPlaylist extends Component {
               </View>
             </ScrollView>
             <View style={{
-              display: 'flex', flexDirection: 'row', marginVertical: 5, backgroundColor: 'rgb(255,115,0)', paddingHorizontal: 150, paddingVertical: 0,
+              display: 'flex', flexDirection: 'row', marginVertical: 5, backgroundColor: 'rgb(255,115,0)', paddingHorizontal: 100, paddingVertical: 0,
             }}
             >
               <TouchableOpacity

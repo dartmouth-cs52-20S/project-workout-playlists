@@ -13,6 +13,7 @@ import SearchableDropdown from 'react-native-searchable-dropdown';
 import NumericInput from 'react-native-numeric-input';
 import { connect } from 'react-redux';
 import { TextInput } from 'react-native-gesture-handler';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { fetchUser, createPlaylist, eraseError } from '../actions/index';
 
 
@@ -684,6 +685,8 @@ class NewPlaylistFlow extends Component {
               totalWidth={240}
               totalHeight={50}
               iconSize={25}
+              minValue={0}
+              maxValue={300}
               placeholder="Minutes"
               step={5}
               valueType="real"
@@ -780,7 +783,7 @@ class NewPlaylistFlow extends Component {
                 its.push(item);
                 this.setState({ selectedItems: its });
               }}
-              containerStyle={{ padding: 5, top: -80 }}
+              containerStyle={{ padding: 5, top: -80, width: 340 }}
               onRemoveItem={(item, index) => {
                 const its = this.state.selectedItems.filter((sitem) => sitem.id !== item.id);
                 this.setState({ selectedItems: its });
@@ -855,6 +858,7 @@ class NewPlaylistFlow extends Component {
     } else {
       return (
         <View style={styles.container}>
+          <View style={styles.responsiveBox}>
           {this.renderQuestion()}
           <View style={styles.endButton}>
             <TouchableOpacity
@@ -863,6 +867,7 @@ class NewPlaylistFlow extends Component {
             >
               <Text style={styles.buttonTxt}>Next!</Text>
             </TouchableOpacity>
+          </View>
           </View>
         </View>
       );
@@ -885,6 +890,10 @@ const styles = StyleSheet.create({
   image: {
     width: 400,
     height: 300,
+  },
+  responsiveBox: {
+    width: wp('88%'),
+    height: hp('55%'),
   },
   button:
   {
