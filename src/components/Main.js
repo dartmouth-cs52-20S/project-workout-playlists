@@ -9,7 +9,7 @@ import {
 
 import { connect } from 'react-redux';
 import { fetchPlaylists, fetchPlaylist, eraseError } from '../actions/index';
-
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 class Main extends Component {
   componentDidMount() {
@@ -60,6 +60,7 @@ class Main extends Component {
     } else {
       return (
         <View style={styles.container}>
+          <View style={styles.responsiveBox}>
           <View style={styles.logocontainer}>
             <Image style={styles.logo} source={require('../imgs/logo3.png')} />
           </View>
@@ -97,6 +98,7 @@ class Main extends Component {
               <Text style={styles.btnText}>My Playlists</Text>
             </TouchableOpacity>
           </View>
+          </View>
         </View>
       );
     }
@@ -112,10 +114,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
+  responsiveBox: {
+    width: wp('90%'),
+    height: hp('100%'),
+  },
   logocontainer: {
     display: 'flex',
-    top: -40,
+    top: -20,
     alignContent: 'center',
+    alignItems: 'center',
     width: null,
     height: 200,
     resizeMode: 'contain',
@@ -124,7 +131,7 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
   playlistcontainer: {
-    top: -70,
+    top: -60,
   },
   logo: {
     flex: 1,
@@ -149,7 +156,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     // position: 'absolute',
-    bottom: -30,
+    bottom: 0,
     shadowColor: 'grey',
   },
   button: {
