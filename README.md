@@ -11,7 +11,12 @@ This is the front end we used to pull in and display information to the User.
 
 ### Sample Screenshots/Mockups
 
-## ADD SCREENSHOTS
+#### Login 
+![](https://media.giphy.com/media/Id6vt52G35Rkr2Oq62/giphy.gif)
+#### User Profile 
+![](https://media.giphy.com/media/h4IrY661rYPyfTGcgc/giphy.gif)
+#### Some new playlist flow
+![](https://media.giphy.com/media/RMk2vnXfgJVXUqxlxU/giphy.gif)
 
 ## Architecture
 
