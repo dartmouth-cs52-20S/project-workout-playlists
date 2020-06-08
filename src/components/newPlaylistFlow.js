@@ -828,7 +828,7 @@ class NewPlaylistFlow extends Component {
       return (
         <View>
           <Text style={styles.questions}>
-            Name this Playlist!
+            Name this playlist!
           </Text>
           <TextInput
             style={{
@@ -897,6 +897,7 @@ const styles = StyleSheet.create({
   responsiveBox: {
     width: wp('88%'),
     height: hp('55%'),
+    justifyContent: 'center',
   },
   button:
   {
