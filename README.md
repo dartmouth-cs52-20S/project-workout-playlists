@@ -27,7 +27,7 @@ This is the front end we used to pull in and display information to the User.
 
 ### Tools
 
-Spotify API, Authentication API
+We used the Spotify API and Authentication API to build this app. 
 
 ### Libraries Used
 
@@ -62,4 +62,4 @@ Run commands in git supported commandline
  
 
 ## Acknowledgments
-Tim Tregubov and CS52 TA Staff!
+Thank you very much to Tim Tregubov and the CS52 TAs for being so helpful! This app would not have been possible without the amazing teaching team this term.
