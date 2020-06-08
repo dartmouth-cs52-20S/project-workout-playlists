@@ -19,7 +19,6 @@ class UserProfile extends Component {
       question4: this.props.user.loudness,
       question5: this.props.user.popularity,
       question6: this.props.user.valence,
-      // question7: this.props.user.genres,
     };
   }
 
@@ -41,7 +40,6 @@ class UserProfile extends Component {
       },
     );
     this.props.navigation.navigate('Main');
-    // this.props.userExists();
   }
 
   render() {
@@ -71,7 +69,6 @@ class UserProfile extends Component {
               </Text>
               <Slider
                 style={styles.slider}
-
                 minimumTrackTintColor="#FF7300"
                 maximumTrackTintColor="#FFFFFF"
                 thumbTintColor="orange"
@@ -90,7 +87,6 @@ class UserProfile extends Component {
               </Text>
               <Slider
                 style={styles.slider}
-
                 minimumTrackTintColor="#FF7300"
                 maximumTrackTintColor="#FFFFFF"
                 thumbTintColor="orange"
@@ -174,7 +170,6 @@ class UserProfile extends Component {
                 onValueChange={(question6) => this.setState({ question6 })}
               />
             </View>
-
             <Text>
               {' '}
             </Text>
@@ -185,7 +180,6 @@ class UserProfile extends Component {
                 this.handleClick();
               }}
             >
-
               <View style={{ alignItems: 'center' }}>
                 <Text style={{ color: 'white', fontWeight: 'bold' }}>Save Changes</Text>
               </View>
@@ -201,13 +195,14 @@ class UserProfile extends Component {
                 <View>
                   {this.props.user.genres.map((genre) => (
                     <Text style={{
-                      color: 'black', fontSize: 17, margin: 10,
+                      color: 'black', 
+                      fontSize: 17, 
+                      margin: 10,
                     }}
                     >
                       {genre}
                     </Text>
                   ))}
-
                 </View>
               </View>
             </ScrollView>
@@ -223,10 +218,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  image: {
-    width: 100,
-    height: 100,
   },
   slider: {
     width: 300,

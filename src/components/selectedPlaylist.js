@@ -49,11 +49,17 @@ class selectedPlaylist extends Component {
       let editInputOrButton = null;
       if (this.state.isEditing === true) {
         editInputOrButton = (
-          <View style={{ backgroundColor: 'rgb(255,115,0)', paddingHorizontal: 100 }}>
+          <View style={{ 
+            backgroundColor: 'rgb(255,115,0)', 
+            paddingHorizontal: 100 
+            }}>
             <View style={{ flexDirection: 'row' }}>
               <TextInput
                 style={{
-                  height: 40, borderColor: 'white', borderWidth: 1, width: 300,
+                  height: 40, 
+                  borderColor: 'white', 
+                  borderWidth: 1, 
+                  width: 300,
                 }}
                 onChangeText={(text) => { if (text !== '') { console.log('~~~~~~~'); this.setState({ playlistName: text }); } }}
                 placeholder={this.props.playlist.playlistName}
@@ -67,12 +73,22 @@ class selectedPlaylist extends Component {
       } else {
         editInputOrButton = (
           <View style={{
-            backgroundColor: 'rgb(255,115,0)', width: 415, paddingTop: 5, paddingHorizontal: 40,
+            backgroundColor: 'rgb(255,115,0)', 
+            width: 415, 
+            paddingTop: 5, 
+            paddingHorizontal: 40,
           }}
           >
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ 
+              flexDirection: 'row', 
+              alignItems: 'center', 
+              justifyContent: 'center' 
+              }}>
               <Text style={{
-                color: 'white', fontFamily: 'Avenir', fontSize: 27, fontWeight: 'bold',
+                color: 'white', 
+                fontFamily: 'Avenir', 
+                fontSize: 27, 
+                fontWeight: 'bold',
               }}
               >
                 {this.props.playlist.playlistName}
@@ -95,8 +111,11 @@ class selectedPlaylist extends Component {
           return (
             <View style={styles.container}>
               <ActivityIndicator
-                style={{ position: 'absolute', top: 350, left: 180 }}
-                size="large"
+                style={{ 
+                  position: 'absolute', 
+                  top: 350, 
+                  left: 180 }}
+                  size="large"
               />
             </View>
           );
@@ -122,7 +141,10 @@ class selectedPlaylist extends Component {
               <View>
                 {this.props.playlist.songs.map((song) => (
                   <Text style={{
-                    color: 'white', fontFamily: 'Avenir', fontSize: 17, margin: 5,
+                    color: 'white', 
+                    fontFamily: 'Avenir', 
+                    fontSize: 17, 
+                    margin: 5,
                   }}
                   >
                     {`${song.name} by ${song.artists[0].name}`}
@@ -132,16 +154,19 @@ class selectedPlaylist extends Component {
               </View>
             </ScrollView>
             <View style={{
-              display: 'flex', flexDirection: 'row', marginVertical: 5, backgroundColor: 'rgb(255,115,0)', paddingHorizontal: 150, paddingVertical: 0,
+              display: 'flex', 
+              flexDirection: 'row', 
+              marginVertical: 5, 
+              backgroundColor: 'rgb(255,115,0)', 
+              paddingHorizontal: 150, 
+              paddingVertical: 0,
             }}
             >
               <TouchableOpacity
                 style={styles.button}
                 onPress={this.handleSave}
               >
-                <Text style={{
-                  color: 'white', fontFamily: 'Avenir', fontSize: 17, fontWeight: 'bold',
-                }}
+                <Text style={styles.playlistText}
                 >
                   Save to Spotify
                 </Text>
@@ -152,9 +177,7 @@ class selectedPlaylist extends Component {
                 }}
                 style={styles.button}
               >
-                <Text style={{
-                  color: 'white', fontFamily: 'Avenir', fontSize: 17, fontWeight: 'bold',
-                }}
+                <Text style={styles.playlistText}
                 >
                   Delete playlist
                 </Text>
@@ -172,7 +195,10 @@ class selectedPlaylist extends Component {
                 <View>
                   {this.props.playlist.songs.map((song) => (
                     <Text style={{
-                      color: 'white', fontFamily: 'Avenir', fontSize: 17, margin: 10,
+                      color: 'white', 
+                      fontFamily: 'Avenir', 
+                      fontSize: 17, 
+                      margin: 10,
                     }}
                     >
                       {`${song.name} by ${song.artists[0].name}`}
@@ -183,16 +209,19 @@ class selectedPlaylist extends Component {
               </View>
             </ScrollView>
             <View style={{
-              display: 'flex', flexDirection: 'row', marginVertical: 5, backgroundColor: 'rgb(255,115,0)', paddingHorizontal: 100, paddingVertical: 0,
+              display: 'flex', 
+              flexDirection: 'row', 
+              marginVertical: 5, 
+              backgroundColor: 'rgb(255,115,0)', 
+              paddingHorizontal: 100, 
+              paddingVertical: 0,
             }}
             >
               <TouchableOpacity
                 style={styles.button}
                 onPress={this.handleSave}
               >
-                <Text style={{
-                  color: 'white', fontFamily: 'Avenir', fontSize: 17, fontWeight: 'bold',
-                }}
+                <Text style={styles.playlistText}
                 >
                   Save to Spotify
                 </Text>
@@ -203,9 +232,7 @@ class selectedPlaylist extends Component {
                 }}
                 style={styles.button}
               >
-                <Text style={{
-                  color: 'white', fontFamily: 'Avenir', fontSize: 17, fontWeight: 'bold',
-                }}
+                <Text style={styles.playlistText}
                 >
                   Delete playlist
                 </Text>
@@ -229,16 +256,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'flex-end',
     backgroundColor: 'rgb(42,42,42)',
-  },
-  titleText: {
-    flexDirection: 'row',
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: 'white',
-    fontFamily: 'Avenir',
-    paddingVertical: 10,
-    paddingHorizontal: 100,
-    backgroundColor: 'rgb(255,115,0)',
   },
   noteText: {
     flexDirection: 'row',
@@ -265,10 +282,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     backgroundColor: 'rgb(42,42,42)',
   },
-  image: {
-    width: 100,
-    height: 100,
-  },
   button: {
     backgroundColor: 'rgb(255,115,0)',
     padding: 5,
@@ -286,6 +299,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Arial',
   },
+  playlistText: 
+  {
+    color: 'white', 
+    fontFamily: 'Avenir', 
+    fontSize: 17, 
+    fontWeight: 'bold',
+  }
 });
 
 function mapStateToProps(reduxState) {

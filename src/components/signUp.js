@@ -89,7 +89,7 @@ class signUp extends Component {
               this.onLogin();
             }}
           >
-            <Text style={{ color: 'white', fontSize: '17' }}>Log In With Spotify</Text>
+            <Text style={{ color: 'white', fontSize: 17 }}>Log In With Spotify</Text>
           </TouchableOpacity>
         </View>
       );

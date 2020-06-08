@@ -284,7 +284,7 @@ class NewUserFlow extends Component {
     // eslint-disable-next-line react/destructuring-assignment
     return (
       <View style={styles.container}>
-        <Text style={styles.intro}>Lets get to know you!</Text>
+        <Text style={styles.intro}>!</Text>
         {/* <br /> */}
         {this.renderQuestion()}
         <Text style={styles.break}>Hi</Text>
@@ -336,18 +336,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     top: -50,
   },
-  title: {
-    color: 'orange',
-    fontSize: 25,
-    justifyContent: 'flex-start',
-  },
   break: {
     fontSize: 40,
     color: 'rgba(0,0,0,0)',
-  },
-  image: {
-    width: 400,
-    height: 300,
   },
   slider: {
     width: 300,

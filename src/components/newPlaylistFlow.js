@@ -623,7 +623,7 @@ class NewPlaylistFlow extends Component {
         };
         questionNum.currentQ += 1;
         this.setState({ currentQ: questionNum.currentQ });
-        // this.setState({ done: true });
+        //this.setState({ done: true });
       }
     } else {
       // navigate to the generated playlist instead of main
@@ -832,7 +832,15 @@ class NewPlaylistFlow extends Component {
           </Text>
           <TextInput
             style={{
-              height: 40, borderColor: 'gray', borderWidth: 1, width: 400,
+              padding: 10,
+                marginTop: 2,
+                backgroundColor: '#ddd',
+                borderColor: '#bbb',
+                borderWidth: 1,
+                borderRadius: 5,
+                alignSelf: 'center', 
+                height: 40, 
+                width: 350,
             }}
             onChangeText={(text) => this.setState({ playlistName: text })}
             placeholder="Playlist Name Here"
@@ -883,11 +891,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   inputContainer: {
-    // this won't work i want to scream
-    width: 400,
-    height: 300,
-  },
-  image: {
     width: 400,
     height: 300,
   },
@@ -959,16 +962,19 @@ const styles = StyleSheet.create({
   {
     color: 'white',
   },
-  circle: {
+  circle: 
+  {
     justifyContent: 'center',
     alignItems: 'center',
     top: -30,
   },
-  innercircle: {
+  innercircle: 
+  {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  inner: {
+  inner: 
+  {
     fontWeight: '500',
     fontSize: 32,
     color: 'rgb(255,115,0)',

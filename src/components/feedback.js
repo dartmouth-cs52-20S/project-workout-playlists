@@ -44,12 +44,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-  button: {
-    backgroundColor: 'rgb(255,115,0)',
-    margin: 15,
-    padding: 5,
-    borderRadius: 5,
-  },
   titleText: {
     fontSize: 25,
     fontWeight: 'bold',

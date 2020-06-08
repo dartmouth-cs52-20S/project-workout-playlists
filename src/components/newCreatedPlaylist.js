@@ -234,16 +234,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     backgroundColor: 'rgb(42,42,42)',
   },
-  titleText: {
-    flexDirection: 'row',
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: 'white',
-    fontFamily: 'Avenir',
-    paddingVertical: 10,
-    paddingHorizontal: 100,
-    backgroundColor: 'rgb(255,115,0)',
-  },
   noteText: {
     flexDirection: 'row',
     fontSize: 18,
@@ -268,10 +258,6 @@ const styles = StyleSheet.create({
   scrollView: {
     paddingHorizontal: 10,
     backgroundColor: 'rgb(42,42,42)',
-  },
-  image: {
-    width: 100,
-    height: 100,
   },
   button: {
     backgroundColor: 'rgb(255,115,0)',

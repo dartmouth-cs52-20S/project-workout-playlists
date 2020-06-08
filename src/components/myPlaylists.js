@@ -3,11 +3,8 @@ import React, { Component } from 'react';
 import {
   StyleSheet, Text, View, ScrollView, SafeAreaView, TouchableOpacity,
 } from 'react-native';
-
 import { connect } from 'react-redux';
-
 import { fetchPlaylists, fetchPlaylist, eraseError } from '../actions/index';
-
 
 class MyPlaylists extends Component {
   goToPlaylist = (id) => {
@@ -15,7 +12,6 @@ class MyPlaylists extends Component {
     this.props.fetchPlaylist(id);
     this.props.navigation.navigate('Display Selected');
   }
-
 
   render() {
     if (this.props.none) {
@@ -26,10 +22,7 @@ class MyPlaylists extends Component {
           </View>
           <ScrollView style={styles.scrollView}>
             <View style={styles.container}>
-              <Text style={{
-                color: 'white', fontFamily: 'Avenir', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'rgb(42,42,42)',
-              }}
-              >
+              <Text style={styles.playlists}>
                 Looks like you haven't created any playlists yet!
               </Text>
             </View>
@@ -39,7 +32,11 @@ class MyPlaylists extends Component {
     } else {
       return (
         <SafeAreaView style={styles.container}>
-          <View style={{ width: 450, backgroundColor: 'rgb(255,115,0)', alignItems: 'center' }}>
+          <View style={{ 
+            width: 450, 
+            backgroundColor: 'rgb(255,115,0)', 
+            alignItems: 'center' 
+            }}>
             <Text style={styles.titleText}>MY PLAYLISTS</Text>
           </View>
           <ScrollView style={styles.scrollView}>
@@ -51,10 +48,7 @@ class MyPlaylists extends Component {
                       this.goToPlaylist(playlist.id);
                     }}
                   >
-                    <Text style={{
-                      color: 'white', fontFamily: 'Avenir', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'rgb(42,42,42)',
-                    }}
-                    >
+                    <Text style={styles.playlists}>
                       {playlist.playlistName}
                       {' '}
                       Tempo
@@ -64,7 +58,6 @@ class MyPlaylists extends Component {
                   </TouchableOpacity>
                 </View>
               ))}
-
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -93,6 +86,15 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     paddingHorizontal: 10,
+    backgroundColor: 'rgb(42,42,42)',
+  },
+  playlists:{
+    color: 'white', 
+    fontFamily: 'Avenir', 
+    fontSize: 17, 
+    paddingVertical: 15, 
+    paddingHorizontal: 2, 
+    margin: 2, 
     backgroundColor: 'rgb(42,42,42)',
   },
 });

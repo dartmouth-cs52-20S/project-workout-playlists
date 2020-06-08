@@ -127,9 +127,6 @@ const styles = StyleSheet.create({
     height: 200,
     resizeMode: 'contain',
   },
-  title: {
-    display: 'flex',
-  },
   playlistcontainer: {
     top: -60,
   },
@@ -138,12 +135,6 @@ const styles = StyleSheet.create({
     width: 300,
     height: null,
     resizeMode: 'contain',
-    // justifyContent: 'center',
-  },
-  imgcontainer: {
-    display: 'flex',
-    top: 50,
-    justifyContent: 'center',
   },
   img: {
     flex: 1,
