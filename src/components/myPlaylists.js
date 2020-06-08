@@ -6,61 +6,70 @@ import {
 
 import { connect } from 'react-redux';
 
-import { fetchPlaylists, fetchPlaylist, deletePlaylist } from '../actions/index';
+import { fetchPlaylists, fetchPlaylist, eraseError } from '../actions/index';
 
 
 class MyPlaylists extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      // favorited: 0,
-    };
-  }
-
-  componentDidMount() {
-  }
-
   goToPlaylist = (id) => {
+    this.props.eraseError();
     this.props.fetchPlaylist(id);
     this.props.navigation.navigate('Display Selected');
   }
 
 
   render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <View style={{ width: 450, backgroundColor: 'rgb(255,115,0)', alignItems: 'center' }}>
-          <Text style={styles.titleText}>MY PLAYLISTS</Text>
-        </View>
-        <ScrollView style={styles.scrollView}>
-          <View style={styles.container}>
-            {this.props.all.map((playlist) => (
-              <View>
-                <TouchableOpacity
-                  onPress={() => {
-                    this.goToPlaylist(playlist.id);
-                  }}
-                >
-                  <Text style={{
-                    color: 'white', fontFamily: 'Avenir', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'rgb(42,42,42)',
-                  }}
-                  >
-                    {playlist.playlistName}
-                    {' '}
-                    Tempo
-                    {' '}
-                    {playlist.workoutType}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            ))}
-
+    if (this.props.none) {
+      return (
+        <SafeAreaView style={styles.container}>
+          <View style={{ width: 450, backgroundColor: 'rgb(255,115,0)', alignItems: 'center' }}>
+            <Text style={styles.titleText}>MY PLAYLISTS</Text>
           </View>
-        </ScrollView>
-      </SafeAreaView>
+          <ScrollView style={styles.scrollView}>
+            <View style={styles.container}>
+              <Text style={{
+                color: 'white', fontFamily: 'Avenir', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'rgb(42,42,42)',
+              }}
+              >
+                Looks like you haven't created any playlists yet!
+              </Text>
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+      );
+    } else {
+      return (
+        <SafeAreaView style={styles.container}>
+          <View style={{ width: 450, backgroundColor: 'rgb(255,115,0)', alignItems: 'center' }}>
+            <Text style={styles.titleText}>MY PLAYLISTS</Text>
+          </View>
+          <ScrollView style={styles.scrollView}>
+            <View style={styles.container}>
+              {this.props.all.map((playlist) => (
+                <View>
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.goToPlaylist(playlist.id);
+                    }}
+                  >
+                    <Text style={{
+                      color: 'white', fontFamily: 'Avenir', fontSize: 17, paddingVertical: 15, paddingHorizontal: 2, margin: 2, backgroundColor: 'rgb(42,42,42)',
+                    }}
+                    >
+                      {playlist.playlistName}
+                      {' '}
+                      Tempo
+                      {' '}
+                      {playlist.workoutType}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              ))}
 
-    );
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+      );
+    }
   }
 }
 
@@ -92,7 +101,8 @@ function mapStateToProps(reduxState) {
   return {
     user: reduxState.auth.user,
     all: reduxState.playlist.all,
+    none: reduxState.playlist.none,
   };
 }
 
-export default connect(mapStateToProps, { fetchPlaylists, fetchPlaylist, deletePlaylist })(MyPlaylists);
+export default connect(mapStateToProps, { fetchPlaylists, fetchPlaylist, eraseError })(MyPlaylists);

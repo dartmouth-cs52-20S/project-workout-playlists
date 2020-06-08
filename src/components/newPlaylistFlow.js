@@ -13,7 +13,7 @@ import SearchableDropdown from 'react-native-searchable-dropdown';
 import NumericInput from 'react-native-numeric-input';
 import { connect } from 'react-redux';
 import { TextInput } from 'react-native-gesture-handler';
-import { fetchUser, createPlaylist } from '../actions/index';
+import { fetchUser, createPlaylist, eraseError } from '../actions/index';
 
 
 // serachable dropdown from https://www.npmjs.com/package/react-native-searchable-dropdown
@@ -547,6 +547,7 @@ class NewPlaylistFlow extends Component {
 
   componentDidMount = () => {
     this.props.fetchUser(this.props.user.spotifyID);
+    this.props.eraseError();
   }
 
   objArrToString = (arr) => {
@@ -973,4 +974,4 @@ function mapStateToProps(reduxState) {
   };
 }
 
-export default connect(mapStateToProps, { fetchUser, createPlaylist })(NewPlaylistFlow);
+export default connect(mapStateToProps, { fetchUser, createPlaylist, eraseError })(NewPlaylistFlow);

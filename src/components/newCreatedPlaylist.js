@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 
 import {
-  fetchPlaylist, fetchPlayback, fetchUser, savePlaylist, fetchPlaylists, deletePlaylist, updatePlaylist,
+  fetchPlaylist, fetchUser, savePlaylist, fetchPlaylists, deletePlaylist, updatePlaylist,
 } from '../actions/index';
 
 class newCreatedPlaylist extends Component {
@@ -21,9 +21,6 @@ class newCreatedPlaylist extends Component {
   }
 
     componentDidMount = () => {
-      if (this.props.user.accessToken) {
-        this.props.fetchPlayback(this.props.user.accessToken);
-      }
       this.props.fetchPlaylists(this.props.user.id);
     }
 
@@ -34,8 +31,12 @@ class newCreatedPlaylist extends Component {
 
     onDelete = (id) => {
       this.props.deletePlaylist(id);
-      this.props.fetchPlaylists(this.props.user.id);
-      this.props.navigation.navigate('Main');
+      setTimeout(() => {
+        this.props.fetchPlaylists(this.props.user.id);
+      }, 2000);
+      setTimeout(() => {
+        this.props.navigation.navigate('Main');
+      }, 2000);
     }
 
 
@@ -90,21 +91,20 @@ class newCreatedPlaylist extends Component {
         );
       }
 
-      if (typeof this.props.playlist.songs === 'undefined') {
-        if (this.props.error) {
-          return (
-            <View style={styles.container}><Text style={styles.bodyText}>We are sorry, but your playlist could not be fetched. Please try again and try to loosen your playlist constraints. </Text></View>
-          );
-        } else {
-          return (
-            <View style={styles.container}>
-              <ActivityIndicator
-                style={{ position: 'absolute', top: 350, left: 180 }}
-                size="large"
-              />
-            </View>
-          );
-        }
+
+      if (this.props.error) {
+        return (
+          <View style={styles.container}><Text style={styles.bodyText}>We are sorry, but your playlist could not be fetched. Please try again and try to loosen your playlist constraints. </Text></View>
+        );
+      } else if (typeof this.props.playlist.songs === 'undefined') {
+        return (
+          <View style={styles.container}>
+            <ActivityIndicator
+              style={{ position: 'absolute', top: 350, left: 180 }}
+              size="large"
+            />
+          </View>
+        );
       } else if (this.props.playlist.songs.length * 3 < this.props.playlist.workoutLength) {
         return (
           <SafeAreaView style={styles.container}>
@@ -296,11 +296,10 @@ function mapStateToProps(reduxState) {
   return {
     user: reduxState.auth.user,
     playlist: reduxState.playlist.playlist,
-    playback: reduxState.player.playback,
-    error: reduxState.playlist.playlist,
+    error: reduxState.playlist.error,
   };
 }
 
 export default connect(mapStateToProps, {
-  fetchPlaylist, fetchPlayback, savePlaylist, fetchUser, fetchPlaylists, deletePlaylist, updatePlaylist,
+  fetchPlaylist, savePlaylist, fetchUser, fetchPlaylists, deletePlaylist, updatePlaylist,
 })(newCreatedPlaylist);
