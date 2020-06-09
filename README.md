@@ -34,8 +34,6 @@ This is the front end we used to pull in and display information to the User.
 
 * Spotify API
 
-### Libraries Used
-
 ## Setup
 
 Npm install then npm start. Once expo page has loaded, scan barcode on phone to run on expo mobile app.
