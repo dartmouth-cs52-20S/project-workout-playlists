@@ -3,7 +3,6 @@
 ![](https://i.imgur.com/MJr8KLd.jpg)
 
 ### Project Description
-A convenient way to make workout and user preference tailored playlists!
 
 We're interested in making it easier and more enjoyable for people to work out. We find ourselves postponing our workouts to find/curate the ideal playlist, and it eats in to time we could be doing something else (like working out)! We made this app to be a convenient way to make workout/user preferenced tailored playlists!
 
