@@ -32,7 +32,7 @@ This is the front end we used to pull in and display information to the User.
 
 ### Tools
 
-We used the Spotify API to build this app. 
+* Spotify API
 
 ### Libraries Used
 
