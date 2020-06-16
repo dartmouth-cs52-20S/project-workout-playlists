@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet, View, Text,
-  TouchableOpacity, Image, ActivityIndicator,
+  TouchableOpacity, Image, ActivityIndicator, ScrollView, SafeAreaView,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -26,27 +26,31 @@ class Main extends Component {
     if (this.props.all.length === 0) {
       if ((this.props.none)) {
         return (
-          <View style={styles.container}>
-            <View style={styles.logocontainer}>
-              <Image style={styles.logo} source={require('../imgs/logo3.png')} />
-            </View>
-            <View style={styles.modal}>
-              <View style={styles.textcontainer}>
-                <Text style={styles.text}>Your recent playlists:</Text>
+          <SafeAreaView style={styles.container}>
+            <ScrollView style={styles.scrollView}>
+              <View style={styles.container}>
+                <View style={styles.logocontainer}>
+                  <Image style={styles.logo} source={require('../imgs/logo3.png')} />
+                </View>
+                <View style={styles.modal}>
+                  <View style={styles.textcontainer}>
+                    <Text style={styles.text}>Your recent playlists:</Text>
+                  </View>
+                  <View style={styles.warningContainer}>
+                    <Text style={styles.warningFont}>Looks like you haven't created any playlists yet! Click the new playlist button to get started.</Text>
+                  </View>
+                </View>
+                <View style={styles.buttons}>
+                  <TouchableOpacity onPress={() => this.props.navigation.navigate('Workout Selector')} style={styles.button}>
+                    <Text style={styles.btnText}>New Playlist</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => this.props.navigation.navigate('My Playlists')} style={styles.button}>
+                    <Text style={styles.btnText}>My Playlists</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
-              <View style={styles.warningContainer}>
-                <Text style={styles.warningFont}>Looks like you haven't created any playlists yet! Click the new playlist button to get started.</Text>
-              </View>
-            </View>
-            <View style={styles.buttons}>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('Workout Selector')} style={styles.button}>
-                <Text style={styles.btnText}>New Playlist</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('My Playlists')} style={styles.button}>
-                <Text style={styles.btnText}>My Playlists</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+            </ScrollView>
+          </SafeAreaView>
         );
       } else {
         return (
@@ -59,45 +63,49 @@ class Main extends Component {
       }
     } else {
       return (
-        <View style={styles.container}>
-          <View style={styles.logocontainer}>
-            <Image style={styles.logo} source={require('../imgs/logo3.png')} />
-          </View>
-          <View style={styles.modal}>
-            <View style={styles.textcontainer}>
-              <Text style={styles.text}>Your recent playlists:</Text>
-            </View>
-            {this.props.all.slice(0, 4).map((playlist) => (
-              <View style={styles.playlistcontainer}>
-                <TouchableOpacity
-                  onPress={() => {
-                    this.goToPlaylist(playlist.id);
-                  }}
-                  style={styles.playlist}
-                >
-                  <Text style={{
-                    color: 'rgb(255,115,0)', fontFamily: 'Avenir', fontSize: 17, paddingVertical: 15, paddingLeft: 10, margin: 2, backgroundColor: 'white',
-                  }}
-                  >
-                    {playlist.playlistName}
-                    {' ('}
-                    {playlist.workoutType}
-                    {')'}
-                  </Text>
+        <SafeAreaView style={styles.container}>
+          <ScrollView style={styles.scrollView}>
+            <View style={styles.container}>
+              <View style={styles.logocontainer}>
+                <Image style={styles.logo} source={require('../imgs/logo3.png')} />
+              </View>
+              <View style={styles.modal}>
+                <View style={styles.textcontainer}>
+                  <Text style={styles.text}>Your recent playlists:</Text>
+                </View>
+                {this.props.all.slice(0, 4).map((playlist) => (
+                  <View style={styles.playlistcontainer}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        this.goToPlaylist(playlist.id);
+                      }}
+                      style={styles.playlist}
+                    >
+                      <Text style={{
+                        color: 'rgb(255,115,0)', fontFamily: 'Avenir', fontSize: 17, paddingVertical: 15, paddingLeft: 10, margin: 2, backgroundColor: 'white',
+                      }}
+                      >
+                        {playlist.playlistName}
+                        {' ('}
+                        {playlist.workoutType}
+                        {')'}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                ))}
+
+              </View>
+              <View style={styles.buttons}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Workout Selector')} style={styles.button}>
+                  <Text style={styles.btnText}>New Playlist</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('My Playlists')} style={styles.button}>
+                  <Text style={styles.btnText}>My Playlists</Text>
                 </TouchableOpacity>
               </View>
-            ))}
-
-          </View>
-          <View style={styles.buttons}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Workout Selector')} style={styles.button}>
-              <Text style={styles.btnText}>New Playlist</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('My Playlists')} style={styles.button}>
-              <Text style={styles.btnText}>My Playlists</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+            </View>
+          </ScrollView>
+        </SafeAreaView>
       );
     }
   }
