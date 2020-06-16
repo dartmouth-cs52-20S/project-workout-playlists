@@ -769,7 +769,7 @@ class NewPlaylistFlow extends Component {
       return (
         <View>
           <Text style={styles.questions}>
-            Today, Im feeling like...
+            Today, I'm feeling like...
           </Text>
           <View style={styles.inputContainer}>
             <SearchableDropdown
@@ -780,7 +780,7 @@ class NewPlaylistFlow extends Component {
                 its.push(item);
                 this.setState({ selectedItems: its });
               }}
-              containerStyle={{ padding: 5, top: -80 }}
+              containerStyle={{ padding: 20, top: -80 }}
               onRemoveItem={(item, index) => {
                 const its = this.state.selectedItems.filter((sitem) => sitem.id !== item.id);
                 this.setState({ selectedItems: its });
@@ -829,7 +829,7 @@ class NewPlaylistFlow extends Component {
           </Text>
           <TextInput
             style={{
-              height: 40, borderColor: 'gray', borderWidth: 1, width: 400,
+              height: 40, borderColor: 'gray', borderWidth: 1, width: 300,
             }}
             onChangeText={(text) => this.setState({ playlistName: text })}
             placeholder="Playlist Name Here"
@@ -940,6 +940,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     fontFamily: 'Avenir',
     top: -85,
+    padding: 20,
   },
   subtitle: {
     color: 'rgb(185,185,185)',

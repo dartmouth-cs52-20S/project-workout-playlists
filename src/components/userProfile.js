@@ -30,6 +30,7 @@ class UserProfile extends Component {
   handleClick = (event) => {
     this.props.updateUser(
       {
+        accessToken: this.props.user.accessToken,
         spotifyID: this.props.user.spotifyID,
         acousticness: this.state.question1,
         instrumentalness: this.state.question2,
